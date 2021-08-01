@@ -1,0 +1,4 @@
+Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim -- -j2 -l2
+Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim -- -j2 -l2
+Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim
+Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim

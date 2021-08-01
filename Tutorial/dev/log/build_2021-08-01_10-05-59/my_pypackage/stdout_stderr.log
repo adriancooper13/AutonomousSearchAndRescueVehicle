@@ -1,0 +1,35 @@
+running egg_info
+creating ../../build/my_pypackage/my_pypackage.egg-info
+writing ../../build/my_pypackage/my_pypackage.egg-info/PKG-INFO
+writing dependency_links to ../../build/my_pypackage/my_pypackage.egg-info/dependency_links.txt
+writing entry points to ../../build/my_pypackage/my_pypackage.egg-info/entry_points.txt
+writing requirements to ../../build/my_pypackage/my_pypackage.egg-info/requires.txt
+writing top-level names to ../../build/my_pypackage/my_pypackage.egg-info/top_level.txt
+writing manifest file '../../build/my_pypackage/my_pypackage.egg-info/SOURCES.txt'
+reading manifest file '../../build/my_pypackage/my_pypackage.egg-info/SOURCES.txt'
+writing manifest file '../../build/my_pypackage/my_pypackage.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib/my_pypackage
+copying my_pypackage/my_pynode.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib/my_pypackage
+copying my_pypackage/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib/my_pypackage
+running install
+running install_lib
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage
+copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib/my_pypackage/my_pynode.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage
+copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/build/lib/my_pypackage/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage
+byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage/my_pynode.py to my_pynode.cpython-38.pyc
+byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/share/ament_index
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/share/ament_index/resource_index
+creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/share/ament_index/resource_index/packages
+copying resource/my_pypackage -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/share/ament_index/resource_index/packages
+copying package.xml -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/share/my_pypackage
+running install_egg_info
+Copying ../../build/my_pypackage/my_pypackage.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/python3.8/site-packages/my_pypackage-0.0.0-py3.8.egg-info
+running install_scripts
+Installing my_pynode script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/my_pypackage/lib/my_pypackage
+writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/my_pypackage/install.log'
