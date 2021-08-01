@@ -1,0 +1,11 @@
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/install/strip.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/edit_cache.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/test.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/client.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/install/local.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/server.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/install.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/list_install_components.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/rebuild_cache.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/cpp_srvcli_uninstall.dir
+/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/uninstall.dir
