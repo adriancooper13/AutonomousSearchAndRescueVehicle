@@ -1,0 +1,468 @@
+[0.000000] (-) TimerEvent: {}
+[0.004345] (turtlesim) JobQueued: {'identifier': 'turtlesim', 'dependencies': OrderedDict()}
+[0.008395] (turtlesim) JobStarted: {'identifier': 'turtlesim'}
+[0.031664] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'cmake'}
+[0.036263] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'build'}
+[0.037100] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim', '--', '-j2', '-l2'], 'cwd': '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adriancooper'), ('SSH_AGENT_PID', '2208'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/adriancooper'), ('OLDPWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '2026'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/home/adriancooper/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'adriancooper'), ('JOURNAL_STREAM', '8:84324'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adriancooper'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/2243,unix/ubuntu:/tmp/.ICE-unix/2243'), ('INVOCATION_ID', '839f5e932cab452c944c71f550ec1139'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/1cad7437_7aac_4a93_8301_b0f703265706'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.852'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '13'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.095587] (-) TimerEvent: {}
+[0.196680] (-) TimerEvent: {}
+[0.255739] (turtlesim) StdoutLine: {'line': b'[ 10%] Built target turtlesim__rosidl_generator_c\n'}
+[0.274840] (turtlesim) StdoutLine: {'line': b'[ 11%] Built target turtlesim__cpp\n'}
+[0.296952] (-) TimerEvent: {}
+[0.359900] (turtlesim) StdoutLine: {'line': b'[ 21%] Built target turtlesim__rosidl_typesupport_introspection_c\n'}
+[0.379599] (turtlesim) StdoutLine: {'line': b'[ 31%] Built target turtlesim__rosidl_typesupport_c\n'}
+[0.397143] (-) TimerEvent: {}
+[0.415801] (turtlesim) StdoutLine: {'line': b'[ 41%] Built target turtlesim__rosidl_typesupport_cpp\n'}
+[0.462874] (turtlesim) StdoutLine: {'line': b'[ 51%] Built target turtlesim__rosidl_typesupport_introspection_cpp\n'}
+[0.497346] (-) TimerEvent: {}
+[0.519608] (turtlesim) StdoutLine: {'line': b'[ 61%] Built target turtlesim__rosidl_typesupport_fastrtps_cpp\n'}
+[0.592432] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target turtlesim__rosidl_typesupport_fastrtps_c\n'}
+[0.600909] (-) TimerEvent: {}
+[0.655327] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target turtlesim\n'}
+[0.701206] (-) TimerEvent: {}
+[0.746587] (turtlesim) StdoutLine: {'line': b'[ 73%] Built target mimic\n'}
+[0.778268] (turtlesim) StdoutLine: {'line': b'[ 75%] Built target draw_square\n'}
+[0.801416] (-) TimerEvent: {}
+[0.857335] (turtlesim) StdoutLine: {'line': b'[ 76%] Built target turtlesim__py\n'}
+[0.870176] (turtlesim) StdoutLine: {'line': b'[ 78%] Built target turtle_teleop_key\n'}
+[0.901725] (-) TimerEvent: {}
+[1.003294] (-) TimerEvent: {}
+[1.003741] (turtlesim) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target turtlesim_node\x1b[0m\n'}
+[1.030044] (turtlesim) StdoutLine: {'line': b'[ 87%] Built target turtlesim__python\n'}
+[1.102424] (-) TimerEvent: {}
+[1.122337] (turtlesim) StdoutLine: {'line': b'[ 89%] Built target turtlesim__rosidl_typesupport_introspection_c__pyext\n'}
+[1.210273] (-) TimerEvent: {}
+[1.227310] (turtlesim) StdoutLine: {'line': b'[ 91%] Built target turtlesim__rosidl_typesupport_fastrtps_c__pyext\n'}
+[1.310768] (-) TimerEvent: {}
+[1.352877] (turtlesim) StdoutLine: {'line': b'[ 93%] Built target turtlesim__rosidl_typesupport_c__pyext\n'}
+[1.365151] (turtlesim) StdoutLine: {'line': b'[ 94%] \x1b[32mBuilding CXX object CMakeFiles/turtlesim_node.dir/src/turtle_frame.cpp.o\x1b[0m\n'}
+[1.410959] (-) TimerEvent: {}
+[1.512561] (-) TimerEvent: {}
+[1.615150] (-) TimerEvent: {}
+[1.715969] (-) TimerEvent: {}
+[1.816548] (-) TimerEvent: {}
+[1.916976] (-) TimerEvent: {}
+[2.017615] (-) TimerEvent: {}
+[2.118269] (-) TimerEvent: {}
+[2.218840] (-) TimerEvent: {}
+[2.321037] (-) TimerEvent: {}
+[2.421623] (-) TimerEvent: {}
+[2.522251] (-) TimerEvent: {}
+[2.622925] (-) TimerEvent: {}
+[2.723761] (-) TimerEvent: {}
+[2.824552] (-) TimerEvent: {}
+[2.925208] (-) TimerEvent: {}
+[3.025817] (-) TimerEvent: {}
+[3.126307] (-) TimerEvent: {}
+[3.227392] (-) TimerEvent: {}
+[3.328454] (-) TimerEvent: {}
+[3.428971] (-) TimerEvent: {}
+[3.529711] (-) TimerEvent: {}
+[3.630360] (-) TimerEvent: {}
+[3.731012] (-) TimerEvent: {}
+[3.831589] (-) TimerEvent: {}
+[3.934509] (-) TimerEvent: {}
+[4.035113] (-) TimerEvent: {}
+[4.135731] (-) TimerEvent: {}
+[4.236158] (-) TimerEvent: {}
+[4.337312] (-) TimerEvent: {}
+[4.438337] (-) TimerEvent: {}
+[4.539575] (-) TimerEvent: {}
+[4.640489] (-) TimerEvent: {}
+[4.741065] (-) TimerEvent: {}
+[4.841804] (-) TimerEvent: {}
+[4.942372] (-) TimerEvent: {}
+[5.042931] (-) TimerEvent: {}
+[5.143908] (-) TimerEvent: {}
+[5.244748] (-) TimerEvent: {}
+[5.345539] (-) TimerEvent: {}
+[5.446391] (-) TimerEvent: {}
+[5.547198] (-) TimerEvent: {}
+[5.648178] (-) TimerEvent: {}
+[5.749223] (-) TimerEvent: {}
+[5.850108] (-) TimerEvent: {}
+[5.951182] (-) TimerEvent: {}
+[6.052333] (-) TimerEvent: {}
+[6.152819] (-) TimerEvent: {}
+[6.253541] (-) TimerEvent: {}
+[6.354492] (-) TimerEvent: {}
+[6.455092] (-) TimerEvent: {}
+[6.556093] (-) TimerEvent: {}
+[6.656872] (-) TimerEvent: {}
+[6.757538] (-) TimerEvent: {}
+[6.858258] (-) TimerEvent: {}
+[6.959195] (-) TimerEvent: {}
+[7.060053] (-) TimerEvent: {}
+[7.160806] (-) TimerEvent: {}
+[7.261463] (-) TimerEvent: {}
+[7.362621] (-) TimerEvent: {}
+[7.463622] (-) TimerEvent: {}
+[7.564676] (-) TimerEvent: {}
+[7.665628] (-) TimerEvent: {}
+[7.767353] (-) TimerEvent: {}
+[7.868598] (-) TimerEvent: {}
+[7.969624] (-) TimerEvent: {}
+[8.071058] (-) TimerEvent: {}
+[8.171876] (-) TimerEvent: {}
+[8.272654] (-) TimerEvent: {}
+[8.373818] (-) TimerEvent: {}
+[8.475280] (-) TimerEvent: {}
+[8.576498] (-) TimerEvent: {}
+[8.677097] (-) TimerEvent: {}
+[8.778028] (-) TimerEvent: {}
+[8.878984] (-) TimerEvent: {}
+[8.979678] (-) TimerEvent: {}
+[9.080189] (-) TimerEvent: {}
+[9.180850] (-) TimerEvent: {}
+[9.281772] (-) TimerEvent: {}
+[9.382492] (-) TimerEvent: {}
+[9.483096] (-) TimerEvent: {}
+[9.583779] (-) TimerEvent: {}
+[9.684242] (-) TimerEvent: {}
+[9.784970] (-) TimerEvent: {}
+[9.886565] (-) TimerEvent: {}
+[9.991773] (-) TimerEvent: {}
+[10.092322] (-) TimerEvent: {}
+[10.192771] (-) TimerEvent: {}
+[10.293270] (-) TimerEvent: {}
+[10.393871] (-) TimerEvent: {}
+[10.494497] (-) TimerEvent: {}
+[10.595442] (-) TimerEvent: {}
+[10.696270] (-) TimerEvent: {}
+[10.797054] (-) TimerEvent: {}
+[10.897481] (-) TimerEvent: {}
+[10.998021] (-) TimerEvent: {}
+[11.098618] (-) TimerEvent: {}
+[11.198987] (-) TimerEvent: {}
+[11.300279] (-) TimerEvent: {}
+[11.400939] (-) TimerEvent: {}
+[11.501435] (-) TimerEvent: {}
+[11.602447] (-) TimerEvent: {}
+[11.702969] (-) TimerEvent: {}
+[11.803664] (-) TimerEvent: {}
+[11.904571] (-) TimerEvent: {}
+[12.005182] (-) TimerEvent: {}
+[12.089146] (turtlesim) StdoutLine: {'line': b'[ 95%] \x1b[32m\x1b[1mLinking CXX executable turtlesim_node\x1b[0m\n'}
+[12.105320] (-) TimerEvent: {}
+[12.205866] (-) TimerEvent: {}
+[12.306527] (-) TimerEvent: {}
+[12.407322] (-) TimerEvent: {}
+[12.507954] (-) TimerEvent: {}
+[12.608538] (-) TimerEvent: {}
+[12.709052] (-) TimerEvent: {}
+[12.809529] (-) TimerEvent: {}
+[12.910181] (-) TimerEvent: {}
+[13.010856] (-) TimerEvent: {}
+[13.111866] (-) TimerEvent: {}
+[13.212917] (-) TimerEvent: {}
+[13.313465] (-) TimerEvent: {}
+[13.414771] (-) TimerEvent: {}
+[13.516230] (-) TimerEvent: {}
+[13.616906] (-) TimerEvent: {}
+[13.717603] (-) TimerEvent: {}
+[13.818343] (-) TimerEvent: {}
+[13.919091] (-) TimerEvent: {}
+[14.019639] (-) TimerEvent: {}
+[14.120301] (-) TimerEvent: {}
+[14.123278] (turtlesim) StdoutLine: {'line': b'[100%] Built target turtlesim_node\n'}
+[14.157851] (turtlesim) CommandEnded: {'returncode': 0}
+[14.220542] (-) TimerEvent: {}
+[14.321085] (-) TimerEvent: {}
+[14.421504] (-) TimerEvent: {}
+[14.522075] (-) TimerEvent: {}
+[14.577732] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'install'}
+[14.611327] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim'], 'cwd': '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adriancooper'), ('SSH_AGENT_PID', '2208'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/adriancooper'), ('OLDPWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '2026'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/home/adriancooper/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'adriancooper'), ('JOURNAL_STREAM', '8:84324'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adriancooper'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/2243,unix/ubuntu:/tmp/.ICE-unix/2243'), ('INVOCATION_ID', '839f5e932cab452c944c71f550ec1139'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/1cad7437_7aac_4a93_8301_b0f703265706'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.852'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '13'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/turtlesim'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[14.622624] (-) TimerEvent: {}
+[14.628951] (turtlesim) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[14.629425] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/ament_index/resource_index/rosidl_interfaces/turtlesim\n'}
+[14.629574] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.630085] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.631181] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.631479] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__type_support.h\n'}
+[14.631590] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__functions.h\n'}
+[14.631668] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__struct.h\n'}
+[14.644982] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__functions.c\n'}
+[14.645297] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/rotate_absolute.h\n'}
+[14.645487] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.645769] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/pose.h\n'}
+[14.646086] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/rosidl_generator_c__visibility_control.h\n'}
+[14.646273] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/color.h\n'}
+[14.646700] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.649209] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__functions.h\n'}
+[14.649533] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__type_support.h\n'}
+[14.649781] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__struct.h\n'}
+[14.649944] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__functions.c\n'}
+[14.650087] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__functions.c\n'}
+[14.650173] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__functions.h\n'}
+[14.650248] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__struct.h\n'}
+[14.650319] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__type_support.h\n'}
+[14.650389] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.650610] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/kill.h\n'}
+[14.650723] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/teleport_relative.h\n'}
+[14.650796] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/teleport_absolute.h\n'}
+[14.650863] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.650943] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__type_support.h\n'}
+[14.651009] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__functions.c\n'}
+[14.651074] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__functions.h\n'}
+[14.651138] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__type_support.h\n'}
+[14.651202] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__struct.h\n'}
+[14.651269] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__functions.h\n'}
+[14.651333] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__struct.h\n'}
+[14.651397] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__struct.h\n'}
+[14.651515] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__functions.c\n'}
+[14.651743] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__type_support.h\n'}
+[14.651823] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__functions.c\n'}
+[14.651898] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__functions.h\n'}
+[14.651964] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__type_support.h\n'}
+[14.652029] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__struct.h\n'}
+[14.652095] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__functions.c\n'}
+[14.652159] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__functions.c\n'}
+[14.652226] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__functions.h\n'}
+[14.652297] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__type_support.h\n'}
+[14.652363] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__struct.h\n'}
+[14.652427] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__functions.h\n'}
+[14.652491] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/set_pen.h\n'}
+[14.652556] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/spawn.h\n'}
+[14.652628] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/library_path.sh\n'}
+[14.652691] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/library_path.dsv\n'}
+[14.652940] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_generator_c.so\n'}
+[14.653116] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.653293] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.653505] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.653720] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[14.653943] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.654202] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.654419] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_c.h\n'}
+[14.654838] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_c.h\n'}
+[14.655166] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[14.655271] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.655376] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.655503] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_c.h\n'}
+[14.655774] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[14.656020] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_c.h\n'}
+[14.656204] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_c.h\n'}
+[14.656302] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_c.h\n'}
+[14.656372] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_c.so\n'}
+[14.656652] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.656801] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.656948] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.657087] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.657174] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/dds_fastrtps\n'}
+[14.657309] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.657445] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.657520] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/dds_fastrtps\n'}
+[14.657629] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.657722] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.657791] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[14.657860] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.657986] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.658065] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.658196] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.658340] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.658518] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.658613] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/dds_fastrtps\n'}
+[14.658743] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[14.658840] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_cpp.so\n'}
+[14.658909] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.659091] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.659189] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.659256] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_c.h\n'}
+[14.659337] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__type_support.c\n'}
+[14.659524] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.659619] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.659691] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__type_support.c\n'}
+[14.659758] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_c.h\n'}
+[14.659823] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__type_support.c\n'}
+[14.659894] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__rosidl_typesupport_introspection_c.h\n'}
+[14.660021] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[14.660150] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.660253] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.660321] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_c.h\n'}
+[14.660420] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_c.h\n'}
+[14.660701] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__type_support.c\n'}
+[14.660982] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__type_support.c\n'}
+[14.661130] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__type_support.c\n'}
+[14.661501] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__type_support.c\n'}
+[14.661803] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_c.h\n'}
+[14.662348] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__type_support.c\n'}
+[14.662981] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_c.h\n'}
+[14.663560] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_c.h\n'}
+[14.663834] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_c.so\n'}
+[14.663931] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_c.so\n'}
+[14.664004] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.664099] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.664242] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/rotate_absolute.hpp\n'}
+[14.664472] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.664601] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__struct.hpp\n'}
+[14.664826] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__builder.hpp\n'}
+[14.664952] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__traits.hpp\n'}
+[14.665102] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.665205] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/color.hpp\n'}
+[14.665275] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.665341] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__builder.hpp\n'}
+[14.665406] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__builder.hpp\n'}
+[14.665469] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__struct.hpp\n'}
+[14.665543] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__traits.hpp\n'}
+[14.665609] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__struct.hpp\n'}
+[14.665673] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__traits.hpp\n'}
+[14.665736] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/pose.hpp\n'}
+[14.665799] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.665862] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/set_pen.hpp\n'}
+[14.665927] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/kill.hpp\n'}
+[14.665990] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/teleport_absolute.hpp\n'}
+[14.666054] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/spawn.hpp\n'}
+[14.666124] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.666188] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__traits.hpp\n'}
+[14.666254] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__struct.hpp\n'}
+[14.666317] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__struct.hpp\n'}
+[14.666380] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__struct.hpp\n'}
+[14.666442] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__builder.hpp\n'}
+[14.666505] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__struct.hpp\n'}
+[14.666569] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__traits.hpp\n'}
+[14.666642] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__traits.hpp\n'}
+[14.666706] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__builder.hpp\n'}
+[14.666769] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__builder.hpp\n'}
+[14.666833] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__traits.hpp\n'}
+[14.666895] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__traits.hpp\n'}
+[14.666960] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__struct.hpp\n'}
+[14.667023] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__builder.hpp\n'}
+[14.667086] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__builder.hpp\n'}
+[14.667149] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/teleport_relative.hpp\n'}
+[14.667213] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim\n'}
+[14.667279] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action\n'}
+[14.667341] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail\n'}
+[14.667408] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.667473] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/action/detail/rotate_absolute__type_support.cpp\n'}
+[14.667542] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg\n'}
+[14.667607] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail\n'}
+[14.667672] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__type_support.cpp\n'}
+[14.667735] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/color__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.667800] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.667863] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/msg/detail/pose__type_support.cpp\n'}
+[14.667925] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv\n'}
+[14.667989] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail\n'}
+[14.668052] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__type_support.cpp\n'}
+[14.668115] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__type_support.cpp\n'}
+[14.668207] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.668289] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.668359] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__type_support.cpp\n'}
+[14.675752] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.675856] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.676104] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/teleport_absolute__type_support.cpp\n'}
+[14.676220] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_cpp.hpp\n'}
+[14.676296] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/include/turtlesim/srv/detail/kill__type_support.cpp\n'}
+[14.676366] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_cpp.so\n'}
+[14.676432] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__rosidl_typesupport_cpp.so\n'}
+[14.676497] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/pythonpath.sh\n'}
+[14.676620] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/pythonpath.dsv\n'}
+[14.676750] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/__init__.py\n'}
+[14.724677] (-) TimerEvent: {}
+[14.800015] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/action\n'}
+[14.800535] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/action/_rotate_absolute_s.c\n'}
+[14.801223] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/action/_rotate_absolute.py\n'}
+[14.801435] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/action/__init__.py\n'}
+[14.802055] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg\n'}
+[14.802226] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg/_color.py\n'}
+[14.802384] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg/_pose_s.c\n'}
+[14.808734] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg/__init__.py\n'}
+[14.808861] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg/_pose.py\n'}
+[14.808935] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/msg/_color_s.c\n'}
+[14.809003] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv\n'}
+[14.809069] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_teleport_relative.py\n'}
+[14.809135] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_set_pen_s.c\n'}
+[14.809200] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_spawn.py\n'}
+[14.809264] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_set_pen.py\n'}
+[14.809327] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_teleport_absolute_s.c\n'}
+[14.809419] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_kill_s.c\n'}
+[14.809517] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_teleport_absolute.py\n'}
+[14.809611] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_spawn_s.c\n'}
+[14.809737] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_teleport_relative_s.c\n'}
+[14.811824] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/__init__.py\n'}
+[14.813558] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/srv/_kill.py\n'}
+[14.813717] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\n'}
+[14.813803] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\n'}
+[14.813873] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/python3.8/site-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\n'}
+[14.813939] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/libturtlesim__python.so\n'}
+[14.814005] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/action/RotateAbsolute.idl\n'}
+[14.814280] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/msg/Color.idl\n'}
+[14.814640] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/msg/Pose.idl\n'}
+[14.815121] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Kill.idl\n'}
+[14.815576] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/SetPen.idl\n'}
+[14.816053] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Spawn.idl\n'}
+[14.816430] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.idl\n'}
+[14.816784] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportRelative.idl\n'}
+[14.817214] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/action/RotateAbsolute.action\n'}
+[14.817570] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/msg/Color.msg\n'}
+[14.817916] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/msg/Pose.msg\n'}
+[14.818279] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Kill.srv\n'}
+[14.818628] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Kill_Request.msg\n'}
+[14.819079] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Kill_Response.msg\n'}
+[14.819301] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/SetPen.srv\n'}
+[14.820176] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/SetPen_Request.msg\n'}
+[14.821229] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/SetPen_Response.msg\n'}
+[14.821337] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Spawn.srv\n'}
+[14.822005] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Spawn_Request.msg\n'}
+[14.822220] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/Spawn_Response.msg\n'}
+[14.822750] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.srv\n'}
+[14.823198] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Request.msg\n'}
+[14.823410] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Response.msg\n'}
+[14.823996] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportRelative.srv\n'}
+[14.824167] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportRelative_Request.msg\n'}
+[14.824324] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/srv/TeleportRelative_Response.msg\n'}
+[14.836975] (-) TimerEvent: {}
+[14.837239] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/turtlesim/turtlesim_node\n'}
+[14.837562] (turtlesim) StdoutLine: {'line': b'-- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/turtlesim/turtlesim_node" to ""\n'}
+[14.840311] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/turtlesim/turtle_teleop_key\n'}
+[14.848662] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/turtlesim/draw_square\n'}
+[14.848864] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/lib/turtlesim/mimic\n'}
+[14.849078] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images\n'}
+[14.849376] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/bouncy.png\n'}
+[14.849502] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/dashing.png\n'}
+[14.849716] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/ardent.png\n'}
+[14.849827] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/foxy.png\n'}
+[14.850028] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/eloquent.png\n'}
+[14.850161] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/images/crystal.png\n'}
+[14.850659] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/launch\n'}
+[14.851085] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/launch/multisim.launch.py\n'}
+[14.851522] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/ament_index/resource_index/package_run_dependencies/turtlesim\n'}
+[14.852119] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/ament_index/resource_index/parent_prefix_path/turtlesim\n'}
+[14.852504] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/ament_prefix_path.sh\n'}
+[14.852782] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/ament_prefix_path.dsv\n'}
+[14.853107] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/path.sh\n'}
+[14.853541] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/environment/path.dsv\n'}
+[14.853950] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/local_setup.bash\n'}
+[14.854292] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/local_setup.sh\n'}
+[14.854577] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/local_setup.zsh\n'}
+[14.855013] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/local_setup.dsv\n'}
+[14.855312] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/package.dsv\n'}
+[14.855802] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/ament_index/resource_index/packages/turtlesim\n'}
+[14.861051] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_generator_cExport.cmake\n'}
+[14.861365] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_generator_cExport-noconfig.cmake\n'}
+[14.862350] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport.cmake\n'}
+[14.862506] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[14.864331] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport.cmake\n'}
+[14.864694] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[14.864886] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_generator_cppExport.cmake\n'}
+[14.864982] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[14.865062] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[14.865508] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport.cmake\n'}
+[14.865657] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[14.865747] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/rosidl_cmake-extras.cmake\n'}
+[14.866308] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[14.866450] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[14.866702] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[14.866995] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[14.867280] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[14.867548] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[14.867825] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesimConfig.cmake\n'}
+[14.867940] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/cmake/turtlesimConfig-version.cmake\n'}
+[14.868213] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/turtlesim/share/turtlesim/package.xml\n'}
+[14.875264] (turtlesim) CommandEnded: {'returncode': 0}
+[14.937137] (-) TimerEvent: {}
+[15.040593] (-) TimerEvent: {}
+[15.141402] (-) TimerEvent: {}
+[15.241960] (-) TimerEvent: {}
+[15.342436] (-) TimerEvent: {}
+[15.443099] (-) TimerEvent: {}
+[15.481046] (turtlesim) JobEnded: {'identifier': 'turtlesim', 'rc': 0}
+[15.482659] (-) EventReactorShutdown: {}
