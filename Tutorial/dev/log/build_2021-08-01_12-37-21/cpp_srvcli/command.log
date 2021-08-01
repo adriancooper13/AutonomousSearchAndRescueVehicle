@@ -1,0 +1,4 @@
+Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli -- -j2 -l2
+Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli -- -j2 -l2
+Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli
+Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli
