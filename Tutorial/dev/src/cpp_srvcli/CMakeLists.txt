@@ -13,27 +13,27 @@ endif()
 # Find dependencies.
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(example_interfaces REQUIRED)
+find_package(tutorial_interfaces REQUIRED)
 
 # Create executable.
-add_executable(server src/add_two_ints_server.cpp)
+add_executable(service src/add_three_ints_server.cpp)
 ament_target_dependencies(
-  server
+  service
   rclcpp
-  example_interfaces
+  tutorial_interfaces
 )
 
-add_executable(client src/add_two_ints_client.cpp)
+add_executable(client src/add_three_ints_client.cpp)
 ament_target_dependencies(
   client 
   rclcpp
-  example_interfaces
+  tutorial_interfaces
 )
 
 # Allow ROS2 to find the executable.
 install(
   TARGETS
-  server
+  service
   client
   DESTINATION lib/${PROJECT_NAME}
 )

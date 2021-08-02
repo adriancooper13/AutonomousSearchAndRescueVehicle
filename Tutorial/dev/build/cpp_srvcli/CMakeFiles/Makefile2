@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cp
 
 # The main recursive "all" target.
 all: CMakeFiles/client.dir/all
-all: CMakeFiles/server.dir/all
+all: CMakeFiles/service.dir/all
 
 .PHONY : all
 
@@ -65,8 +65,8 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/client.dir/clean
-clean: CMakeFiles/server.dir/clean
 clean: CMakeFiles/cpp_srvcli_uninstall.dir/clean
+clean: CMakeFiles/service.dir/clean
 clean: CMakeFiles/uninstall.dir/clean
 
 .PHONY : clean
@@ -99,33 +99,6 @@ CMakeFiles/client.dir/clean:
 .PHONY : CMakeFiles/client.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/server.dir
-
-# All Build rule for target.
-CMakeFiles/server.dir/all:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/depend
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles --progress-num=3,4 "Built target server"
-.PHONY : CMakeFiles/server.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/server.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles 0
-.PHONY : CMakeFiles/server.dir/rule
-
-# Convenience name for target.
-server: CMakeFiles/server.dir/rule
-
-.PHONY : server
-
-# clean rule for target.
-CMakeFiles/server.dir/clean:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/clean
-.PHONY : CMakeFiles/server.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/cpp_srvcli_uninstall.dir
 
 # All Build rule for target.
@@ -151,6 +124,33 @@ cpp_srvcli_uninstall: CMakeFiles/cpp_srvcli_uninstall.dir/rule
 CMakeFiles/cpp_srvcli_uninstall.dir/clean:
 	$(MAKE) -f CMakeFiles/cpp_srvcli_uninstall.dir/build.make CMakeFiles/cpp_srvcli_uninstall.dir/clean
 .PHONY : CMakeFiles/cpp_srvcli_uninstall.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/service.dir
+
+# All Build rule for target.
+CMakeFiles/service.dir/all:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/depend
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles --progress-num=3,4 "Built target service"
+.PHONY : CMakeFiles/service.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/service.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/service.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles 0
+.PHONY : CMakeFiles/service.dir/rule
+
+# Convenience name for target.
+service: CMakeFiles/service.dir/rule
+
+.PHONY : service
+
+# clean rule for target.
+CMakeFiles/service.dir/clean:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/clean
+.PHONY : CMakeFiles/service.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/uninstall.dir

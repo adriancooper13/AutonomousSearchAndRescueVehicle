@@ -57,33 +57,33 @@ include CMakeFiles/server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/server.dir/flags.make
 
-CMakeFiles/server.dir/src/add_two_ints_server.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/src/add_two_ints_server.cpp.o: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/add_two_ints_server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/add_two_ints_server.cpp.o -c /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_server.cpp
+CMakeFiles/server.dir/src/add_three_ints_server.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/add_three_ints_server.cpp.o: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_three_ints_server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/src/add_three_ints_server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/add_three_ints_server.cpp.o -c /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_three_ints_server.cpp
 
-CMakeFiles/server.dir/src/add_two_ints_server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/add_two_ints_server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_server.cpp > CMakeFiles/server.dir/src/add_two_ints_server.cpp.i
+CMakeFiles/server.dir/src/add_three_ints_server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/add_three_ints_server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_three_ints_server.cpp > CMakeFiles/server.dir/src/add_three_ints_server.cpp.i
 
-CMakeFiles/server.dir/src/add_two_ints_server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/add_two_ints_server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_server.cpp -o CMakeFiles/server.dir/src/add_two_ints_server.cpp.s
+CMakeFiles/server.dir/src/add_three_ints_server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/add_three_ints_server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_three_ints_server.cpp -o CMakeFiles/server.dir/src/add_three_ints_server.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/src/add_two_ints_server.cpp.o"
+"CMakeFiles/server.dir/src/add_three_ints_server.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
-server: CMakeFiles/server.dir/src/add_two_ints_server.cpp.o
+server: CMakeFiles/server.dir/src/add_three_ints_server.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: /opt/ros/foxy/lib/librclcpp.so
-server: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_introspection_c.so
-server: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_c.so
-server: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_introspection_cpp.so
-server: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_cpp.so
+server: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_typesupport_introspection_c.so
+server: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_typesupport_c.so
+server: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_typesupport_introspection_cpp.so
+server: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_typesupport_cpp.so
 server: /opt/ros/foxy/lib/liblibstatistics_collector.so
 server: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_introspection_c.so
 server: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_generator_c.so
@@ -117,25 +117,15 @@ server: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_generator_c.so
 server: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_c.so
 server: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_introspection_cpp.so
 server: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_cpp.so
-server: /opt/ros/foxy/lib/libtracetools.so
-server: /opt/ros/foxy/lib/libexample_interfaces__rosidl_generator_c.so
-server: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
-server: /opt/ros/foxy/lib/libaction_msgs__rosidl_generator_c.so
-server: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
-server: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
-server: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_cpp.so
 server: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 server: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
 server: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
 server: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
 server: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
-server: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_c.so
-server: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_generator_c.so
-server: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_c.so
-server: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_cpp.so
+server: /opt/ros/foxy/lib/libtracetools.so
+server: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/libtutorial_interfaces__rosidl_generator_c.so
 server: /opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so
 server: /opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so
-server: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_cpp.so
 server: /opt/ros/foxy/lib/librosidl_typesupport_cpp.so
 server: /opt/ros/foxy/lib/librosidl_typesupport_c.so
 server: /opt/ros/foxy/lib/librcpputils.so

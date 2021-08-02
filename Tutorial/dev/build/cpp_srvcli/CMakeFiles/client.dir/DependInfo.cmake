@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_client.cpp" "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/client.dir/src/add_two_ints_client.cpp.o"
+  "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_three_ints_client.cpp" "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_srvcli/CMakeFiles/client.dir/src/add_three_ints_client.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,6 +17,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/include"
   "/opt/ros/foxy/include"
   )
 

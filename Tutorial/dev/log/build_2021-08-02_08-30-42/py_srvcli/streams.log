@@ -1,0 +1,29 @@
+[0.383s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli': AMENT_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces LD_LIBRARY_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed
+[0.633s] running egg_info
+[0.637s] writing ../../build/py_srvcli/py_srvcli.egg-info/PKG-INFO
+[0.639s] writing dependency_links to ../../build/py_srvcli/py_srvcli.egg-info/dependency_links.txt
+[0.642s] writing entry points to ../../build/py_srvcli/py_srvcli.egg-info/entry_points.txt
+[0.644s] writing requirements to ../../build/py_srvcli/py_srvcli.egg-info/requires.txt
+[0.649s] writing top-level names to ../../build/py_srvcli/py_srvcli.egg-info/top_level.txt
+[0.701s] reading manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.717s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.720s] running build
+[0.722s] running build_py
+[0.723s] copying py_srvcli/client_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.723s] copying py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.723s] running install
+[0.727s] running install_lib
+[0.732s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/client_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.732s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.733s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/client_member_function.py to client_member_function.cpython-38.pyc
+[0.746s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/service_member_function.py to service_member_function.cpython-38.pyc
+[0.747s] running install_data
+[0.750s] copying package.xml -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/py_srvcli
+[0.750s] running install_egg_info
+[0.754s] removing '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli-0.0.0-py3.8.egg-info' (and everything under it)
+[0.754s] Copying ../../build/py_srvcli/py_srvcli.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli-0.0.0-py3.8.egg-info
+[0.757s] running install_scripts
+[0.803s] Installing client script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.803s] Installing service script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.804s] writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log'
+[0.836s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli' returned '0': AMENT_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces LD_LIBRARY_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed
