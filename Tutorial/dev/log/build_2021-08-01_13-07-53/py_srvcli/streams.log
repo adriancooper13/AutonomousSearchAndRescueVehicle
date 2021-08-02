@@ -1,0 +1,41 @@
+[0.373s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed
+[0.650s] running egg_info
+[0.651s] creating ../../build/py_srvcli/py_srvcli.egg-info
+[0.651s] writing ../../build/py_srvcli/py_srvcli.egg-info/PKG-INFO
+[0.651s] writing dependency_links to ../../build/py_srvcli/py_srvcli.egg-info/dependency_links.txt
+[0.651s] writing entry points to ../../build/py_srvcli/py_srvcli.egg-info/entry_points.txt
+[0.651s] writing requirements to ../../build/py_srvcli/py_srvcli.egg-info/requires.txt
+[0.651s] writing top-level names to ../../build/py_srvcli/py_srvcli.egg-info/top_level.txt
+[0.661s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.741s] reading manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.743s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.743s] running build
+[0.744s] running build_py
+[0.744s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build
+[0.744s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib
+[0.744s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.744s] copying py_srvcli/client_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.747s] copying py_srvcli/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.748s] copying py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.748s] running install
+[0.751s] running install_lib
+[0.755s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.755s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/client_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.755s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.755s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.757s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/client_member_function.py to client_member_function.cpython-38.pyc
+[0.759s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/__init__.py to __init__.cpython-38.pyc
+[0.759s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/service_member_function.py to service_member_function.cpython-38.pyc
+[0.759s] running install_data
+[0.760s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/ament_index
+[0.761s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/ament_index/resource_index
+[0.761s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/ament_index/resource_index/packages
+[0.761s] copying resource/py_srvcli -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/ament_index/resource_index/packages
+[0.761s] copying package.xml -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/share/py_srvcli
+[0.761s] running install_egg_info
+[0.768s] Copying ../../build/py_srvcli/py_srvcli.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli-0.0.0-py3.8.egg-info
+[0.771s] running install_scripts
+[0.807s] Installing client script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.807s] Installing service script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.807s] writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log'
+[0.833s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli' returned '0': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed

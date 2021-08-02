@@ -1,0 +1,25 @@
+[0.321s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed
+[0.611s] running egg_info
+[0.613s] writing ../../build/py_srvcli/py_srvcli.egg-info/PKG-INFO
+[0.614s] writing dependency_links to ../../build/py_srvcli/py_srvcli.egg-info/dependency_links.txt
+[0.615s] writing entry points to ../../build/py_srvcli/py_srvcli.egg-info/entry_points.txt
+[0.616s] writing requirements to ../../build/py_srvcli/py_srvcli.egg-info/requires.txt
+[0.616s] writing top-level names to ../../build/py_srvcli/py_srvcli.egg-info/top_level.txt
+[0.669s] reading manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.672s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[0.673s] running build
+[0.673s] running build_py
+[0.674s] copying py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli
+[0.675s] running install
+[0.678s] running install_lib
+[0.680s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build/lib/py_srvcli/service_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli
+[0.681s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli/service_member_function.py to service_member_function.cpython-38.pyc
+[0.684s] running install_data
+[0.685s] running install_egg_info
+[0.687s] removing '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli-0.0.0-py3.8.egg-info' (and everything under it)
+[0.689s] Copying ../../build/py_srvcli/py_srvcli.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages/py_srvcli-0.0.0-py3.8.egg-info
+[0.690s] running install_scripts
+[0.712s] Installing client script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.712s] Installing service script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/py_srvcli
+[0.712s] writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log'
+[0.746s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_srvcli' returned '0': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_srvcli --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_srvcli/install.log --single-version-externally-managed
