@@ -68,6 +68,18 @@ install/strip/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -89,18 +101,6 @@ test:
 test/fast: test
 
 .PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
 
 # Special rule for the target install
 install: preinstall
@@ -181,19 +181,6 @@ client/fast:
 .PHONY : client/fast
 
 #=============================================================================
-# Target rules for targets named server
-
-# Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server
-.PHONY : server
-
-# fast build rule for target.
-server/fast:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
-
-#=============================================================================
 # Target rules for targets named cpp_srvcli_uninstall
 
 # Build rule for target.
@@ -205,6 +192,19 @@ cpp_srvcli_uninstall: cmake_check_build_system
 cpp_srvcli_uninstall/fast:
 	$(MAKE) -f CMakeFiles/cpp_srvcli_uninstall.dir/build.make CMakeFiles/cpp_srvcli_uninstall.dir/build
 .PHONY : cpp_srvcli_uninstall/fast
+
+#=============================================================================
+# Target rules for targets named service
+
+# Build rule for target.
+service: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 service
+.PHONY : service
+
+# fast build rule for target.
+service/fast:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/build
+.PHONY : service/fast
 
 #=============================================================================
 # Target rules for targets named uninstall
@@ -219,59 +219,59 @@ uninstall/fast:
 	$(MAKE) -f CMakeFiles/uninstall.dir/build.make CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
-src/add_two_ints_client.o: src/add_two_ints_client.cpp.o
+src/add_three_ints_client.o: src/add_three_ints_client.cpp.o
 
-.PHONY : src/add_two_ints_client.o
-
-# target to build an object file
-src/add_two_ints_client.cpp.o:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_two_ints_client.cpp.o
-.PHONY : src/add_two_ints_client.cpp.o
-
-src/add_two_ints_client.i: src/add_two_ints_client.cpp.i
-
-.PHONY : src/add_two_ints_client.i
-
-# target to preprocess a source file
-src/add_two_ints_client.cpp.i:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_two_ints_client.cpp.i
-.PHONY : src/add_two_ints_client.cpp.i
-
-src/add_two_ints_client.s: src/add_two_ints_client.cpp.s
-
-.PHONY : src/add_two_ints_client.s
-
-# target to generate assembly for a file
-src/add_two_ints_client.cpp.s:
-	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_two_ints_client.cpp.s
-.PHONY : src/add_two_ints_client.cpp.s
-
-src/add_two_ints_server.o: src/add_two_ints_server.cpp.o
-
-.PHONY : src/add_two_ints_server.o
+.PHONY : src/add_three_ints_client.o
 
 # target to build an object file
-src/add_two_ints_server.cpp.o:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/add_two_ints_server.cpp.o
-.PHONY : src/add_two_ints_server.cpp.o
+src/add_three_ints_client.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_three_ints_client.cpp.o
+.PHONY : src/add_three_ints_client.cpp.o
 
-src/add_two_ints_server.i: src/add_two_ints_server.cpp.i
+src/add_three_ints_client.i: src/add_three_ints_client.cpp.i
 
-.PHONY : src/add_two_ints_server.i
+.PHONY : src/add_three_ints_client.i
 
 # target to preprocess a source file
-src/add_two_ints_server.cpp.i:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/add_two_ints_server.cpp.i
-.PHONY : src/add_two_ints_server.cpp.i
+src/add_three_ints_client.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_three_ints_client.cpp.i
+.PHONY : src/add_three_ints_client.cpp.i
 
-src/add_two_ints_server.s: src/add_two_ints_server.cpp.s
+src/add_three_ints_client.s: src/add_three_ints_client.cpp.s
 
-.PHONY : src/add_two_ints_server.s
+.PHONY : src/add_three_ints_client.s
 
 # target to generate assembly for a file
-src/add_two_ints_server.cpp.s:
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/add_two_ints_server.cpp.s
-.PHONY : src/add_two_ints_server.cpp.s
+src/add_three_ints_client.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/add_three_ints_client.cpp.s
+.PHONY : src/add_three_ints_client.cpp.s
+
+src/add_three_ints_server.o: src/add_three_ints_server.cpp.o
+
+.PHONY : src/add_three_ints_server.o
+
+# target to build an object file
+src/add_three_ints_server.cpp.o:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/src/add_three_ints_server.cpp.o
+.PHONY : src/add_three_ints_server.cpp.o
+
+src/add_three_ints_server.i: src/add_three_ints_server.cpp.i
+
+.PHONY : src/add_three_ints_server.i
+
+# target to preprocess a source file
+src/add_three_ints_server.cpp.i:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/src/add_three_ints_server.cpp.i
+.PHONY : src/add_three_ints_server.cpp.i
+
+src/add_three_ints_server.s: src/add_three_ints_server.cpp.s
+
+.PHONY : src/add_three_ints_server.s
+
+# target to generate assembly for a file
+src/add_three_ints_server.cpp.s:
+	$(MAKE) -f CMakeFiles/service.dir/build.make CMakeFiles/service.dir/src/add_three_ints_server.cpp.s
+.PHONY : src/add_three_ints_server.cpp.s
 
 # Help Target
 help:
@@ -280,22 +280,22 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... install/strip"
+	@echo "... install/local"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... client"
-	@echo "... install/local"
-	@echo "... server"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... cpp_srvcli_uninstall"
+	@echo "... service"
 	@echo "... uninstall"
-	@echo "... src/add_two_ints_client.o"
-	@echo "... src/add_two_ints_client.i"
-	@echo "... src/add_two_ints_client.s"
-	@echo "... src/add_two_ints_server.o"
-	@echo "... src/add_two_ints_server.i"
-	@echo "... src/add_two_ints_server.s"
+	@echo "... src/add_three_ints_client.o"
+	@echo "... src/add_three_ints_client.i"
+	@echo "... src/add_three_ints_client.s"
+	@echo "... src/add_three_ints_server.o"
+	@echo "... src/add_three_ints_server.i"
+	@echo "... src/add_three_ints_server.s"
 .PHONY : help
 
 

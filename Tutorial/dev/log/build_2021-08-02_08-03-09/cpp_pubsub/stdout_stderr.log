@@ -1,0 +1,40 @@
+-- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.3.1 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found tutorial_interfaces: 0.0.0 (/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/share/tutorial_interfaces/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/cpp_pubsub
+[35m[1mScanning dependencies of target listener[0m
+[35m[1mScanning dependencies of target talker[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/listener.dir/src/subscriber_member_function.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/talker.dir/src/publisher_member_function.cpp.o[0m
+[ 75%] [32m[1mLinking CXX executable talker[0m
+[ 75%] Built target talker
+[100%] [32m[1mLinking CXX executable listener[0m
+[100%] Built target listener
+-- Install configuration: ""
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/lib/cpp_pubsub/talker
+-- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/lib/cpp_pubsub/talker" to ""
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/lib/cpp_pubsub/listener
+-- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/lib/cpp_pubsub/listener" to ""
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/package.dsv
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake
+-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake
+-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/cpp_pubsub/share/cpp_pubsub/package.xml

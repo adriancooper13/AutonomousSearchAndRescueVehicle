@@ -16,7 +16,7 @@ import rclpy
 from rclpy.node import Node
 from rclpy.subscription import Subscription
 
-from std_msgs.msg import String
+from tutorial_interfaces.msg import Num
 
 
 class MinimalSubscriber(Node):
@@ -26,7 +26,7 @@ class MinimalSubscriber(Node):
     def __init__(self):
         super().__init__('minimal_subscriber')
         self.subscription = self.create_subscription(
-            String,
+            Num,
             'topic',
             self.listener_callback,
             10
@@ -34,7 +34,7 @@ class MinimalSubscriber(Node):
         # self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-        self.get_logger().info(f'I heard: "{msg.data}"')
+        self.get_logger().info(f'I heard: "{msg.num}"')
 
 
 def main(args=None):
