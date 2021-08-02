@@ -1,0 +1,131 @@
+[0.034s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces -- -j2 -l2
+[0.124s] [  3%] Built target more_interfaces__cpp
+[0.137s] [ 12%] Built target more_interfaces__rosidl_generator_c
+[0.162s] [ 21%] Built target more_interfaces__rosidl_typesupport_introspection_cpp
+[0.173s] [ 30%] Built target more_interfaces__rosidl_typesupport_cpp
+[0.204s] [ 39%] Built target more_interfaces__rosidl_typesupport_c
+[0.216s] [ 48%] Built target more_interfaces__rosidl_typesupport_fastrtps_cpp
+[0.250s] [ 57%] Built target more_interfaces__rosidl_typesupport_introspection_c
+[0.266s] [ 66%] Built target more_interfaces__rosidl_typesupport_fastrtps_c
+[0.305s] [ 66%] Built target more_interfaces
+[0.339s] [35m[1mScanning dependencies of target publish_address_book[0m
+[0.360s] [ 69%] Built target more_interfaces__py
+[0.410s] [ 72%] [32mBuilding CXX object CMakeFiles/publish_address_book.dir/src/publish_address_book.cpp.o[0m
+[0.425s] [ 78%] Built target more_interfaces__python
+[0.482s] [ 84%] Built target more_interfaces__rosidl_typesupport_c__pyext
+[0.579s] [ 90%] Built target more_interfaces__rosidl_typesupport_introspection_c__pyext
+[0.685s] [ 96%] Built target more_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[3.954s] [100%] [32m[1mLinking CXX executable publish_address_book[0m
+[4.186s] [100%] Built target publish_address_book
+[4.209s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --build /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces -- -j2 -l2
+[4.340s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces
+[4.362s] -- Install configuration: ""
+[4.362s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/more_interfaces/publish_address_book
+[4.367s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/more_interfaces/publish_address_book" to ""
+[4.369s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/rosidl_interfaces/more_interfaces
+[4.369s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.370s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.370s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_generator_c__visibility_control.h
+[4.371s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.371s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.h
+[4.371s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__functions.h
+[4.371s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__functions.c
+[4.372s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__struct.h
+[4.372s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/address_book.h
+[4.372s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/library_path.sh
+[4.376s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/library_path.dsv
+[4.376s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_generator_c.so
+[4.377s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_generator_c.so" to ""
+[4.377s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.378s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.378s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.378s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_fastrtps_c.h
+[4.379s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[4.379s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_c.so
+[4.380s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[4.380s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.380s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.380s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.381s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/dds_fastrtps
+[4.381s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_fastrtps_cpp.hpp
+[4.381s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[4.385s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[4.386s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[4.387s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.387s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.387s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.387s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.c
+[4.388s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_introspection_c.h
+[4.388s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[4.390s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_c.so
+[4.391s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[4.391s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_c.so
+[4.392s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_c.so" to ""
+[4.392s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.393s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.394s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/address_book.hpp
+[4.395s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.395s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__struct.hpp
+[4.396s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__traits.hpp
+[4.396s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__builder.hpp
+[4.397s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces
+[4.397s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg
+[4.397s] -- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail
+[4.398s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_introspection_cpp.hpp
+[4.398s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.cpp
+[4.399s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_cpp.so
+[4.400s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[4.401s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_cpp.so
+[4.402s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_cpp.so" to ""
+[4.402s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/pythonpath.sh
+[4.403s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/pythonpath.dsv
+[4.403s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/__init__.py
+[4.450s] Compiling '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/__init__.py'...
+[4.459s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg
+[4.460s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/_address_book_s.c
+[4.460s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/_address_book.py
+[4.462s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/__init__.py
+[4.464s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so
+[4.465s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so" to ""
+[4.466s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so
+[4.468s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so" to ""
+[4.469s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so
+[4.470s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so" to ""
+[4.470s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__python.so
+[4.471s] -- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__python.so" to ""
+[4.472s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/msg/AddressBook.idl
+[4.472s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/msg/AddressBook.msg
+[4.473s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/package_run_dependencies/more_interfaces
+[4.474s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/parent_prefix_path/more_interfaces
+[4.475s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/ament_prefix_path.sh
+[4.476s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/ament_prefix_path.dsv
+[4.477s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/path.sh
+[4.478s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/path.dsv
+[4.483s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.bash
+[4.483s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.sh
+[4.485s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.zsh
+[4.486s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.dsv
+[4.486s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/package.dsv
+[4.489s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/packages/more_interfaces
+[4.489s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cExport.cmake
+[4.490s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cExport-noconfig.cmake
+[4.492s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[4.493s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[4.496s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cExport.cmake
+[4.497s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[4.499s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cppExport.cmake
+[4.499s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[4.500s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[4.501s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cppExport.cmake
+[4.502s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[4.505s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake-extras.cmake
+[4.505s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[4.506s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[4.507s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[4.507s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[4.508s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[4.508s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[4.509s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfacesConfig.cmake
+[4.510s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfacesConfig-version.cmake
+[4.510s] -- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/package.xml
+[4.521s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake --install /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces

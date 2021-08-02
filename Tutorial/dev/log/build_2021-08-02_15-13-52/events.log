@@ -1,0 +1,183 @@
+[0.000000] (-) TimerEvent: {}
+[0.000244] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
+[0.000309] (-) JobUnselected: {'identifier': 'cpp_srvcli'}
+[0.000356] (-) JobUnselected: {'identifier': 'my_cmake_package'}
+[0.000380] (-) JobUnselected: {'identifier': 'my_pypackage'}
+[0.000398] (-) JobUnselected: {'identifier': 'py_pubsub'}
+[0.000437] (-) JobUnselected: {'identifier': 'py_srvcli'}
+[0.000480] (-) JobUnselected: {'identifier': 'turtlesim'}
+[0.000502] (-) JobUnselected: {'identifier': 'tutorial_interfaces'}
+[0.000524] (more_interfaces) JobQueued: {'identifier': 'more_interfaces', 'dependencies': OrderedDict()}
+[0.000722] (more_interfaces) JobStarted: {'identifier': 'more_interfaces'}
+[0.014261] (more_interfaces) JobProgress: {'identifier': 'more_interfaces', 'progress': 'cmake'}
+[0.015274] (more_interfaces) JobProgress: {'identifier': 'more_interfaces', 'progress': 'build'}
+[0.016236] (more_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces', '--', '-j2', '-l2'], 'cwd': '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adriancooper'), ('SSH_AGENT_PID', '1590'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/adriancooper'), ('OLDPWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1410'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/home/adriancooper/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'adriancooper'), ('JOURNAL_STREAM', '8:53232'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adriancooper'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1625,unix/ubuntu:/tmp/.ICE-unix/1625'), ('INVOCATION_ID', '6031f6e3f67840e4a6a82cd577ae033f'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c3fee51a_2096_42c2_bfd0_fc236c4f7218'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.84'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '13'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[0.092977] (more_interfaces) StdoutLine: {'line': b'[  6%] Built target more_interfaces__cpp\n'}
+[0.098652] (-) TimerEvent: {}
+[0.098849] (more_interfaces) StdoutLine: {'line': b'[ 12%] Built target more_interfaces__rosidl_generator_c\n'}
+[0.131464] (more_interfaces) StdoutLine: {'line': b'[ 21%] Built target more_interfaces__rosidl_typesupport_cpp\n'}
+[0.140281] (more_interfaces) StdoutLine: {'line': b'[ 30%] Built target more_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[0.171386] (more_interfaces) StdoutLine: {'line': b'[ 39%] Built target more_interfaces__rosidl_typesupport_c\n'}
+[0.195217] (more_interfaces) StdoutLine: {'line': b'[ 48%] Built target more_interfaces__rosidl_typesupport_introspection_c\n'}
+[0.199006] (-) TimerEvent: {}
+[0.205284] (more_interfaces) StdoutLine: {'line': b'[ 57%] Built target more_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[0.243176] (more_interfaces) StdoutLine: {'line': b'[ 66%] Built target more_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[0.301158] (more_interfaces) StdoutLine: {'line': b'[ 66%] Built target more_interfaces\n'}
+[0.301381] (-) TimerEvent: {}
+[0.336546] (more_interfaces) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target publish_address_book\x1b[0m\n'}
+[0.368476] (more_interfaces) StdoutLine: {'line': b'[ 69%] Built target more_interfaces__py\n'}
+[0.404091] (-) TimerEvent: {}
+[0.404353] (more_interfaces) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/publish_address_book.dir/src/publish_address_book.cpp.o\x1b[0m\n'}
+[0.473504] (more_interfaces) StdoutLine: {'line': b'[ 78%] Built target more_interfaces__python\n'}
+[0.506254] (-) TimerEvent: {}
+[0.540791] (more_interfaces) StdoutLine: {'line': b'[ 84%] Built target more_interfaces__rosidl_typesupport_c__pyext\n'}
+[0.609172] (-) TimerEvent: {}
+[0.629353] (more_interfaces) StdoutLine: {'line': b'[ 90%] Built target more_interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[0.709623] (-) TimerEvent: {}
+[0.713042] (more_interfaces) StdoutLine: {'line': b'[ 96%] Built target more_interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[0.809833] (-) TimerEvent: {}
+[0.910329] (-) TimerEvent: {}
+[1.010960] (-) TimerEvent: {}
+[1.111708] (-) TimerEvent: {}
+[1.212067] (-) TimerEvent: {}
+[1.312774] (-) TimerEvent: {}
+[1.413237] (-) TimerEvent: {}
+[1.513607] (-) TimerEvent: {}
+[1.614014] (-) TimerEvent: {}
+[1.714635] (-) TimerEvent: {}
+[1.815301] (-) TimerEvent: {}
+[1.916073] (-) TimerEvent: {}
+[2.016803] (-) TimerEvent: {}
+[2.117165] (-) TimerEvent: {}
+[2.217549] (-) TimerEvent: {}
+[2.318136] (-) TimerEvent: {}
+[2.418749] (-) TimerEvent: {}
+[2.519424] (-) TimerEvent: {}
+[2.620239] (-) TimerEvent: {}
+[2.721243] (-) TimerEvent: {}
+[2.821777] (-) TimerEvent: {}
+[2.922355] (-) TimerEvent: {}
+[3.023025] (-) TimerEvent: {}
+[3.123762] (-) TimerEvent: {}
+[3.224541] (-) TimerEvent: {}
+[3.325240] (-) TimerEvent: {}
+[3.425618] (-) TimerEvent: {}
+[3.525959] (-) TimerEvent: {}
+[3.626547] (-) TimerEvent: {}
+[3.727134] (-) TimerEvent: {}
+[3.827723] (-) TimerEvent: {}
+[3.928289] (-) TimerEvent: {}
+[4.028636] (-) TimerEvent: {}
+[4.112316] (more_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable publish_address_book\x1b[0m\n'}
+[4.128885] (-) TimerEvent: {}
+[4.229365] (-) TimerEvent: {}
+[4.330279] (-) TimerEvent: {}
+[4.351118] (more_interfaces) StdoutLine: {'line': b'[100%] Built target publish_address_book\n'}
+[4.370712] (more_interfaces) CommandEnded: {'returncode': 0}
+[4.434407] (-) TimerEvent: {}
+[4.507317] (more_interfaces) JobProgress: {'identifier': 'more_interfaces', 'progress': 'install'}
+[4.524395] (more_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces'], 'cwd': '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'adriancooper'), ('SSH_AGENT_PID', '1590'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/adriancooper'), ('OLDPWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1410'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_colcon_cd_root', '/home/adriancooper/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'adriancooper'), ('JOURNAL_STREAM', '8:53232'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'adriancooper'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1625,unix/ubuntu:/tmp/.ICE-unix/1625'), ('INVOCATION_ID', '6031f6e3f67840e4a6a82cd577ae033f'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c3fee51a_2096_42c2_bfd0_fc236c4f7218'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.84'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '13'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/more_interfaces'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy')]), 'shell': False}
+[4.534786] (-) TimerEvent: {}
+[4.544443] (more_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[4.548175] (more_interfaces) StdoutLine: {'line': b'-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/more_interfaces/publish_address_book\n'}
+[4.553003] (more_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/more_interfaces/publish_address_book" to ""\n'}
+[4.553408] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/rosidl_interfaces/more_interfaces\n'}
+[4.553695] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.553923] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.554125] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[4.554294] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.554484] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.h\n'}
+[4.554665] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__functions.h\n'}
+[4.554834] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__functions.c\n'}
+[4.556232] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__struct.h\n'}
+[4.556489] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/address_book.h\n'}
+[4.557138] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/library_path.sh\n'}
+[4.557458] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/library_path.dsv\n'}
+[4.558135] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_generator_c.so\n'}
+[4.559067] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.559399] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.560127] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.560412] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_fastrtps_c.h\n'}
+[4.560607] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[4.565384] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[4.566180] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.566438] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.566633] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.566820] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/dds_fastrtps\n'}
+[4.567016] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[4.567193] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[4.567657] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[4.568139] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.568349] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.568538] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.568728] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.c\n'}
+[4.568907] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_introspection_c.h\n'}
+[4.569085] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[4.573444] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[4.574233] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_c.so\n'}
+[4.574704] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.574936] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.575134] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/address_book.hpp\n'}
+[4.575301] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.577372] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__struct.hpp\n'}
+[4.577682] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__traits.hpp\n'}
+[4.577871] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__builder.hpp\n'}
+[4.578135] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces\n'}
+[4.578344] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg\n'}
+[4.578530] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail\n'}
+[4.578721] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__rosidl_typesupport_introspection_cpp.hpp\n'}
+[4.578893] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/include/more_interfaces/msg/detail/address_book__type_support.cpp\n'}
+[4.580894] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[4.582003] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__rosidl_typesupport_cpp.so\n'}
+[4.582624] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/pythonpath.sh\n'}
+[4.582887] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/pythonpath.dsv\n'}
+[4.584479] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/__init__.py\n'}
+[4.635083] (-) TimerEvent: {}
+[4.662031] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg\n'}
+[4.662238] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/_address_book_s.c\n'}
+[4.662322] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/_address_book.py\n'}
+[4.662395] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/msg/__init__.py\n'}
+[4.662475] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-x86_64-linux-gnu.so\n'}
+[4.662546] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_introspection_c.cpython-38-x86_64-linux-gnu.so\n'}
+[4.662615] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/python3.8/site-packages/more_interfaces/more_interfaces_s__rosidl_typesupport_c.cpython-38-x86_64-linux-gnu.so\n'}
+[4.662684] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/lib/libmore_interfaces__python.so\n'}
+[4.662753] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/msg/AddressBook.idl\n'}
+[4.662821] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/msg/AddressBook.msg\n'}
+[4.662890] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/package_run_dependencies/more_interfaces\n'}
+[4.663216] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/parent_prefix_path/more_interfaces\n'}
+[4.663494] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/ament_prefix_path.sh\n'}
+[4.663788] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/ament_prefix_path.dsv\n'}
+[4.664069] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/path.sh\n'}
+[4.664353] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/environment/path.dsv\n'}
+[4.664616] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.bash\n'}
+[4.664986] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.sh\n'}
+[4.665353] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.zsh\n'}
+[4.665660] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/local_setup.dsv\n'}
+[4.665956] (more_interfaces) StdoutLine: {'line': b'-- Installing: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/package.dsv\n'}
+[4.666404] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/ament_index/resource_index/packages/more_interfaces\n'}
+[4.666844] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cExport.cmake\n'}
+[4.671520] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[4.672129] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[4.672461] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[4.673088] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[4.673227] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[4.673610] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_generator_cppExport.cmake\n'}
+[4.674056] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[4.674372] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[4.674804] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[4.681317] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[4.681748] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[4.682079] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[4.682389] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[4.682685] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[4.682990] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[4.683295] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[4.683590] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[4.683956] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfacesConfig.cmake\n'}
+[4.684190] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/cmake/more_interfacesConfig-version.cmake\n'}
+[4.684490] (more_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/more_interfaces/share/more_interfaces/package.xml\n'}
+[4.689299] (more_interfaces) CommandEnded: {'returncode': 0}
+[4.735740] (-) TimerEvent: {}
+[4.836624] (-) TimerEvent: {}
+[4.885952] (more_interfaces) JobEnded: {'identifier': 'more_interfaces', 'rc': 0}
+[4.886415] (-) EventReactorShutdown: {}
