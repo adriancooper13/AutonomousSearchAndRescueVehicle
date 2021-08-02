@@ -1,0 +1,25 @@
+[0.318s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_pubsub': AMENT_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces LD_LIBRARY_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages:/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/install.log --single-version-externally-managed
+[0.606s] running egg_info
+[0.611s] writing ../../build/py_pubsub/py_pubsub.egg-info/PKG-INFO
+[0.612s] writing dependency_links to ../../build/py_pubsub/py_pubsub.egg-info/dependency_links.txt
+[0.613s] writing entry points to ../../build/py_pubsub/py_pubsub.egg-info/entry_points.txt
+[0.613s] writing requirements to ../../build/py_pubsub/py_pubsub.egg-info/requires.txt
+[0.614s] writing top-level names to ../../build/py_pubsub/py_pubsub.egg-info/top_level.txt
+[0.664s] reading manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[0.666s] writing manifest file '../../build/py_pubsub/py_pubsub.egg-info/SOURCES.txt'
+[0.667s] running build
+[0.667s] running build_py
+[0.668s] copying py_pubsub/subscriber_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/build/lib/py_pubsub
+[0.669s] running install
+[0.671s] running install_lib
+[0.674s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/build/lib/py_pubsub/subscriber_member_function.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages/py_pubsub
+[0.675s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages/py_pubsub/subscriber_member_function.py to subscriber_member_function.cpython-38.pyc
+[0.678s] running install_data
+[0.680s] running install_egg_info
+[0.684s] removing '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages/py_pubsub-0.0.0-py3.8.egg-info' (and everything under it)
+[0.684s] Copying ../../build/py_pubsub/py_pubsub.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages/py_pubsub-0.0.0-py3.8.egg-info
+[0.686s] running install_scripts
+[0.712s] Installing listener script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/py_pubsub
+[0.713s] Installing talker script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/py_pubsub
+[0.715s] writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/install.log'
+[0.750s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/py_pubsub' returned '0': AMENT_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces LD_LIBRARY_PATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub/lib/python3.8/site-packages:/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/tutorial_interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/py_pubsub build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/py_pubsub --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/py_pubsub/install.log --single-version-externally-managed
