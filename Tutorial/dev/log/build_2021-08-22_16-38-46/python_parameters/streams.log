@@ -1,0 +1,37 @@
+[0.307s] Invoking command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/python_parameters': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/install.log --single-version-externally-managed
+[0.559s] running egg_info
+[0.561s] creating ../../build/python_parameters/python_parameters.egg-info
+[0.562s] writing ../../build/python_parameters/python_parameters.egg-info/PKG-INFO
+[0.563s] writing dependency_links to ../../build/python_parameters/python_parameters.egg-info/dependency_links.txt
+[0.563s] writing entry points to ../../build/python_parameters/python_parameters.egg-info/entry_points.txt
+[0.564s] writing requirements to ../../build/python_parameters/python_parameters.egg-info/requires.txt
+[0.564s] writing top-level names to ../../build/python_parameters/python_parameters.egg-info/top_level.txt
+[0.573s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.634s] reading manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.638s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.639s] running build
+[0.639s] running build_py
+[0.639s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build
+[0.639s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib
+[0.640s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib/python_parameters
+[0.640s] copying python_parameters/python_parameters_node.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib/python_parameters
+[0.640s] copying python_parameters/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib/python_parameters
+[0.640s] running install
+[0.642s] running install_lib
+[0.649s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters
+[0.650s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib/python_parameters/python_parameters_node.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters
+[0.650s] copying /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build/lib/python_parameters/__init__.py -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters
+[0.651s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters/python_parameters_node.py to python_parameters_node.cpython-38.pyc
+[0.654s] byte-compiling /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters/__init__.py to __init__.cpython-38.pyc
+[0.654s] running install_data
+[0.656s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/share/ament_index
+[0.657s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/share/ament_index/resource_index
+[0.657s] creating /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/share/ament_index/resource_index/packages
+[0.657s] copying resource/python_parameters -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/share/ament_index/resource_index/packages
+[0.657s] copying package.xml -> /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/share/python_parameters
+[0.657s] running install_egg_info
+[0.663s] Copying ../../build/python_parameters/python_parameters.egg-info to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages/python_parameters-0.0.0-py3.8.egg-info
+[0.670s] running install_scripts
+[0.711s] Installing param_talker script to /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python_parameters
+[0.713s] writing list of installed files to '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/install.log'
+[0.745s] Invoked command in '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/python_parameters' returned '0': PYTHONPATH=/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/build install --prefix /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/install/python_parameters --record /home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/build/python_parameters/install.log --single-version-externally-managed
