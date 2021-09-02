@@ -1,8 +1,0 @@
-[35m[1mScanning dependencies of target server[0m
-make[2]: *** No rule to make target '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_server.cpp', needed by 'CMakeFiles/server.dir/src/add_two_ints_server.cpp.o'.  Stop.
-make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/server.dir/all] Error 2
-make[1]: *** Waiting for unfinished jobs....
-[35m[1mScanning dependencies of target client[0m
-make[2]: *** No rule to make target '/home/adriancooper/Desktop/SeniorDesign/Tutorial/dev/src/cpp_srvcli/src/add_two_ints_client.cpp', needed by 'CMakeFiles/client.dir/src/add_two_ints_client.cpp.o'.  Stop.
-make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/client.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2
