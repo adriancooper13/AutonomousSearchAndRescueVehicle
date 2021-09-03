@@ -1,3 +1,0 @@
-[console_scripts]
-my_pynode = my_pypackage.my_pynode:main
-
