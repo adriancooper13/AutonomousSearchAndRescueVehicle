@@ -1,3 +1,4 @@
-# Tutorial/launch/__pycache__
 .vscode
-Tutorial/
+.Tutorial/
+build/
+log/
