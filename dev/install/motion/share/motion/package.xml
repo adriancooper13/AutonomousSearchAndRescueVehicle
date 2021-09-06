@@ -4,7 +4,7 @@
   <name>motion</name>
   <version>0.0.0</version>
   <description>Handle vehicle motion</description>
-  <maintainer email="adriancooper@todo.todo">adriancooper</maintainer>
+  <maintainer email="adriancooper@knights.ucf.edu">adriancooper</maintainer>
   <license>Apache License 2.0</license>
   
   <buildtool_depend>ament_cmake</buildtool_depend>
