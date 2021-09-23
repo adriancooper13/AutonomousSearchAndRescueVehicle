@@ -115,22 +115,22 @@
       <model name='DropOffTape'>
         <pose>9.898041 -8.527939 0 0 -0 0</pose>
         <scale>1 1 1</scale>
-        <link name='link_0'>
+        <!-- <link name='link_0'>
           <pose>9.898041 -8.527939 0 0 -0 0</pose>
           <velocity>0 0 -inf 0 -0 0</velocity>
           <acceleration>0 0 -inf nan nan nan</acceleration>
           <wrench>0 0 -inf 0 -0 0</wrench>
-        </link>
+        </link> -->
       </model>
       <model name='DropOffTape_clone'>
         <pose>8.521017 -9.901380 0 0 -0 1.56615</pose>
         <scale>1 1 1</scale>
-        <link name='link_0'>
+        <!-- <link name='link_0'>
           <pose>8.521017 -9.901380 0 0 -0 1.56615</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 nan nan nan</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
-        </link>
+        </link> -->
       </model>
       <model name='grass_plane'>
         <pose>40 40 0 0 -0 0</pose>
@@ -233,7 +233,7 @@
         <kinematic>0</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose>9.898041 -8.527939 0 0 -0 0</pose>
           <geometry>
             <box>
               <size>3.048 0.3 0.04</size>
@@ -313,7 +313,7 @@
         </collision>
       </link>
       <static>0</static>
-      <allow_auto_disable>1</allow_auto_disable>
+      <allow_auto_disable>0</allow_auto_disable>
       <pose>9.60985 -6.06809 0 0 -0 0</pose>
     </model>
     <model name='DropOffTape_clone'>
@@ -336,7 +336,7 @@
         <kinematic>0</kinematic>
         <enable_wind>0</enable_wind>
         <visual name='visual'>
-          <pose>0 0 0 0 -0 0</pose>
+          <pose>8.521017 -9.901380 0 0 -0 1.56615</pose>
           <geometry>
             <box>
               <size>3.048 0.3 0.04</size>
@@ -416,7 +416,7 @@
         </collision>
       </link>
       <static>0</static>
-      <allow_auto_disable>1</allow_auto_disable>
+      <allow_auto_disable>0</allow_auto_disable>
       <pose>6.11891 -6.6631 0 0 -0 0</pose>
     </model>
   </world>
