@@ -21,7 +21,7 @@ setup(
         # Path to the golfball sdf file
         (os.path.join('share', package_name, 'gazebo/models/GolfBall/'), glob('./gazebo/models/GolfBall/*')),
         # Path to the tape sdf file
-        (os.path.join('share', package_name, 'gazebo/models/DropOffTape/'), glob('./gazebo/modelsDropOffTape/*')),
+        (os.path.join('share', package_name, 'gazebo/models/DropOffTape/'), glob('./gazebo/models/DropOffTape/*')),
 
         # Path to the world file (global enviornments?) TODO: figure out what this does.
         (os.path.join('share', package_name, 'gazebo/models/'), glob('./gazebo/worlds/*'))
