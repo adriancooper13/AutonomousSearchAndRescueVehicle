@@ -4,7 +4,6 @@ import rclpy
 
 from ament_index_python.packages import get_package_share_directory
 from gazebo_msgs.srv import SpawnEntity
-from geometry_msgs.msg import Quaternion
 from math import radians, sin, cos
 from rclpy.qos import HistoryPolicy, QoSProfile
 from rclpy.node import Node
@@ -14,6 +13,7 @@ from rclpy.task import Future
 feet_to_meters = lambda feet: feet * 0.3048
 
 # roll (X), pitch (Y), yaw (Z)
+# All arguemnts are assumed to be in radians
 def euler_to_quaternion(roll: float, pitch: float, yaw: float):
     # Abbreviations for the various angular functions
     cy = cos(yaw * 0.5)
