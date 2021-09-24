@@ -3,18 +3,18 @@
   <model name='DropOffTape'>
     <link name='link_0'>
       <inertial>
-        <mass>1.79769e+308</mass>
+        <mass>1</mass>
         <inertia>
-          <ixx>1.79769e+308</ixx>
+          <ixx>0.166667</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>1.79769e+308</iyy>
+          <iyy>0.166667</iyy>
           <iyz>0</iyz>
-          <izz>1.79769e+308</izz>
+          <izz>0.166667</izz>
         </inertia>
         <pose>0 0 0 0 -0 0</pose>
       </inertial>
-      <pose>0 -0 0 0 -0 0</pose>
+      <pose>0 0 0 0 -0 0</pose>
       <gravity>1</gravity>
       <self_collide>0</self_collide>
       <kinematic>0</kinematic>
@@ -23,14 +23,14 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>3.048 0.3 0.04</size>
+            <size>3.048 0.1 0.02</size>
           </box>
         </geometry>
         <material>
           <lighting>1</lighting>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Black</name>
+            <name>Gazebo/Grey</name>
           </script>
           <shader type='pixel'>
             <normal_map>__default__</normal_map>
@@ -49,7 +49,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>inf inf inf</size>
+            <size>3.048 0.1 0.02</size>
           </box>
         </geometry>
         <surface>
@@ -99,7 +99,7 @@
         </surface>
       </collision>
     </link>
-    <static>0</static>
+    <static>1</static>
     <allow_auto_disable>0</allow_auto_disable>
   </model>
 </sdf>
