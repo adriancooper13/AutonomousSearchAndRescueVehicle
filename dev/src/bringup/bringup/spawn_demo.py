@@ -27,6 +27,7 @@ class CreateWorld(Node):
     def create_world(self):
         self.spawn_grass()
         self.spawn_tape()
+        self.spawn_border()
         self.spawn_robot()
         self.spawn_golfballs()
 
@@ -100,6 +101,26 @@ class CreateWorld(Node):
             xml=open(model_paths['robot']).read(),
             pose={'x': 11, 'y': -11, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(180))}
         )
+
+    def spawn_border(self):
+        DISTANCE_TO_EDGE = round(feet_to_meters(75), 2)
+        BORDER_WIDTH = 0.3
+        PLACEMENT = (DISTANCE_TO_EDGE + BORDER_WIDTH) / 2
+
+        poses = [
+            {'x': 0, 'y': PLACEMENT, 'z': 0},
+            {'x': PLACEMENT, 'y': 0, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(90))},
+            {'x': 0, 'y': -PLACEMENT, 'z': 0},
+            {'x': -PLACEMENT, 'y': 0, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
+        ]
+        
+        for i, pose in enumerate(poses):
+            self.spawn(
+                name=f'border{i}',
+                xml=open(model_paths['border']).read(),
+                pose=pose
+            )
+        
 
 
 def main():
