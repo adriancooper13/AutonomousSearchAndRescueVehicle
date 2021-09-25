@@ -21,7 +21,7 @@
       </collision>
 
       <visual name='visual_0'>
-        <pose>-40 -40 0 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
 
         <cast_shadows>false</cast_shadows>
         <geometry>
@@ -30,13 +30,13 @@
             <size>22.86 22.86</size>
           </plane>
         </geometry>
-        <!-- <material>
+        <material>
           <script>
             <uri>model://grass_plane/materials/scripts</uri>
             <uri>model://grass_plane/materials/textures</uri>
             <name>vrc/grass</name>
           </script>
-        </material> -->
+        </material>
       </visual>
     </link>
   </model>

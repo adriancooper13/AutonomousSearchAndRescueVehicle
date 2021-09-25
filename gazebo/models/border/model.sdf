@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
-  <model name='Border'>
+  <model name='border'>
     <link name='link_0'>
       <inertial>
         <mass>1</mass>
@@ -30,7 +30,7 @@
           <lighting>1</lighting>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Red</name>
+            <name>Gazebo/Blue</name>
           </script>
           <shader type='pixel'>
             <normal_map>__default__</normal_map>
