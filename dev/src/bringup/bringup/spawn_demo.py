@@ -37,7 +37,8 @@ directories = {
 models = {
     'grass': 'grass_plane',
     'golfball': 'GolfBall',
-    'tape': 'DropOffTape'
+    'tape': 'DropOffTape',
+    'robot': 'turtlebot'
 }
 filenames = {
     'model': 'model.sdf'
@@ -60,6 +61,12 @@ model_paths = {
         directories['models'],
         models['tape'],
         filenames['model']
+    ),
+    'robot': os.path.join(
+        get_package_share_directory(directories['package']),
+        directories['models'],
+        models['robot'],
+        filenames['model']
     )
 }
 
@@ -81,6 +88,7 @@ class CreateWorld(Node):
     def create_world(self):
         self.spawn_grass()
         self.spawn_tape()
+        self.spawn_robot()
         self.spawn_golfballs()
 
     def spawn(self, name: str, xml: str, pose: dict):
@@ -99,10 +107,10 @@ class CreateWorld(Node):
         request.initial_pose.position.z = float(pose['z'])
         try:
             orientation = pose['orientation']
-            request.initial_pose.orientation.x = orientation['x']
-            request.initial_pose.orientation.y = orientation['y']
-            request.initial_pose.orientation.z = orientation['z']
-            request.initial_pose.orientation.w = orientation['w']
+            request.initial_pose.orientation.x = float(orientation['x'])
+            request.initial_pose.orientation.y = float(orientation['y'])
+            request.initial_pose.orientation.z = float(orientation['z'])
+            request.initial_pose.orientation.w = float(orientation['w'])
         except KeyError:
             pass
 
@@ -138,6 +146,7 @@ class CreateWorld(Node):
             while True:
                 pose['x'] = (random.random() * dist) - (dist / 2)
                 pose['y'] = (random.random() * dist) - (dist / 2)
+                # TODO: make sure golf balls do not spawn in the dropoff area
                 # if pose['x'] < 8.521017 and pose['y'] < -9.901380:
                 #     break
                 break
@@ -146,12 +155,19 @@ class CreateWorld(Node):
                 name=f'ball{i}',
                 xml=open(model_paths['golfball']).read(),
                 pose=pose
-            )        
+            )
+
+    def spawn_robot(self):
+        self.spawn(
+            name='turtlebot',
+            xml=open(model_paths['robot']).read(),
+            pose={'x': 11, 'y': -11, 'z': 0}
+        )
 
 
 def main():
     rclpy.init()
-    rclpy.spin(CreateWorld())
+    rclpy.spin_once(CreateWorld())
     rclpy.shutdown()
 
 
