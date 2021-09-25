@@ -13,5 +13,15 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+add_executable(controller src/controller.cpp)
+ament_target_dependencies(controller rclcpp geometry_msgs)
+
+install(
+  TARGETS
+  controller
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()
