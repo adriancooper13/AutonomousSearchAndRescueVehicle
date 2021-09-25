@@ -161,7 +161,7 @@ class CreateWorld(Node):
         self.spawn(
             name='turtlebot',
             xml=open(model_paths['robot']).read(),
-            pose={'x': 11, 'y': -11, 'z': 0}
+            pose={'x': 11, 'y': -11, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(180))}
         )
 
 
