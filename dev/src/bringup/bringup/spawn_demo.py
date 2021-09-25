@@ -38,7 +38,7 @@ models = {
     'grass': 'grass_plane',
     'golfball': 'GolfBall',
     'tape': 'DropOffTape',
-    'robot': 'turtlebot'
+    'robot': 'turtlebot3_waffle'
 }
 filenames = {
     'model': 'model.sdf'
