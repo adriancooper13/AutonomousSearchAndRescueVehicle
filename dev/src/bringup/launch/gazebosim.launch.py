@@ -8,9 +8,8 @@ from os.path import join
 from ament_index_python.packages import get_package_share_directory
  
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration('use_sim_time', default='True')
+    # use_sim_time = LaunchConfiguration('use_sim_time', default='True')
     world_file_name = 'empty.world'
-    pkg_dir = get_package_share_directory('bringup')
  
     os.environ["GAZEBO_MODEL_PATH"] = directories['models']
     world = join(directories['worlds'], world_file_name)
@@ -33,8 +32,13 @@ def generate_launch_description():
         executable='spawn_demo',
         output='screen'
     )
+    controller = Node(
+        package='motion',
+        executable='controller'
+    )
  
     return LaunchDescription([
         gazebo,
         spawn_entity,
+        controller
     ])
