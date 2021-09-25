@@ -1,8 +1,13 @@
 from glob import glob
-import os
+from os.path import join
 from setuptools import setup
 
 package_name = 'bringup'
+gazebo = '../../../gazebo'
+directories = {
+    'worlds': join(gazebo, 'worlds'),
+    'models': join(gazebo, 'models')
+}
 
 setup(
     name=package_name,
@@ -13,20 +18,9 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # Path to launch file
-        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
-        # Path to world file
-        (os.path.join('share', package_name, 'gazebo/worlds/'), glob('./gazebo/worlds/*')),
-        # Path to the grass sdf file
-        (os.path.join('share', package_name, 'gazebo/models/grass_plane/'), glob('./gazebo/models/grass_plane/*')),
-        # Path to the golfball sdf file
-        (os.path.join('share', package_name, 'gazebo/models/GolfBall/'), glob('./gazebo/models/GolfBall/*')),
-        # Path to the tape sdf file
-        (os.path.join('share', package_name, 'gazebo/models/DropOffTape/'), glob('./gazebo/models/DropOffTape/*')),
-        # Path to turtlebot sdf file
-        (os.path.join('share', package_name, 'gazebo/models/turtlebot3_waffle/'), glob('./gazebo/models/turtlebot3_waffle/*')),
-
-        # Path to the world file (global enviornments?) TODO: figure out what this does.
-        (os.path.join('share', package_name, 'gazebo/models/'), glob('./gazebo/worlds/*'))
+        (join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        # Path to helpers module
+        (join('share', package_name, 'helpers'), glob('helpers/*.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,

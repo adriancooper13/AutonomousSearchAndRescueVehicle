@@ -1,74 +1,13 @@
-import os
 import random
 import rclpy
 
-from ament_index_python.packages import get_package_share_directory
 from gazebo_msgs.srv import SpawnEntity
-from math import radians, sin, cos
+from helpers.filepaths import model_paths
+from helpers.functions import euler_to_quaternion, feet_to_meters
+from math import radians
 from rclpy.qos import HistoryPolicy, QoSProfile
 from rclpy.node import Node
 from rclpy.task import Future
-
-
-feet_to_meters = lambda feet: feet * 0.3048
-
-# roll (X), pitch (Y), yaw (Z)
-# All arguemnts are assumed to be in radians
-def euler_to_quaternion(roll: float, pitch: float, yaw: float):
-    # Abbreviations for the various angular functions
-    cy = cos(yaw * 0.5)
-    sy = sin(yaw * 0.5)
-    cp = cos(pitch * 0.5)
-    sp = sin(pitch * 0.5)
-    cr = cos(roll * 0.5)
-    sr = sin(roll * 0.5)
-
-    return {
-        'w': cr * cp * cy + sr * sp * sy,
-        'x': sr * cp * cy - cr * sp * sy,
-        'y': cr * sp * cy + sr * cp * sy,
-        'z': cr * cp * sy - sr * sp * cy
-    }
-
-directories = {
-    'package': 'bringup',
-    'models': 'gazebo/models'
-}
-models = {
-    'grass': 'grass_plane',
-    'golfball': 'GolfBall',
-    'tape': 'DropOffTape',
-    'robot': 'turtlebot3_waffle'
-}
-filenames = {
-    'model': 'model.sdf'
-}
-model_paths = {
-    'grass': os.path.join(
-        get_package_share_directory(directories['package']),
-        directories['models'],
-        models['grass'],
-        filenames['model']
-    ),
-    'golfball': os.path.join(
-        get_package_share_directory(directories['package']),
-        directories['models'],
-        models['golfball'],
-        filenames['model']
-    ),
-    'tape': os.path.join(
-        get_package_share_directory(directories['package']),
-        directories['models'],
-        models['tape'],
-        filenames['model']
-    ),
-    'robot': os.path.join(
-        get_package_share_directory(directories['package']),
-        directories['models'],
-        models['robot'],
-        filenames['model']
-    )
-}
 
 class CreateWorld(Node):
 
@@ -121,14 +60,12 @@ class CreateWorld(Node):
         self.spawn(
             name='grass',
             xml=open(model_paths['grass']).read(),
-            pose={'x': 40.0, 'y': 40.0, 'z': 0.0}
+            pose={'x': 0, 'y': 0, 'z': 0}
         )
     
     def spawn_tape(self):
         coordinates = [
             {'x': 9.898041, 'y': -8.527939, 'z': 0.0},
-            # For some reason the yaw is not correct when transferred to gazebo.
-            # This really rotates it (about) 90 degrees.
             {'x': 8.521017, 'y': -9.901380, 'z': 0.0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
         ]
         for i in range(2):
@@ -169,7 +106,6 @@ def main():
     rclpy.init()
     rclpy.spin_once(CreateWorld())
     rclpy.shutdown()
-
 
 if __name__ == '__main__':
     main()
