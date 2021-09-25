@@ -27,7 +27,7 @@ class CreateWorld(Node):
     def create_world(self):
         self.spawn_grass()
         self.spawn_tape()
-        self.spawn_border()
+        # self.spawn_border()
         self.spawn_robot()
         self.spawn_golfballs()
 
