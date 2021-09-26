@@ -1,7 +1,7 @@
 import random
 import rclpy
 
-from custom_interfaces.srv import SendGolfBallPoses
+from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
 from geometry_msgs.msg import Point
 from helpers.filepaths import model_paths
@@ -41,12 +41,12 @@ class CreateWorld(Node):
             except Exception as e:
                 self.get_logger().fatal(f'Could not send golf ball poses. Exception: {e}')
 
-        client = self.create_client(SendGolfBallPoses, '/golfball_poses')
+        client = self.create_client(TransferGolfballLocations, '/golfball_locations')
         while not client.wait_for_service(1.0):
             self.get_logger().info(f'Waiting for {client.srv_name} service...')
 
-        request = SendGolfBallPoses.Request()
-        request.golfballs, request.names = zip(*self.golfballs)
+        request = TransferGolfballLocations.Request()
+        request.xs, request.ys, request.names = zip(*self.golfballs)
 
         future = client.call_async(request)
         future.add_done_callback(publish_golfballs_results)
@@ -117,13 +117,8 @@ class CreateWorld(Node):
                 break
 
             name = f'ball{i}'
-            
-            point = Point()
-            point.x = pose['x']
-            point.y = pose['y']
-            point.z = pose['z']
 
-            golfball_info = (point, name)
+            golfball_info = (pose['x'], pose['y'], name)
             self.golfballs.append(golfball_info)
 
             self.spawn(
