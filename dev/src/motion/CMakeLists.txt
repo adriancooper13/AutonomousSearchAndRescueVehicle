@@ -15,9 +15,11 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(custom_interfaces REQUIRED)
+find_package(gazebo_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 
 add_executable(controller src/controller.cpp)
-ament_target_dependencies(controller rclcpp geometry_msgs custom_interfaces)
+ament_target_dependencies(controller rclcpp geometry_msgs custom_interfaces gazebo_msgs nav_msgs)
 
 install(
   TARGETS
