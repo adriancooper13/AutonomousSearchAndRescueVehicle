@@ -8,6 +8,8 @@
   <license>TODO: License declaration</license>
 
   <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>custom_interfaces</depend>
   
   <exec_depend>helpers</exec_depend>
   <exec_depend>motion</exec_depend>
