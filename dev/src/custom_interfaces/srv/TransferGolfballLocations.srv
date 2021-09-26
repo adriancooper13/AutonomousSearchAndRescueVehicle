@@ -1,4 +1,5 @@
-geometry_msgs/Point[] locations
+float32[] xs
+float32[] ys
 string[] names
 ---
 bool success
