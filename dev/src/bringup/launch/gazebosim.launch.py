@@ -32,13 +32,8 @@ def generate_launch_description():
         executable='spawn_demo',
         output='screen'
     )
-    controller = Node(
-        package='motion',
-        executable='controller'
-    )
  
     return LaunchDescription([
         gazebo,
-        spawn_entity,
-        controller
+        spawn_entity
     ])
