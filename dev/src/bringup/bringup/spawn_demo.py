@@ -1,15 +1,21 @@
 import random
 import rclpy
 
+from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
+from geometry_msgs.msg import Point
 from helpers.filepaths import model_paths
 from helpers.functions import euler_to_quaternion, feet_to_meters
 from math import radians
+from rclpy.client import Client
 from rclpy.qos import HistoryPolicy, QoSProfile
 from rclpy.node import Node
 from rclpy.task import Future
 
 class CreateWorld(Node):
+
+    client: Client
+    golfballs: list
 
     def __init__(self):
         super().__init__('world_creator')
@@ -22,7 +28,28 @@ class CreateWorld(Node):
             self.get_logger().warn('Service not available. Waiting...')
 
         self.get_logger().info(f'{self.get_name()} node has started')
+        self.golfballs = []
         self.create_world()
+        self.publish_golfballs()
+
+    def publish_golfballs(self):
+        def publish_golfballs_results(future: Future):
+            try:
+                response = future.result()
+                if not response.success:
+                    raise Exception()
+            except Exception as e:
+                self.get_logger().fatal(f'Could not send golf ball poses. Exception: {e}')
+
+        client = self.create_client(TransferGolfballLocations, '/golfball_locations')
+        while not client.wait_for_service(1.0):
+            self.get_logger().info(f'Waiting for {client.srv_name} service...')
+
+        request = TransferGolfballLocations.Request()
+        request.xs, request.ys, request.names = zip(*self.golfballs)
+
+        future = client.call_async(request)
+        future.add_done_callback(publish_golfballs_results)
 
     def create_world(self):
         self.spawn_grass()
@@ -89,8 +116,13 @@ class CreateWorld(Node):
                 #     break
                 break
 
+            name = f'ball{i}'
+
+            golfball_info = (pose['x'], pose['y'], name)
+            self.golfballs.append(golfball_info)
+
             self.spawn(
-                name=f'ball{i}',
+                name=name,
                 xml=open(model_paths['golfball']).read(),
                 pose=pose
             )
