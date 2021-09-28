@@ -90,7 +90,7 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
 
-    <population name="golfball_population1">
+    <!-- <population name="golfball_population1">
       <model name="golfball1">
         <include>
           <static>true</static>
@@ -105,9 +105,9 @@
       <distribution>
         <type>random</type>
       </distribution>
-    </population>
+    </population> -->
 
-    <state world_name='default'>
+    <!-- <state world_name='default'>
       <sim_time>255 45000000</sim_time>
       <real_time>227 505323817</real_time>
       <wall_time>1632254807 20073791</wall_time>
@@ -115,22 +115,22 @@
       <model name='DropOffTape'>
         <pose>9.898041 -8.527939 0 0 -0 0</pose>
         <scale>1 1 1</scale>
-        <!-- <link name='link_0'>
+        <link name='link_0'>
           <pose>9.898041 -8.527939 0 0 -0 0</pose>
           <velocity>0 0 -inf 0 -0 0</velocity>
           <acceleration>0 0 -inf nan nan nan</acceleration>
           <wrench>0 0 -inf 0 -0 0</wrench>
-        </link> -->
+        </link>
       </model>
       <model name='DropOffTape_clone'>
         <pose>8.521017 -9.901380 0 0 -0 1.56615</pose>
         <scale>1 1 1</scale>
-        <!-- <link name='link_0'>
+        <link name='link_0'>
           <pose>8.521017 -9.901380 0 0 -0 1.56615</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 nan nan nan</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
-        </link> -->
+        </link>
       </model>
       <model name='grass_plane'>
         <pose>40 40 0 0 -0 0</pose>
@@ -141,7 +141,7 @@
           <acceleration>nan nan nan nan nan nan</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
-      </model>
+      </model> -->
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -163,7 +163,7 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='grass_plane'>
+    <!-- <model name='grass_plane'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
@@ -418,6 +418,6 @@
       <static>0</static>
       <allow_auto_disable>0</allow_auto_disable>
       <pose>6.11891 -6.6631 0 0 -0 0</pose>
-    </model>
+    </model> -->
   </world>
 </sdf>

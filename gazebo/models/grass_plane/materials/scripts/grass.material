@@ -11,7 +11,7 @@ material vrc/grass
 
       texture_unit
       {
-        texture grass_dry.png
+        texture grass.jpg
         filtering anistropic
         max_anisotropy 16
       }
