@@ -156,6 +156,7 @@ class ControllerNode : public rclcpp::Node
         {
             auto rpy = euler_from_quaternion();
             auto angle = atan2(y - pose.position.y, x - pose.position.x) - rpy['z'];
+            
             auto abs_angle = fabs(angle);
             auto dist = distance(
                 std::make_pair(pose.position.x, pose.position.y),
@@ -165,25 +166,25 @@ class ControllerNode : public rclcpp::Node
             RCLCPP_WARN(get_logger(), "%lf %lf", dist, angle);
             
             auto message = geometry_msgs::msg::Twist();
-            if (dist > 5 && abs_angle > 0.1)
+            if (dist > 10)
             {
-                message.linear.x = 0.5 * dist;
-                message.angular.z = 0.2 * angle;
+                message.linear.x = dist;
+                message.angular.z = (abs_angle > 0.3) ? angle : 0.8 * angle;
             }
             else if (dist > 5)
             {
                 message.linear.x = 0.5 * dist;
-                message.angular.z = 0;
+                message.angular.z = (abs_angle > 0.3) ? 0.8 * angle : 0.6 * angle;
             }
-            else if (abs_angle > 0.1)
+            else if (dist > 2.5)
             {
-                message.linear.x = 0;
-                message.angular.z = 0.3 * angle;
+                message.linear.x = 0.25 * dist;
+                message.angular.z = (abs_angle > 0.1) ? 0.6 * angle : 0.4 * angle;
             }
             else
             {
-                message.linear.x = 0.3;
-                message.angular.z = 0;
+                message.linear.x = dist;
+                message.angular.z = angle;
             }
             cmd_vel_publisher->publish(message);
         }
@@ -195,14 +196,13 @@ class ControllerNode : public rclcpp::Node
                 std::make_pair(x, y)
             );
 
-            return dist < 0.3;
+            return dist < 0.2;
         }
 
         void remove_golfball(int index)
         {
             auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
             request->name = golfballs->at(index).second;
-            golfballs->erase(golfballs->begin() + index);
 
             auto client = create_client<gazebo_msgs::srv::DeleteEntity>("delete_entity");
             while (!client->wait_for_service(1s))
@@ -241,6 +241,7 @@ class ControllerNode : public rclcpp::Node
             if (close_enough(x, y))
             {
                 std::thread(std::bind(&ControllerNode::remove_golfball, this, index)).detach();
+                golfballs->erase(golfballs->begin() + index);
             }
 
             delete closest;
