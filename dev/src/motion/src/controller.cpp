@@ -155,35 +155,44 @@ class ControllerNode : public rclcpp::Node
         void go_to_position(double x, double y)
         {
             auto rpy = euler_from_quaternion();
-            auto angle = atan2(y - pose.position.y, x - pose.position.x) - rpy['z'];
+            auto angle = atan2(y - pose.position.y, x - pose.position.x);
+            // Make negative angles positive so range is from [0, 2pi)
+            if (angle < 0)
+                angle += 2 * M_PI;
+            if (rpy['z'] < 0)
+                rpy['z'] += 2 * M_PI;
+            
+            auto angle_to_ball = angle;
+            angle -= rpy['z'];
+            
             auto abs_angle = fabs(angle);
             auto dist = distance(
                 std::make_pair(pose.position.x, pose.position.y),
                 std::make_pair(x, y)
             );
             
-            RCLCPP_WARN(get_logger(), "%lf %lf", dist, angle);
+            RCLCPP_WARN(get_logger(), "Angle to ball: %lf, Yaw: %lf, Angle: %lf", angle_to_ball, rpy['z'], angle);
             
             auto message = geometry_msgs::msg::Twist();
-            if (dist > 5 && abs_angle > 0.1)
+            if (dist > 10)
             {
-                message.linear.x = 0.5 * dist;
-                message.angular.z = 0.2 * angle;
+                message.linear.x = 0.1 * dist;
+                message.angular.z = 0.5 * angle;
             }
             else if (dist > 5)
             {
-                message.linear.x = 0.5 * dist;
-                message.angular.z = 0;
-            }
-            else if (abs_angle > 0.1)
-            {
-                message.linear.x = 0;
+                message.linear.x = 0.25 * dist;
                 message.angular.z = 0.3 * angle;
+            }
+            else if (dist > 2.5)
+            {
+                message.linear.x = 0.5 * dist;
+                message.angular.z = (abs_angle > 0.3) ? 0.5 * angle : 0.3 * angle;
             }
             else
             {
-                message.linear.x = 0.3;
-                message.angular.z = 0;
+                message.linear.x = (abs_angle > 0.3) ? 0 : dist;
+                message.angular.z = 0.5 * angle;
             }
             cmd_vel_publisher->publish(message);
         }
@@ -195,7 +204,7 @@ class ControllerNode : public rclcpp::Node
                 std::make_pair(x, y)
             );
 
-            return dist < 0.3;
+            return dist < 0.2;
         }
 
         void remove_golfball(int index)
