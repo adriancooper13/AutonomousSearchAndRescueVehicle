@@ -53,7 +53,7 @@ class CreateWorld(Node):
     def create_world(self):
         self.spawn_grass()
         self.spawn_tape()
-        # self.spawn_border()
+        self.spawn_border()
         self.spawn_robot()
         self.spawn_golfballs()
 
@@ -92,8 +92,8 @@ class CreateWorld(Node):
     
     def spawn_tape(self):
         coordinates = [
-            {'x': 9.898041, 'y': -8.527939, 'z': 0.0},
-            {'x': 8.521017, 'y': -9.901380, 'z': 0.0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
+            {'x': 9.898040, 'y': -8.430388, 'z': 0.0},
+            {'x': 8.421658, 'y': -9.901380, 'z': 0.0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
         ]
         for i in range(2):
             self.spawn(
@@ -110,10 +110,9 @@ class CreateWorld(Node):
             while True:
                 pose['x'] = (random.random() * dist) - (dist / 2)
                 pose['y'] = (random.random() * dist) - (dist / 2)
-                # TODO: make sure golf balls do not spawn in the dropoff area
-                # if pose['x'] < 8.521017 and pose['y'] < -9.901380:
-                #     break
-                break
+                # Make sure golf balls do not spawn in the dropoff area.
+                if pose['y'] > -8.430388 or pose['x'] < 8.421658:
+                    break
 
             name = f'ball{i}'
 
