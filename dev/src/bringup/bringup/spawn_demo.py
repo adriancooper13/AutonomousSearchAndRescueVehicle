@@ -3,7 +3,6 @@ import rclpy
 
 from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
-from geometry_msgs.msg import Point
 from helpers.filepaths import model_paths
 from helpers.functions import euler_to_quaternion, feet_to_meters
 from math import radians
