@@ -18,12 +18,12 @@ find_package(custom_interfaces REQUIRED)
 find_package(gazebo_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 
-add_executable(controller src/controller.cpp)
-ament_target_dependencies(controller rclcpp geometry_msgs custom_interfaces gazebo_msgs nav_msgs)
+add_executable(navigation src/navigation.cpp)
+ament_target_dependencies(navigation rclcpp geometry_msgs custom_interfaces gazebo_msgs nav_msgs)
 
 install(
   TARGETS
-  controller
+  navigation
   DESTINATION lib/${PROJECT_NAME}
 )
 
