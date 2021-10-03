@@ -5,6 +5,10 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='motion',
+            executable='navigation'
+        ),
+        Node(
+            package='hardware',
             executable='controller'
         )
     ])
