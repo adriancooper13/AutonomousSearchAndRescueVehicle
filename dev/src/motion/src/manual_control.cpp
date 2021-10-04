@@ -64,7 +64,7 @@ class ManualControl : public rclcpp::Node
                 std::bind(&ManualControl::joy_publisher, this, std::placeholders::_1)
             );
             cmd_vel_publisher = create_publisher<geometry_msgs::msg::Twist>(
-                "manual_control",
+                "joy_control",
                 10
             );
 
