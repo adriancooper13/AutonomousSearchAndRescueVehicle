@@ -146,6 +146,18 @@ class Navigation : public rclcpp::Node
             return dist < 0.2;
         }
 
+        int close_enough()
+        {
+            int size = golfballs->size();
+            for (int i = 0; i < size; i++)
+            {
+                if (golfballs->at(i).distance(pose.position.x, pose.position.y) < 0.2)
+                    return i;
+            }
+
+            return -1;
+        }
+
         void remove_golfball(int index)
         {
             auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
@@ -177,7 +189,12 @@ class Navigation : public rclcpp::Node
         void retrieve_golfballs()
         {
             if (manual_control)
+            {
+                int index = close_enough();
+                if (index != -1)
+                    std::thread(std::bind(&Navigation::remove_golfball, this, index)).detach();
                 return;
+            }
 
             int index = closest_golfball_index();
             if (index == -1)
