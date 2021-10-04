@@ -8,6 +8,10 @@ def generate_launch_description():
             executable='navigation'
         ),
         Node(
+            package='motion',
+            executable='manual_control'
+        ),
+        Node(
             package='hardware',
             executable='controller'
         ),

@@ -95,15 +95,15 @@ class ManualControl : public rclcpp::Node
             // Forward button only being pressed.
             else if (forward == ON)
             {
-                message.linear.x = 1 - input->buttons.at(AXES_MAPPINGS.at("R2"));
+                message.linear.x = 1 - input->axes.at(AXES_MAPPINGS.at("R2"));
             }
             // Backward button only being pressed.
             else
             {
-                message.linear.x = -1 + input->buttons.at(AXES_MAPPINGS.at("L2"));
+                message.linear.x = -1 + input->axes.at(AXES_MAPPINGS.at("L2"));
             }
 
-            message.angular.z = input->buttons.at(AXES_MAPPINGS.at("LEFT/RIGHT-DPAD"));
+            message.angular.z = input->axes.at(AXES_MAPPINGS.at("LEFT/RIGHT-DPAD"));
             cmd_vel_publisher->publish(message);
         }
 

@@ -1,4 +1,6 @@
 #include <climits>
+#include <cmath>
+#include <thread>
 
 #include "custom_interfaces/srv/transfer_golfball_locations.hpp"
 #include "gazebo_msgs/srv/delete_entity.hpp"
@@ -41,14 +43,19 @@ class Navigation : public rclcpp::Node
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr goal_publisher;
         rclcpp::Service<custom_interfaces::srv::TransferGolfballLocations>::SharedPtr golfball_locations_service;
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
+        rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber; 
         rclcpp::TimerBase::SharedPtr timer;
         std::vector<Golfball> *golfballs;
         // Current pose for finding the closest golfball.
         geometry_msgs::msg::Pose pose;
+        // Determines if manual control is enabled.
+        bool manual_control;
 
     public:
         Navigation() : Node("controller_node")
         {
+            manual_control = false;
+
             timer = create_wall_timer(
                 0.01s,
                 std::bind(&Navigation::control_loop, this)
@@ -57,6 +64,11 @@ class Navigation : public rclcpp::Node
                 "odom", 
                 10,
                 std::bind(&Navigation::get_current_position, this, std::placeholders::_1)
+            );
+            manual_control_subscriber = create_subscription<geometry_msgs::msg::Twist>(
+                "joy_control",
+                10,
+                std::bind(&Navigation::joy_control_handler, this, std::placeholders::_1)
             );
             goal_publisher = create_publisher<geometry_msgs::msg::Twist>(
                 "nav_goal",
@@ -106,6 +118,18 @@ class Navigation : public rclcpp::Node
             return closest_index;
         }
 
+        void joy_control_handler(const geometry_msgs::msg::Twist::SharedPtr message)
+        {
+            if (message->linear.x == 0 && message->angular.z == 0)
+            {
+                manual_control = false;
+                return;
+            }
+
+            manual_control = true;
+            goal_publisher->publish(*message);
+        }
+
         void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)
         {
             // message->pose has type PoseWithCovariance. Tack on .pose to extract just pose
@@ -152,6 +176,9 @@ class Navigation : public rclcpp::Node
 
         void retrieve_golfballs()
         {
+            if (manual_control)
+                return;
+
             int index = closest_golfball_index();
             if (index == -1)
             {
