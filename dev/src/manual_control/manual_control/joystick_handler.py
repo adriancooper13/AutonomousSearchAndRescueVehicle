@@ -174,7 +174,6 @@ class JoystickRos2(Node):
         super().__init__('joystick_ros2')
 
         # Node params
-        # TODO : use rosparam
         self.deadzone = 0.05
         self.autorepeat_rate = 0.0
         self.coalesce_interval = 0.001
