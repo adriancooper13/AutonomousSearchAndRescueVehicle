@@ -23,7 +23,7 @@ add_executable(navigation src/navigation.cpp)
 ament_target_dependencies(navigation rclcpp geometry_msgs custom_interfaces gazebo_msgs nav_msgs)
 
 add_executable(manual_control src/manual_control.cpp)
-ament_target_dependencies(manual_control rclcpp sensor_msgs)
+ament_target_dependencies(manual_control rclcpp sensor_msgs geometry_msgs)
 
 install(
   TARGETS
