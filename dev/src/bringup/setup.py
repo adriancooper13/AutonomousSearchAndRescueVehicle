@@ -12,15 +12,13 @@ directories = {
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=[package_name, 'helpers'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # Path to launch file
         (join('share', package_name, 'launch'), glob('launch/*.launch.py')),
-        # Path to helpers module
-        (join('share', package_name, 'helpers'), glob('helpers/*.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,

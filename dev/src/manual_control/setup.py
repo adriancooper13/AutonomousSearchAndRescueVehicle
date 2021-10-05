@@ -1,11 +1,11 @@
 from setuptools import setup
 
-package_name = 'helpers'
+package_name = 'manual_control'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=[package_name, 'inputs'],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'joystick = manual_control.joystick_handler:main'
         ],
     },
 )
