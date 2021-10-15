@@ -3,8 +3,7 @@ from ament_index_python.packages import get_package_share_directory
 
 GAZEBO = '../../../../../gazebo'
 packages = {
-    'launch': get_package_share_directory('bringup'),
-    'helpers': get_package_share_directory('helpers')
+    'launch': get_package_share_directory('bringup')
 } 
 
 directories = {

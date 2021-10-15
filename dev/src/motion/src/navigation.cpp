@@ -219,13 +219,12 @@ class Navigation : public rclcpp::Node
                 golfballs->at(index).Y - pose.position.y,
                 golfballs->at(index).X - pose.position.x
             );
-            // Make negative angles positive so range is from [0, 2pi)
-            if (angle < 0)
-                angle += 2 * M_PI;
-            if (rpy['z'] < 0)
-                rpy['z'] += 2 * M_PI;
-            
+    
             angle -= rpy['z'];
+            if (angle > M_PI)
+                angle -= 2 * M_PI;
+            else if (angle < -M_PI)
+                angle += 2 * M_PI;
             
             double abs_angle = fabs(angle);
             double dist = golfballs->at(index).distance(pose.position.x, pose.position.y);

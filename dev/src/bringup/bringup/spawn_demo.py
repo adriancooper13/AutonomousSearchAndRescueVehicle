@@ -3,8 +3,8 @@ import rclpy
 
 from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
-from helpers.filepaths import model_paths
-from helpers.functions import euler_to_quaternion, feet_to_meters
+from .filepaths import model_paths
+from .functions import euler_to_quaternion, feet_to_meters
 from math import radians
 from rclpy.client import Client
 from rclpy.qos import HistoryPolicy, QoSProfile

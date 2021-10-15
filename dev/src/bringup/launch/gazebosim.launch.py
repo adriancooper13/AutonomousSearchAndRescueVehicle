@@ -1,4 +1,4 @@
-from helpers.filepaths import directories
+from bringup.filepaths import directories
 import os
 from launch import LaunchDescription
 from launch.substitutions import LaunchConfiguration
