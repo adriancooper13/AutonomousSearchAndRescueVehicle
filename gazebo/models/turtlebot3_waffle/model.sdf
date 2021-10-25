@@ -253,7 +253,7 @@
           <image>
               <width>360</width>
               <height>240</height>
-              <format>R8G8B8</format>
+              <format>B8G8R8</format>
           </image>
           <clip>
               <near>0.03</near>
