@@ -3,8 +3,8 @@ import rclpy
 
 from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
-from helpers.filepaths import model_paths
-from helpers.functions import euler_to_quaternion, feet_to_meters
+from .filepaths import model_paths
+from .functions import euler_to_quaternion, feet_to_meters
 from math import radians
 from rclpy.client import Client
 from rclpy.qos import HistoryPolicy, QoSProfile
@@ -51,9 +51,6 @@ class CreateWorld(Node):
         future.add_done_callback(publish_golfballs_results)
 
     def create_world(self):
-        self.spawn_grass()
-        self.spawn_tape()
-        self.spawn_border()
         self.spawn_robot()
         self.spawn_golfballs()
 
@@ -82,25 +79,6 @@ class CreateWorld(Node):
 
         future = self.client.call_async(request)
         future.add_done_callback(spawn_result)
-
-    def spawn_grass(self):
-        self.spawn(
-            name='grass',
-            xml=open(model_paths['grass']).read(),
-            pose={'x': 0, 'y': 0, 'z': 0}
-        )
-    
-    def spawn_tape(self):
-        coordinates = [
-            {'x': 9.898040, 'y': -8.430388, 'z': 0.0},
-            {'x': 8.421658, 'y': -9.901380, 'z': 0.0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
-        ]
-        for i in range(2):
-            self.spawn(
-                name=f'tape{i}',
-                xml=open(model_paths['tape']).read(),
-                pose=coordinates[i]
-            )
 
     def spawn_golfballs(self):
         num_golfballs = random.randint(30, 60)
@@ -131,27 +109,6 @@ class CreateWorld(Node):
             xml=open(model_paths['robot']).read(),
             pose={'x': 11, 'y': -11, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(180))}
         )
-
-    def spawn_border(self):
-        DISTANCE_TO_EDGE = round(feet_to_meters(75), 2)
-        BORDER_WIDTH = 0.3
-        PLACEMENT = (DISTANCE_TO_EDGE + BORDER_WIDTH) / 2
-
-        poses = [
-            {'x': 0, 'y': PLACEMENT, 'z': 0},
-            {'x': PLACEMENT, 'y': 0, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(90))},
-            {'x': 0, 'y': -PLACEMENT, 'z': 0},
-            {'x': -PLACEMENT, 'y': 0, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(90))}
-        ]
-        
-        for i, pose in enumerate(poses):
-            self.spawn(
-                name=f'border{i}',
-                xml=open(model_paths['border']).read(),
-                pose=pose
-            )
-        
-
 
 def main():
     rclpy.init()

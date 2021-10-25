@@ -2,6 +2,7 @@
 <sdf version="1.5">
   <model name="Construction Cone">
     <link name="link">
+      <gravity>0</gravity>
       <collision name="collision">
         <geometry>
           <mesh>
