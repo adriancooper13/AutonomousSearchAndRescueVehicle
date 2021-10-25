@@ -12,8 +12,6 @@ const auto RED = cv::Scalar(0, 0, 255);
 const auto GREEN = cv::Scalar(0, 255, 0);
 const auto BLUE = cv::Scalar(255, 0, 0);
 
-using namespace std::chrono_literals;
-
 class ImageProcessing : public rclcpp::Node
 {
     private:
@@ -36,6 +34,7 @@ class ImageProcessing : public rclcpp::Node
 
             if (DEBUG)
             {
+                using namespace std::chrono_literals;
                 timer = create_wall_timer(1ms, std::bind(&ImageProcessing::image_show, this));
             }
 
@@ -50,7 +49,7 @@ class ImageProcessing : public rclcpp::Node
             Perspective();
             Threshold();
             Histogram();
-            BallFinder();
+            FindLargest();
             LaneCenter();
         }
 
@@ -85,15 +84,15 @@ class ImageProcessing : public rclcpp::Node
         void Threshold()
         {
             cv::Mat frameThresh, frameEdge, frameGray;
-            cvtColor(framePers, frameGray, cv::COLOR_RGB2GRAY);
+            cvtColor(framePers, frameGray, cv::COLOR_BGR2GRAY);
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
-            inRange(frameGray, 220, 255, frameThresh); // 137 looked good indoors at night, 165 looked good indoors during the day
+            inRange(frameGray, 100, 255, frameThresh); // 137 looked good indoors at night, 165 looked good indoors during the day
             // input, output, minimum threshold for histerisis process. always goes 100 for minimum. 2nd threshhold, usually go 500, axa matrix, advanced gradient?
             // edge detection         
-            Canny(frameGray, frameEdge, 400, 600, 3, false); // was 250, 600
+            Canny(frameGray, frameEdge, 250, 600, 3, false); // was 250, 600
             // merge our images together into final frame
-            add(frameThresh, frameThresh, frameFinal);
+            add(frameThresh, frameEdge, frameFinal);
             cvtColor(frameFinal, frameFinal, cv::COLOR_GRAY2RGB);
             // used in histogram function only.
             cvtColor(frameFinal, frameFinalDuplicate, cv::COLOR_RGB2BGR);
@@ -109,7 +108,7 @@ class ImageProcessing : public rclcpp::Node
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
-                ROILane = frameFinalDuplicate(cv::Rect(i, 140, 1, 100));
+                ROILane = frameFinalDuplicate(cv::Rect(i, 40, 1, 200));
                 divide(255, ROILane, ROILane);
                 histogramLane.push_back((int)(sum(ROILane)[0]));
             }
@@ -130,21 +129,21 @@ class ImageProcessing : public rclcpp::Node
             direction_publisher->publish(message);
         }
 
-        void BallFinder()
+        void FindMiddle()
         {
             // iterator to point to max intensity spot
             std::vector<int>::iterator LeftPtr;
-            // scans from left-most pixel to middle pixel
+            // scans from left-most pixel to left-middle pixel
             LeftPtr = max_element(histogramLane.begin(), histogramLane.begin() + 120);
             auto LeftLanePos = distance(histogramLane.begin(), LeftPtr);
             
             // iterator to point to max intensity spot
             std::vector<int>::iterator RightPtr;
-            // scans from left-most pixel to middle pixel
+            // scans from right-middle pixel to right-most pixel
             RightPtr = max_element(histogramLane.end() - 119, histogramLane.end());
             auto RightLanePos = distance(histogramLane.begin(), RightPtr);
             
-            
+            // scans from left-middle pixel to right-middle pixel
             std::vector<int>::iterator MiddlePtr;
             MiddlePtr = max_element(histogramLane.begin() + 121, histogramLane.end() - 120);
             MiddlePos = distance(histogramLane.begin(), MiddlePtr);
@@ -161,6 +160,17 @@ class ImageProcessing : public rclcpp::Node
             } else {
                 MiddlePos = RightLanePos;
             }
+            
+            line(frameFinal, cv::Point2f(MiddlePos, 0), cv::Point2f(MiddlePos, 240), GREEN, 2);
+        }
+
+        void FindLargest()
+        {
+            // iterator to point to max intensity spot
+            std::vector<int>::iterator biggestPointer;
+            // scans from left-most pixel to left-middle pixel
+            biggestPointer = max_element(histogramLane.begin(), histogramLane.end());
+            MiddlePos = distance(histogramLane.begin(), biggestPointer);
             
             line(frameFinal, cv::Point2f(MiddlePos, 0), cv::Point2f(MiddlePos, 240), GREEN, 2);
         }
