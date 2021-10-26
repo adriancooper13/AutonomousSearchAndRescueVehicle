@@ -1,8 +1,9 @@
+#include <cv_bridge/cv_bridge.h>
+#include <opencv2/opencv.hpp>
+
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/int32.hpp"
-#include <opencv2/opencv.hpp>
-#include <cv_bridge/cv_bridge.h>
 
 #define WIDTH 360
 #define HEIGHT 240
@@ -17,7 +18,7 @@ class ImageProcessing : public rclcpp::Node
     private:
         int middle_pos;
         std::vector<int> histogram_lane;
-        cv::Mat frame, frame_perspective, frame_final, frame_final_duplicate;
+        cv::Mat frame, frame_perspective, frame_final;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::TimerBase::SharedPtr timer;
@@ -94,8 +95,6 @@ class ImageProcessing : public rclcpp::Node
             // merge our images together into final frame
             add(frame_thresh, frame_edge, frame_final);
             cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
-            // used in histogram function only.
-            cvtColor(frame_final, frame_final_duplicate, cv::COLOR_RGB2BGR);
         }
 
         void histogram()
@@ -104,12 +103,13 @@ class ImageProcessing : public rclcpp::Node
             histogram_lane.resize(frame.size().width);
             histogram_lane.clear();
             
-            int top = 40;
-            cv::Mat roi_lane;
+            int top = 20;
+            cv::Mat roi_lane, frame_final_bgr;
+            cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);;
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
-                roi_lane = frame_final_duplicate(cv::Rect(i, top, 1, HEIGHT - top));
+                roi_lane = frame_final_bgr(cv::Rect(i, top, 1, HEIGHT - top));
                 divide(255, roi_lane, roi_lane);
                 histogram_lane.push_back((int)(sum(roi_lane)[0]));
             }
@@ -193,12 +193,6 @@ class ImageProcessing : public rclcpp::Node
             if (!frame_final.empty())
             {
                 cv::imshow("final_image", frame_final);
-                cv::waitKey(1);
-            }
-
-            if (!frame_final_duplicate.empty())
-            {
-                cv::imshow("final_dup_image", frame_final_duplicate);
                 cv::waitKey(1);
             }
         }
