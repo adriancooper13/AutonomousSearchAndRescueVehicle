@@ -15,9 +15,9 @@ const auto BLUE = cv::Scalar(255, 0, 0);
 class ImageProcessing : public rclcpp::Node
 {
     private:
-        int MiddlePos;
-        std::vector<int> histogramLane;
-        cv::Mat frame, framePers, frameFinal, frameFinalDuplicate;
+        int middle_pos;
+        std::vector<int> histogram_lane;
+        cv::Mat frame, frame_perspective, frame_final, frame_final_duplicate;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::TimerBase::SharedPtr timer;
@@ -46,82 +46,83 @@ class ImageProcessing : public rclcpp::Node
         {
             frame = cv_bridge::toCvCopy(message, message->encoding)->image;
 
-            Perspective();
-            Threshold();
-            Histogram();
-            FindLargest();
-            LaneCenter();
+            perspective();
+            threshold();
+            histogram();
+            find_largest_ball();
+            lane_center();
         }
 
-        void Perspective()
+        void perspective()
         {
             // create a frame of reference... adjust these as needed. They represent the 4 corners of the box.
-            cv::Point2f Source[] = {
+            cv::Point2f source[] = {
                 cv::Point2f(30, HEIGHT / 2),
                 cv::Point2f(WIDTH - 30, HEIGHT / 2),
                 cv::Point2f(0, HEIGHT),
                 cv::Point2f(WIDTH, HEIGHT)
             };
             // Point2f Destination[] = {Point2f(25, 150), Point2f(330, 150), Point2f(0, 210), Point2f(360, 210)};
-            cv::Point2f Destination[] = {
+            cv::Point2f destination[] = {
                 cv::Point2f(80, 0),
                 cv::Point2f(280, 0),
                 cv::Point2f(80, 240),
                 cv::Point2f(280, 240)
             };
             // this is to join the 4 points via openCV
-            int lineWidth = 2;
+            int line_width = 2;
             
-            line(frame, Source[0], Source[1], RED, lineWidth); // goes from top left to top right
-            line(frame, Source[1], Source[3], RED, lineWidth); // goes from top right to bottom right
-            line(frame, Source[3], Source[2], RED, lineWidth); // goes from bottom right to bottom left
-            line(frame, Source[2], Source[0], RED, lineWidth); // goes from bottom left to top left
+            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
+            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
+            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
+            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
             
-            auto matrix = getPerspectiveTransform(Source, Destination);
-            warpPerspective(frame, framePers, matrix, cv::Size(WIDTH, HEIGHT));
+            auto matrix = getPerspectiveTransform(source, destination);
+            warpPerspective(frame, frame_perspective, matrix, cv::Size(WIDTH, HEIGHT));
         }
 
-        void Threshold()
+        void threshold()
         {
-            cv::Mat frameThresh, frameEdge, frameGray;
-            cvtColor(framePers, frameGray, cv::COLOR_BGR2GRAY);
+            cv::Mat frame_thresh, frame_edge, frame_gray;
+            cvtColor(frame_perspective, frame_gray, cv::COLOR_BGR2GRAY);
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
-            inRange(frameGray, 100, 255, frameThresh); // 137 looked good indoors at night, 165 looked good indoors during the day
+            inRange(frame_gray, 100, 255, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
             // input, output, minimum threshold for histerisis process. always goes 100 for minimum. 2nd threshhold, usually go 500, axa matrix, advanced gradient?
             // edge detection         
-            Canny(frameGray, frameEdge, 250, 600, 3, false); // was 250, 600
+            Canny(frame_gray, frame_edge, 250, 600, 3, false); // was 250, 600
             // merge our images together into final frame
-            add(frameThresh, frameEdge, frameFinal);
-            cvtColor(frameFinal, frameFinal, cv::COLOR_GRAY2RGB);
+            add(frame_thresh, frame_edge, frame_final);
+            cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
             // used in histogram function only.
-            cvtColor(frameFinal, frameFinalDuplicate, cv::COLOR_RGB2BGR);
+            cvtColor(frame_final, frame_final_duplicate, cv::COLOR_RGB2BGR);
         }
 
-        void Histogram()
+        void histogram()
         {
             // resize to the size of the lane.
-            histogramLane.resize(frame.size().width);
-            histogramLane.clear();
+            histogram_lane.resize(frame.size().width);
+            histogram_lane.clear();
             
-            cv::Mat ROILane;
+            int top = 40;
+            cv::Mat roi_lane;
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
-                ROILane = frameFinalDuplicate(cv::Rect(i, 40, 1, 200));
-                divide(255, ROILane, ROILane);
-                histogramLane.push_back((int)(sum(ROILane)[0]));
+                roi_lane = frame_final_duplicate(cv::Rect(i, top, 1, HEIGHT - top));
+                divide(255, roi_lane, roi_lane);
+                histogram_lane.push_back((int)(sum(roi_lane)[0]));
             }
         }
 
-        void LaneCenter()
+        void lane_center()
         {
             int frame_center = WIDTH / 2;
             
-            line(frameFinal, cv::Point2f(frame_center, 0), cv::Point2f(frame_center, HEIGHT), BLUE, 3);
+            line(frame_final, cv::Point2f(frame_center, 0), cv::Point2f(frame_center, HEIGHT), BLUE, 3);
             
             // difference between true center and center ball...
-            int result = MiddlePos - frame_center;
+            int result = middle_pos - frame_center;
 
             // Publish result
             auto message = std_msgs::msg::Int32();
@@ -129,50 +130,50 @@ class ImageProcessing : public rclcpp::Node
             direction_publisher->publish(message);
         }
 
-        void FindMiddle()
+        void find_middle_ball()
         {
             // iterator to point to max intensity spot
-            std::vector<int>::iterator LeftPtr;
+            std::vector<int>::iterator left_ptr;
             // scans from left-most pixel to left-middle pixel
-            LeftPtr = max_element(histogramLane.begin(), histogramLane.begin() + 120);
-            auto LeftLanePos = distance(histogramLane.begin(), LeftPtr);
+            left_ptr = max_element(histogram_lane.begin(), histogram_lane.begin() + 120);
+            auto left_lane_pos = distance(histogram_lane.begin(), left_ptr);
             
             // iterator to point to max intensity spot
-            std::vector<int>::iterator RightPtr;
+            std::vector<int>::iterator right_ptr;
             // scans from right-middle pixel to right-most pixel
-            RightPtr = max_element(histogramLane.end() - 119, histogramLane.end());
-            auto RightLanePos = distance(histogramLane.begin(), RightPtr);
+            right_ptr = max_element(histogram_lane.end() - 119, histogram_lane.end());
+            auto right_lane_pos = distance(histogram_lane.begin(), right_ptr);
             
             // scans from left-middle pixel to right-middle pixel
-            std::vector<int>::iterator MiddlePtr;
-            MiddlePtr = max_element(histogramLane.begin() + 121, histogramLane.end() - 120);
-            MiddlePos = distance(histogramLane.begin(), MiddlePtr);
+            std::vector<int>::iterator middle_ptr;
+            middle_ptr = max_element(histogram_lane.begin() + 121, histogram_lane.end() - 120);
+            middle_pos = distance(histogram_lane.begin(), middle_ptr);
             
             // middle is at pixel column 180
-            int midDist = abs(180 - MiddlePos);
-            int leftDist = abs(180 - LeftLanePos);
-            int rightDist = abs(180 - RightLanePos);
+            int mid_dist = abs(180 - middle_pos);
+            int left_dist = abs(180 - left_lane_pos);
+            int right_dist = abs(180 - right_lane_pos);
             
-            if (midDist <= leftDist && midDist <= rightDist) {
-                MiddlePos = MiddlePos;
-            } else if (leftDist <= midDist && leftDist <= rightDist) {
-                MiddlePos = LeftLanePos;
+            if (mid_dist <= left_dist && mid_dist <= right_dist) {
+                middle_pos = middle_pos;
+            } else if (left_dist <= mid_dist && left_dist <= right_dist) {
+                middle_pos = left_lane_pos;
             } else {
-                MiddlePos = RightLanePos;
+                middle_pos = right_lane_pos;
             }
             
-            line(frameFinal, cv::Point2f(MiddlePos, 0), cv::Point2f(MiddlePos, 240), GREEN, 2);
+            line(frame_final, cv::Point2f(middle_pos, 0), cv::Point2f(middle_pos, 240), GREEN, 2);
         }
 
-        void FindLargest()
+        void find_largest_ball()
         {
             // iterator to point to max intensity spot
-            std::vector<int>::iterator biggestPointer;
+            std::vector<int>::iterator whitest_ptr;
             // scans from left-most pixel to left-middle pixel
-            biggestPointer = max_element(histogramLane.begin(), histogramLane.end());
-            MiddlePos = distance(histogramLane.begin(), biggestPointer);
+            whitest_ptr = max_element(histogram_lane.begin(), histogram_lane.end());
+            middle_pos = distance(histogram_lane.begin(), whitest_ptr);
             
-            line(frameFinal, cv::Point2f(MiddlePos, 0), cv::Point2f(MiddlePos, 240), GREEN, 2);
+            line(frame_final, cv::Point2f(middle_pos, 0), cv::Point2f(middle_pos, 240), GREEN, 2);
         }
 
         void image_show()
@@ -183,21 +184,21 @@ class ImageProcessing : public rclcpp::Node
                 cv::waitKey(1);
             }
             
-            if (!framePers.empty())
+            if (!frame_perspective.empty())
             {
-                cv::imshow("perspective_image", framePers);
+                cv::imshow("perspective_image", frame_perspective);
                 cv::waitKey(1);
             }
 
-            if (!frameFinal.empty())
+            if (!frame_final.empty())
             {
-                cv::imshow("final_image", frameFinal);
+                cv::imshow("final_image", frame_final);
                 cv::waitKey(1);
             }
 
-            if (!frameFinalDuplicate.empty())
+            if (!frame_final_duplicate.empty())
             {
-                cv::imshow("final_dup_image", frameFinalDuplicate);
+                cv::imshow("final_dup_image", frame_final_duplicate);
                 cv::waitKey(1);
             }
         }
