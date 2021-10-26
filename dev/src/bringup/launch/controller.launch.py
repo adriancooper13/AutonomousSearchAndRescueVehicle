@@ -12,10 +12,6 @@ def generate_launch_description():
             executable='manual_control'
         ),
         Node(
-            package='hardware',
-            executable='controller'
-        ),
-        Node(
             package='manual_control',
             executable='joystick'
         ),
