@@ -40,7 +40,7 @@ class CreateWorld(Node):
             except Exception as e:
                 self.get_logger().fatal(f'Could not send golf ball poses. Exception: {e}')
 
-        client = self.create_client(TransferGolfballLocations, '/golfball_locations')
+        client = self.create_client(TransferGolfballLocations, 'golfball_locations')
         while not client.wait_for_service(1.0):
             self.get_logger().info(f'Waiting for {client.srv_name} service...')
 

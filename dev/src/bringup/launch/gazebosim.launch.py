@@ -32,8 +32,14 @@ def generate_launch_description():
         executable='spawn_demo',
         output='screen'
     )
+    delete_entity = Node(
+        package='simulation',
+        executable='remove_golfballs',
+        output='screen'
+    )
  
     return LaunchDescription([
         gazebo,
-        spawn_entity
+        spawn_entity,
+        delete_entity
     ])
