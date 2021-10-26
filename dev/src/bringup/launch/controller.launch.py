@@ -4,8 +4,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     return LaunchDescription([
         Node(
-            package='motion',
-            executable='navigation'
+            package='vision',
+            executable='image_processing'
         ),
         Node(
             package='motion',
@@ -18,5 +18,9 @@ def generate_launch_description():
         Node(
             package='manual_control',
             executable='joystick'
+        ),
+        Node(
+            package='motion',
+            executable='navigation'
         )
     ])
