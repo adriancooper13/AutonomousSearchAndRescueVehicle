@@ -35,12 +35,12 @@ class Navigation : public rclcpp::Node
 
             velocity_publisher = create_publisher<geometry_msgs::msg::Twist>(
                 "cmd_vel",
-                1
+                10
             );
 
             ball_direction_subscriber = create_subscription<std_msgs::msg::Int32>(
                 "direction",
-                10,
+                5,
                 std::bind(&Navigation::control_loop, this, std::placeholders::_1)
             );
             odom_subscriber = create_subscription<nav_msgs::msg::Odometry>(
@@ -66,11 +66,11 @@ class Navigation : public rclcpp::Node
             if (ball_location->data == NO_BALL_IN_VIEW)
             {
                 TurnDirection angular = determine_direction();
-                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 0.5 * angular);
+                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.25 * angular);
             }
             else
             {
-                publish_velocity(0.5 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
+                publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
             }
         }
 
