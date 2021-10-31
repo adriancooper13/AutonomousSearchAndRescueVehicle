@@ -1,6 +1,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joy.hpp"
+#include "std_msgs/msg/bool.hpp"
 
 #define OFF false
 #define ON  true
@@ -21,16 +22,20 @@
     //  9: share
     //  10: option
 const std::map<std::string, int> BUTTON_MAPPINGS = {
-    { "CIRCLE", 0 },
-    { "O", 0 },
-    { "X", 2 },
-    { "TRIANGLE", 3 },
-    { "SQUARE", 4 },
+    { "X", 0 },
+    { "CIRCLE", 1 },
+    { "O", 1 },
+    { "TRIANGLE", 2 },
+    { "SQUARE", 3 },
+    { "L1", 4 },
+    { "R1", 5 },
     { "L2", 6 },
     { "R2", 7 },
-    { "PS", 8 },
+    { "OPTION", 8 },
     { "SHARE", 9 },
-    { "OPTION", 10 }
+    { "PS", 10 },
+    { "LEFT-JOY", 11 },
+    { "RIGHT-JOY", 12 }
 };
 
 // Axes:
@@ -41,10 +46,12 @@ const std::map<std::string, int> BUTTON_MAPPINGS = {
     //  6: left/right
     //  7: up/down
 const std::map<std::string, int> AXES_MAPPINGS = {
-    // { "LEFT-JOY", 0, 1, 2 }, // FIXME: figure out what parts of left and right joy map to which parts of the array
-    // { "RIGHT-JOY", 2, 5 },
-    { "L2", 3 },
-    { "R2", 4 },
+    { "LEFT-JOY-LEFT/RIGHT", 0 },
+    { "LEFT-JOY-UP/DOWN", 1 },
+    { "L2", 2 },
+    { "RIGHT-JOY-LEFT/RIGHT", 3 },
+    { "RIGHT-JOY-UP/DOWN", 4 },
+    { "R2", 5 },
     { "LEFT/RIGHT-DPAD", 6 },
     { "UP/DOWN-DPAD", 7 }
 };
@@ -53,6 +60,7 @@ class ManualControl : public rclcpp::Node
 {
     private:
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher;
+        rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr stop_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joy_subscriber;
 
     public:
@@ -67,6 +75,10 @@ class ManualControl : public rclcpp::Node
                 "joy_control",
                 10
             );
+            stop_publisher = create_publisher<std_msgs::msg::Bool>(
+                "stop",
+                1
+            );
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
         }
@@ -74,8 +86,10 @@ class ManualControl : public rclcpp::Node
     private:
         void joy_publisher(const sensor_msgs::msg::Joy::SharedPtr input)
         {   
+            publish_stop(input);
+
             // Go home.
-            if (input->buttons.at(BUTTON_MAPPINGS.at("PS")) == ON)
+            if (input->buttons.at(BUTTON_MAPPINGS.at("TRIANGLE")) == ON)
             {
                 go_home();
                 return;
@@ -105,6 +119,13 @@ class ManualControl : public rclcpp::Node
 
             message.angular.z = input->axes.at(AXES_MAPPINGS.at("LEFT/RIGHT-DPAD"));
             cmd_vel_publisher->publish(message);
+        }
+
+        void publish_stop(const sensor_msgs::msg::Joy::SharedPtr input)
+        {
+            auto message = std_msgs::msg::Bool();
+            message.data = input->buttons.at(BUTTON_MAPPINGS.at("CIRCLE")) == ON;
+            stop_publisher->publish(message);
         }
 
         void go_home()
