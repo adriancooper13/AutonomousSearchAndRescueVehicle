@@ -12,8 +12,8 @@ def generate_launch_description():
             executable='manual_control'
         ),
         Node(
-            package='manual_control',
-            executable='joystick'
+            package='joy_linux',
+            executable='joy_linux_node'
         ),
         Node(
             package='motion',
