@@ -3,6 +3,7 @@
 #include "../../helpers.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/bool.hpp"
 #include "std_msgs/msg/int32.hpp"
 
 #define NO_BALL_IN_VIEW             -180
@@ -15,12 +16,13 @@ class Navigation : public rclcpp::Node
     private:
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
+        rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr stop_subscriber;
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber;
         // Current pose for detecting edges.
         geometry_msgs::msg::Pose pose;
-        // Determines if manual control is enabled.
-        bool manual_control;
+        // Determines if manual control is enabled / if we need to stop.
+        bool manual_control, stop;
 
         enum TurnDirection {
             LEFT = 1,
@@ -32,6 +34,7 @@ class Navigation : public rclcpp::Node
         Navigation() : Node("navigation")
         {
             manual_control = false;
+            stop = false;
 
             velocity_publisher = create_publisher<geometry_msgs::msg::Twist>(
                 "cmd_vel",
@@ -53,6 +56,11 @@ class Navigation : public rclcpp::Node
                 10,
                 std::bind(&Navigation::joy_control_handler, this, std::placeholders::_1)
             );
+            stop_subscriber = create_subscription<std_msgs::msg::Bool>(
+                "stop",
+                1,
+                std::bind(&Navigation::stop_handler, this, std::placeholders::_1)
+            );
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
         }
@@ -63,7 +71,11 @@ class Navigation : public rclcpp::Node
             if (manual_control)
                 return;
             
-            if (ball_location->data == NO_BALL_IN_VIEW)
+            if (stop)
+            {
+                publish_velocity();
+            }
+            else if (ball_location->data == NO_BALL_IN_VIEW)
             {
                 TurnDirection angular = determine_direction();
                 publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
@@ -119,7 +131,7 @@ class Navigation : public rclcpp::Node
             return STRAIGHT;
         }
 
-        void publish_velocity(double linear, double angular = 0)
+        void publish_velocity(double linear = 0, double angular = 0)
         {
             auto message = geometry_msgs::msg::Twist();
             message.linear.x = linear;
@@ -137,6 +149,11 @@ class Navigation : public rclcpp::Node
 
             manual_control = true;
             publish_velocity(MAX_SPEED * message->linear.x / 2, message->angular.z);
+        }
+
+        void stop_handler(const std_msgs::msg::Bool::SharedPtr message)
+        {
+            stop = message->data;
         }
 
         void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)
