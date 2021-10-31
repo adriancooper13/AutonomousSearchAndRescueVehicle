@@ -105,7 +105,7 @@ class ImageProcessing : public rclcpp::Node
             
             int top = 20;
             cv::Mat roi_lane, frame_final_bgr;
-            cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);;
+            cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
