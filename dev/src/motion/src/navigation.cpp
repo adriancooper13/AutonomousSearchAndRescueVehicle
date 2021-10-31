@@ -17,7 +17,7 @@ class Navigation : public rclcpp::Node
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber;
-        // Current pose for finding the closest golfball.
+        // Current pose for detecting edges.
         geometry_msgs::msg::Pose pose;
         // Determines if manual control is enabled.
         bool manual_control;
@@ -29,7 +29,7 @@ class Navigation : public rclcpp::Node
         };
 
     public:
-        Navigation() : Node("navigation_node")
+        Navigation() : Node("navigation")
         {
             manual_control = false;
 
@@ -66,7 +66,7 @@ class Navigation : public rclcpp::Node
             if (ball_location->data == NO_BALL_IN_VIEW)
             {
                 TurnDirection angular = determine_direction();
-                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.25 * angular);
+                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
             }
             else
             {
@@ -136,7 +136,7 @@ class Navigation : public rclcpp::Node
             }
 
             manual_control = true;
-            publish_velocity(message->linear.x, message->angular.z);
+            publish_velocity(MAX_SPEED * message->linear.x / 2, message->angular.z);
         }
 
         void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)
