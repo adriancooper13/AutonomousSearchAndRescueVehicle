@@ -9,18 +9,6 @@
 // ================================
 // MAPPINGS ARE WITH PS4 CONTROLLER
 // ================================
-// Buttons:
-    //  0: circle
-    //  1:
-    //  2: X
-    //  3: triangle
-    //  4: square
-    //  5: 
-    //  6: L2 default 0, pressed 1 discrete
-    //  7: R2 default 0, pressed 1 discrete
-    //  8: PS
-    //  9: share
-    //  10: option
 const std::map<std::string, int> BUTTON_MAPPINGS = {
     { "X", 0 },
     { "CIRCLE", 1 },
@@ -38,13 +26,6 @@ const std::map<std::string, int> BUTTON_MAPPINGS = {
     { "RIGHT-JOY", 12 }
 };
 
-// Axes:
-    //  0-2: left joy
-    //  2, 5: right joy
-    //  3: L2 (default 1, fully pressed -1) continuous
-    //  4: R2 (default 1, fully pressed -1) continuous
-    //  6: left/right
-    //  7: up/down
 const std::map<std::string, int> AXES_MAPPINGS = {
     { "LEFT-JOY-LEFT/RIGHT", 0 },
     { "LEFT-JOY-UP/DOWN", 1 },
