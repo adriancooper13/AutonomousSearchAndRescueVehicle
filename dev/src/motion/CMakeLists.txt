@@ -14,16 +14,29 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
-find_package(custom_interfaces REQUIRED)
-find_package(gazebo_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(diff_drive_controller REQUIRED)
 
 add_executable(navigation src/navigation.cpp)
-ament_target_dependencies(navigation rclcpp geometry_msgs custom_interfaces gazebo_msgs nav_msgs)
+ament_target_dependencies(
+  navigation
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  std_msgs
+  sensor_msgs
+  diff_drive_controller
+)
 
 add_executable(manual_control src/manual_control.cpp)
-ament_target_dependencies(manual_control rclcpp sensor_msgs geometry_msgs)
+ament_target_dependencies(
+  manual_control
+  rclcpp
+  sensor_msgs
+  geometry_msgs
+)
 
 install(
   TARGETS
