@@ -5,7 +5,7 @@ from custom_interfaces.srv import TransferGolfballLocations
 from gazebo_msgs.srv import SpawnEntity
 from .filepaths import model_paths
 from .functions import euler_to_quaternion, feet_to_meters
-from math import radians
+from math import pi as PI
 from rclpy.client import Client
 from rclpy.qos import HistoryPolicy, QoSProfile
 from rclpy.node import Node
@@ -107,7 +107,7 @@ class CreateWorld(Node):
         self.spawn(
             name='turtlebot',
             xml=open(model_paths['robot']).read(),
-            pose={'x': 11, 'y': -11, 'z': 0, 'orientation': euler_to_quaternion(0, 0, radians(180))}
+            pose={'x': 11, 'y': -11, 'z': 0, 'orientation': euler_to_quaternion(0, 0, PI)}
         )
 
 def main():
