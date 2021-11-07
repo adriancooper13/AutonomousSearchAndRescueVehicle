@@ -23,9 +23,13 @@ find_package(cv_bridge REQUIRED)
 add_executable(image_processing src/image_processing.cpp)
 ament_target_dependencies(image_processing rclcpp sensor_msgs std_msgs OpenCV cv_bridge)
 
+add_executable(camera_driver src/camera_driver.cpp)
+ament_target_dependencies(camera_driver rclcpp sensor_msgs std_msgs OpenCV cv_bridge)
+
 install(
   TARGETS
   image_processing
+  camera_driver
   DESTINATION lib/${PROJECT_NAME}
 )
 
