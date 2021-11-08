@@ -5,6 +5,10 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='vision',
+            executable='camera_driver'
+        ),
+        Node(
+            package='vision',
             executable='image_processing'
         ),
         Node(
