@@ -28,7 +28,7 @@ class ImageProcessing : public rclcpp::Node
         {
             direction_publisher = create_publisher<std_msgs::msg::Int32>("direction", 10);
             image_subscription = create_subscription<sensor_msgs::msg::Image>(
-                "camera/image_raw",
+                "image_raw",
                 10,
                 std::bind(&ImageProcessing::process_image, this, std::placeholders::_1)
             );

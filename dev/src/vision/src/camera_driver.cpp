@@ -22,11 +22,14 @@ class CameraDriver : public rclcpp::Node
             );
 
             using namespace std::chrono_literals;
-            capture = cv::VideoCapture(0);
+            capture = cv::VideoCapture(0, cv::CAP_V4L);
+
             timer = create_wall_timer(
                 0.01s,
                 std::bind(&CameraDriver::read_image, this)
             );
+
+	    RCLCPP_INFO(get_logger(), "%s node has started", get_name());
         }
 
         ~CameraDriver()
