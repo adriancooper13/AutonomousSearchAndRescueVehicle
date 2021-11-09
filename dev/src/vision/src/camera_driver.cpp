@@ -51,6 +51,7 @@ class CameraDriver : public rclcpp::Node
                     get_logger(),
                     "Could not read image"
                 );
+		return;
             }
 
             auto message = image.toImageMsg();

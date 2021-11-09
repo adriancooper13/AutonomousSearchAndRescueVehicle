@@ -5,9 +5,9 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#define WIDTH 360
-#define HEIGHT 240
-#define DEBUG true
+#define WIDTH 640
+#define HEIGHT 480
+#define DEBUG false
 
 const auto RED = cv::Scalar(0, 0, 255);
 const auto GREEN = cv::Scalar(0, 255, 0);
