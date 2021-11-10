@@ -3,6 +3,7 @@
 The goal of this project is to build an autonomous vehicle that can locate and retrieve golf balls in a designated area. Our team is comprised of two Computer Science students:
 - Adrian Cooper
 - Phillip Mitchell
+
 and four Mechanical Engineering students:
 - Matt Albro
 - Alvaro Jara
