@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import serial
 import rclpy
+import serial
 
 from geometry_msgs.msg import Twist
 from rclpy.node import Node
@@ -19,8 +19,10 @@ class ArduinoController(Node):
             self.send_velocity,
             10
         )
+        
+        self.get_logger().info(f'{self.get_name()} node has started')
 
-    def send_velocity(self, msg):
+    def send_velocity(self, msg: Twist):
         linear = msg.linear.x
         angular = msg.angular.z
 

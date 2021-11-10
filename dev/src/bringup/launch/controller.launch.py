@@ -22,5 +22,9 @@ def generate_launch_description():
         Node(
             package='motion',
             executable='navigation'
+        ),
+        Node(
+            package='motion',
+            executable='arduino_controller.py'
         )
     ])
