@@ -1,4 +1,3 @@
-#include "diff_drive_controller/diff_drive_controller.hpp"
 #include "geometry_msgs/msg/point.hpp"
 #include "geometry_msgs/msg/pose.hpp"
 #include "nav_msgs/msg/odometry.hpp"
@@ -62,11 +61,7 @@ class Navigation : public rclcpp::Node
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
         rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr stop_subscriber;
-        rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber;
-        rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_subscriber;
-        // Current pose for detecting edges.
-        geometry_msgs::msg::Pose pose;
         // Determines if manual control is enabled / if we need to stop.
         bool manual_control, stop;
 
@@ -92,11 +87,6 @@ class Navigation : public rclcpp::Node
                 "direction",
                 5,
                 std::bind(&Navigation::control_loop, this, std::placeholders::_1)
-            );
-            odom_subscriber = create_subscription<nav_msgs::msg::Odometry>(
-                "odom", 
-                10,
-                std::bind(&Navigation::get_current_position, this, std::placeholders::_1)
             );
             manual_control_subscriber = create_subscription<geometry_msgs::msg::Twist>(
                 "joy_control",
@@ -124,7 +114,7 @@ class Navigation : public rclcpp::Node
             }
             else if (ball_location->data == NO_BALL_IN_VIEW)
             {
-                TurnDirection angular = determine_direction();
+                TurnDirection angular = STRAIGHT; // determine_direction();
                 publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
             }
             else
@@ -132,12 +122,12 @@ class Navigation : public rclcpp::Node
                 publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
             }
         }
-
+/*
         TurnDirection determine_direction()
         {
             const double THRESHOLD = (FIELD_SIZE / 2) - 0.75;
             
-            double theta = euler_from_quaternion(pose.orientation)['z'];
+            double theta = 0 // euler_from_quaternion(pose.orientation)['z'];
             if (pose.position.x > THRESHOLD)
             {
                 RCLCPP_DEBUG(get_logger(), "Near x = %lf", THRESHOLD);
@@ -177,7 +167,7 @@ class Navigation : public rclcpp::Node
 
             return STRAIGHT;
         }
-
+*/
         void publish_velocity(double linear = 0, double angular = 0)
         {
             auto message = geometry_msgs::msg::Twist();
@@ -201,12 +191,6 @@ class Navigation : public rclcpp::Node
         void stop_handler(const std_msgs::msg::Bool::SharedPtr message)
         {
             stop = message->data;
-        }
-
-        void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)
-        {
-            // message->pose has type PoseWithCovariance. Tack on .pose to extract just pose
-            pose = message->pose.pose;
         }
 };
 
