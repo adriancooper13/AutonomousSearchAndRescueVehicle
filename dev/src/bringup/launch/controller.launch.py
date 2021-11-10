@@ -12,7 +12,7 @@ def generate_launch_description():
             executable='manual_control'
         ),
         Node(
-            package='joy_linux',
+            package='motion',
             executable='joy_linux_node'
         ),
         Node(
