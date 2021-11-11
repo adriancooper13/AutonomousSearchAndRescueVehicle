@@ -17,6 +17,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED)
 
 add_executable(navigation src/navigation.cpp)
 ament_target_dependencies(
@@ -25,7 +26,7 @@ ament_target_dependencies(
   geometry_msgs
   nav_msgs
   std_msgs
-  sensor_msgs
+  custom_interfaces
 )
 
 add_executable(manual_control src/manual_control.cpp)
@@ -33,7 +34,8 @@ ament_target_dependencies(
   manual_control
   rclcpp
   sensor_msgs
-  geometry_msgs
+  std_msgs
+  custom_interfaces
 )
 
 add_executable(joy_linux_node src/joy_linux_node.cpp)
