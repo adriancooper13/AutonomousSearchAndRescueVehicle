@@ -1,4 +1,5 @@
 #include "custom_interfaces/msg/manual_control.hpp"
+#include "custom_interfaces/msg/threshold_adjustment.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int8.hpp"
@@ -41,7 +42,7 @@ class ManualControl : public rclcpp::Node
 {
     private:
         rclcpp::Publisher<custom_interfaces::msg::ManualControl>::SharedPtr control_publisher;
-        rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr vision_adjustment_publisher;
+        rclcpp::Publisher<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr vision_adjustment_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joy_subscriber;
 
     public:
@@ -56,7 +57,7 @@ class ManualControl : public rclcpp::Node
                 "navigation_control",
                 10
             );
-            vision_adjustment_publisher = create_publisher<std_msgs::msg::Int8>(
+            vision_adjustment_publisher = create_publisher<custom_interfaces::msg::ThresholdAdjustment>(
                 "vision_threshold_adjustment",
                 10
             );
@@ -68,7 +69,7 @@ class ManualControl : public rclcpp::Node
         void joy_publisher(const sensor_msgs::msg::Joy::SharedPtr input)
         {   
             publish_control(input);
-            publish_vision_adjust(input->axes);
+            publish_vision_adjust(input);
         }
 
         void publish_control(const sensor_msgs::msg::Joy::SharedPtr input)
@@ -82,10 +83,16 @@ class ManualControl : public rclcpp::Node
             control_publisher->publish(message);
         }
 
-        void publish_vision_adjust(std::vector<float> &axes)
+        void publish_vision_adjust(const sensor_msgs::msg::Joy::SharedPtr input)
         {
-            auto message = std_msgs::msg::Int8();
-            message.data = axes.at(AXES_MAPPINGS.at("DPAD-U/D"));
+            auto message = custom_interfaces::msg::ThresholdAdjustment();
+            
+            int adjustment = input->axes.at(AXES_MAPPINGS.at("DPAD-U/D"));
+            if (input->buttons.at(BUTTON_MAPPINGS.at("L1")) == ON)
+                message.lower_adjustment = adjustment;
+            if (input->buttons.at(BUTTON_MAPPINGS.at("R1")) == ON)
+                message.upper_adjustment = adjustment;
+            
             vision_adjustment_publisher->publish(message);
         }
 

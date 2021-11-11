@@ -1,6 +1,7 @@
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
 
+#include "custom_interfaces/msg/threshold_adjustment.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/int32.hpp"
@@ -16,21 +17,30 @@ const auto BLUE = cv::Scalar(255, 0, 0);
 class ImageProcessing : public rclcpp::Node
 {
     private:
-        int middle_pos;
+        int middle_pos, lower_threshold, upper_threshold;
         std::vector<int> histogram_lane;
         cv::Mat frame, frame_perspective, frame_final;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
+        rclcpp::Subscription<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr threshold_subscription;
         rclcpp::TimerBase::SharedPtr timer;
 
     public:
         ImageProcessing() : Node("image_processing")
         {
+            lower_threshold = 100;
+            upper_threshold = 255;
+
             direction_publisher = create_publisher<std_msgs::msg::Int32>("direction", 10);
             image_subscription = create_subscription<sensor_msgs::msg::Image>(
                 "camera/image_raw",
                 10,
                 std::bind(&ImageProcessing::process_image, this, std::placeholders::_1)
+            );
+            threshold_subscription = create_subscription<custom_interfaces::msg::ThresholdAdjustment>(
+                "vision_threshold_adjustment",
+                10,
+                std::bind(&ImageProcessing::adjust_thresholds, this, std::placeholders::_1)
             );
 
             if (DEBUG)
@@ -88,7 +98,7 @@ class ImageProcessing : public rclcpp::Node
             cvtColor(frame_perspective, frame_gray, cv::COLOR_BGR2GRAY);
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
-            inRange(frame_gray, 100, 255, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
+            inRange(frame_gray, lower_threshold, upper_threshold, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
             // input, output, minimum threshold for histerisis process. always goes 100 for minimum. 2nd threshhold, usually go 500, axa matrix, advanced gradient?
             // edge detection         
             Canny(frame_gray, frame_edge, 250, 600, 3, false); // was 250, 600
@@ -174,6 +184,16 @@ class ImageProcessing : public rclcpp::Node
             middle_pos = distance(histogram_lane.begin(), whitest_ptr);
             
             line(frame_final, cv::Point2f(middle_pos, 0), cv::Point2f(middle_pos, 240), GREEN, 2);
+        }
+
+        void adjust_thresholds(const custom_interfaces::msg::ThresholdAdjustment::SharedPtr threshold_adjustment)
+        {
+            int lower_adj = threshold_adjustment->lower_adjustment;
+            int upper_adj = threshold_adjustment->upper_adjustment;
+            if (lower_threshold + lower_adj >= 0 && lower_threshold + lower_adj <= 255)
+                lower_threshold += lower_adj;
+            if (upper_threshold + upper_adj >= 0 && upper_threshold + upper_adj <= 255)
+                upper_threshold += upper_adj;
         }
 
         void image_show()
