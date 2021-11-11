@@ -1,17 +1,13 @@
-#include "geometry_msgs/msg/point.hpp"
+#include "custom_interfaces/msg/manual_control.hpp"
 #include "geometry_msgs/msg/pose.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "sensor_msgs/msg/joint_state.hpp"
-#include "std_msgs/msg/bool.hpp"
 #include "std_msgs/msg/int32.hpp"
 
 #define NO_BALL_IN_VIEW             -180
 #define ANGULAR_VELOCITY_FACTOR     -0.01
 #define MAX_SPEED                   0.91
 #define FIELD_SIZE                  22.86
-#define WHEEL_SEPARATION            0.287
-#define WHEEL_RADIUS                0.033
 
 std::map<char, double> euler_from_quaternion(geometry_msgs::msg::Quaternion orientation)
 {
@@ -60,10 +56,8 @@ class Navigation : public rclcpp::Node
     private:
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
-        rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr stop_subscriber;
         rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
-        rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber;
-        rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_subscriber;
+        rclcpp::Subscription<custom_interfaces::msg::ManualControl>::SharedPtr manual_control_subscriber;
         // Current pose for detecting edges.
         geometry_msgs::msg::Pose pose;
         // Determines if manual control is enabled / if we need to stop.
@@ -97,15 +91,10 @@ class Navigation : public rclcpp::Node
                 10,
                 std::bind(&Navigation::get_current_position, this, std::placeholders::_1)
             );
-            manual_control_subscriber = create_subscription<geometry_msgs::msg::Twist>(
-                "joy_control",
+            manual_control_subscriber = create_subscription<custom_interfaces::msg::ManualControl>(
+                "navigation_control",
                 10,
                 std::bind(&Navigation::joy_control_handler, this, std::placeholders::_1)
-            );
-            stop_subscriber = create_subscription<std_msgs::msg::Bool>(
-                "stop",
-                1,
-                std::bind(&Navigation::stop_handler, this, std::placeholders::_1)
             );
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
@@ -114,12 +103,13 @@ class Navigation : public rclcpp::Node
     private:
         void control_loop(const std_msgs::msg::Int32::SharedPtr ball_location)
         {
-            if (manual_control)
-                return;
-            
             if (stop)
             {
                 publish_velocity();
+            }
+            else if (manual_control)
+            {
+                return;
             }
             else if (ball_location->data == NO_BALL_IN_VIEW)
             {
@@ -185,21 +175,31 @@ class Navigation : public rclcpp::Node
             velocity_publisher->publish(message);
         }
 
-        void joy_control_handler(const geometry_msgs::msg::Twist::SharedPtr message)
+        void joy_control_handler(const custom_interfaces::msg::ManualControl::SharedPtr message)
         {
-            if (message->linear.x == 0 && message->angular.z == 0)
+            if (message->stop)
             {
+                stop = true;
                 manual_control = false;
-                return;
+            }
+            else
+            {
+                float linear_percentage = message->linear_percentage;
+                float angular_percentage = message->angular_percentage;
+
+                if (abs(linear_percentage) < 1.0e-6 && abs(angular_percentage) < 1.0e-6)
+                {
+                    stop = false;
+                    manual_control = false;
+                }
+                else
+                {
+                    stop = false;
+                    manual_control = true;
+                    publish_velocity(MAX_SPEED * linear_percentage, angular_percentage);
+                }
             }
 
-            manual_control = true;
-            publish_velocity(MAX_SPEED * message->linear.x / 2, message->angular.z);
-        }
-
-        void stop_handler(const std_msgs::msg::Bool::SharedPtr message)
-        {
-            stop = message->data;
         }
 
         void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)

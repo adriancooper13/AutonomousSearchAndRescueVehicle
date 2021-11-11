@@ -1,0 +1,3 @@
+bool stop
+float32 linear_percentage
+float32 angular_percentage

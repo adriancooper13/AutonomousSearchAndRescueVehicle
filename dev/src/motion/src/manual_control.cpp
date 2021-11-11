@@ -1,7 +1,7 @@
-#include "geometry_msgs/msg/twist.hpp"
+#include "custom_interfaces/msg/manual_control.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joy.hpp"
-#include "std_msgs/msg/bool.hpp"
+#include "std_msgs/msg/int8.hpp"
 
 #define OFF false
 #define ON  true
@@ -22,26 +22,26 @@ const std::map<std::string, int> BUTTON_MAPPINGS = {
     { "OPTION", 8 },
     { "SHARE", 9 },
     { "PS", 10 },
-    { "LEFT-JOY", 11 },
-    { "RIGHT-JOY", 12 }
+    { "L3", 11 },
+    { "R3", 12 }
 };
 
 const std::map<std::string, int> AXES_MAPPINGS = {
-    { "LEFT-JOY-LEFT/RIGHT", 0 },
-    { "LEFT-JOY-UP/DOWN", 1 },
+    { "L3-L/R", 0 },
+    { "L3-U/D", 1 },
     { "L2", 2 },
-    { "RIGHT-JOY-LEFT/RIGHT", 3 },
-    { "RIGHT-JOY-UP/DOWN", 4 },
+    { "R3-L/R", 3 },
+    { "R3-U/D", 4 },
     { "R2", 5 },
-    { "LEFT/RIGHT-DPAD", 6 },
-    { "UP/DOWN-DPAD", 7 }
+    { "DPAD-L/R", 6 },
+    { "DPAD-U/D", 7 }
 };
 
 class ManualControl : public rclcpp::Node
 {
     private:
-        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_publisher;
-        rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr stop_publisher;
+        rclcpp::Publisher<custom_interfaces::msg::ManualControl>::SharedPtr control_publisher;
+        rclcpp::Publisher<std_msgs::msg::Int8>::SharedPtr vision_adjustment_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joy_subscriber;
 
     public:
@@ -52,13 +52,13 @@ class ManualControl : public rclcpp::Node
                 10,
                 std::bind(&ManualControl::joy_publisher, this, std::placeholders::_1)
             );
-            cmd_vel_publisher = create_publisher<geometry_msgs::msg::Twist>(
-                "joy_control",
+            control_publisher = create_publisher<custom_interfaces::msg::ManualControl>(
+                "navigation_control",
                 10
             );
-            stop_publisher = create_publisher<std_msgs::msg::Bool>(
-                "stop",
-                1
+            vision_adjustment_publisher = create_publisher<std_msgs::msg::Int8>(
+                "vision_threshold_adjustment",
+                10
             );
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
@@ -67,51 +67,75 @@ class ManualControl : public rclcpp::Node
     private:
         void joy_publisher(const sensor_msgs::msg::Joy::SharedPtr input)
         {   
-            publish_stop(input);
+            publish_control(input);
+            publish_vision_adjust(input->axes);
+        }
 
-            // Go home.
-            if (input->buttons.at(BUTTON_MAPPINGS.at("TRIANGLE")) == ON)
-            {
-                go_home();
-                return;
-            }
+        void publish_control(const sensor_msgs::msg::Joy::SharedPtr input)
+        {
+            auto message = custom_interfaces::msg::ManualControl();
 
+            message.stop = read_stop(input);
+            message.linear_percentage = calculate_linear_percentage(input);
+            message.angular_percentage = calculate_angular_percentage(input);
+
+            control_publisher->publish(message);
+        }
+
+        void publish_vision_adjust(std::vector<float> &axes)
+        {
+            auto message = std_msgs::msg::Int8();
+            message.data = axes.at(AXES_MAPPINGS.at("DPAD-U/D"));
+            vision_adjustment_publisher->publish(message);
+        }
+
+        double calculate_linear_percentage(const sensor_msgs::msg::Joy::SharedPtr input)
+        {
             bool forward = input->buttons.at(BUTTON_MAPPINGS.at("R2"));
             bool backward = input->buttons.at(BUTTON_MAPPINGS.at("L2"));
 
-            auto message = geometry_msgs::msg::Twist();
+            double linear;
+
             // Both forward and backward button pressed or neither being pressed.
             // Equivalent to: (forward == ON && backward == ON) || (forward == OFF && backward == OFF)
             if (forward == backward)
             {
                 // Do not go forward or backward.
-                message.linear.x = 0;
+                linear = 0;
             }
             // Forward button only being pressed.
             else if (forward == ON)
             {
-                message.linear.x = 1 - input->axes.at(AXES_MAPPINGS.at("R2"));
+                linear = 1 - input->axes.at(AXES_MAPPINGS.at("R2"));
             }
             // Backward button only being pressed.
             else
             {
-                message.linear.x = -1 + input->axes.at(AXES_MAPPINGS.at("L2"));
+                linear = -1 + input->axes.at(AXES_MAPPINGS.at("L2"));
             }
 
-            message.angular.z = input->axes.at(AXES_MAPPINGS.at("LEFT/RIGHT-DPAD"));
-            cmd_vel_publisher->publish(message);
+            // Get percentage. Range of possible values is from [-1, 1]
+            return linear / 2;
         }
 
-        void publish_stop(const sensor_msgs::msg::Joy::SharedPtr input)
+        double calculate_angular_percentage(const sensor_msgs::msg::Joy::SharedPtr input)
         {
-            auto message = std_msgs::msg::Bool();
-            message.data = input->buttons.at(BUTTON_MAPPINGS.at("CIRCLE")) == ON;
-            stop_publisher->publish(message);
+            double angular = input->axes.at(AXES_MAPPINGS.at("DPAD-L/R"));
+
+            // If the user is holding dpad and L3, add results together.
+            angular += input->axes.at(AXES_MAPPINGS.at("L3-L/R"));
+
+            // Get percentage.
+            // Range of possible values from d-pad is [-1, 1]
+            // Range of possible values from L3 is [-1, 1]
+            // Added together values give possible range of [-2, 2]
+            // Governing turning speed range of [-pi, pi] rad/s
+            return angular * M_PI / 2;
         }
 
-        void go_home()
+        bool read_stop(const sensor_msgs::msg::Joy::SharedPtr input)
         {
-            // TODO: write me :)
+            return input->buttons.at(BUTTON_MAPPINGS.at("CIRCLE")) == ON;
         }
 };
 
