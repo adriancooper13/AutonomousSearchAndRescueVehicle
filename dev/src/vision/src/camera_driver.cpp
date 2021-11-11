@@ -4,7 +4,7 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/header.hpp"
 
-#define DEBUG true
+#define DEBUG false
 
 class CameraDriver : public rclcpp::Node
 {
