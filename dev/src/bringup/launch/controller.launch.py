@@ -12,11 +12,11 @@ def generate_launch_description():
             executable='image_processing'
         ),
         Node(
-            package='motion',
+            package='manual_control',
             executable='manual_control'
         ),
         Node(
-            package='motion',
+            package='manual_control',
             executable='joy_linux_node'
         ),
         Node(

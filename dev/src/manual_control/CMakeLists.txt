@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(motion)
+project(manual_control)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -12,33 +12,32 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(ament_cmake_python REQUIRED)
-find_package(rclpy REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
-find_package(nav_msgs REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(custom_interfaces REQUIRED)
+find_package(sensor_msgs)
+find_package(std_msgs)
+find_package(custom_interfaces)
 
-add_executable(navigation src/navigation.cpp)
+add_executable(manual_control src/manual_control.cpp)
 ament_target_dependencies(
-  navigation
+  manual_control
   rclcpp
-  geometry_msgs
-  nav_msgs
+  sensor_msgs
   std_msgs
   custom_interfaces
 )
 
+add_executable(joy_linux_node src/joy_linux_node.cpp)
+ament_target_dependencies(
+  joy_linux_node
+  rclcpp
+  sensor_msgs
+)
+
 install(
   TARGETS
-  navigation
+  manual_control
+  joy_linux_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
-ament_python_install_package("src")
-install(PROGRAMS
-  src/arduino_controller.py
-  DESTINATION lib/${PROJECT_NAME}
-)
 ament_package()

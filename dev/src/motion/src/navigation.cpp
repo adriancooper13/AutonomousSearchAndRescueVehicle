@@ -1,69 +1,23 @@
-#include "geometry_msgs/msg/point.hpp"
+#include "custom_interfaces/msg/manual_control.hpp"
 #include "geometry_msgs/msg/pose.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "sensor_msgs/msg/joint_state.hpp"
-#include "std_msgs/msg/bool.hpp"
 #include "std_msgs/msg/int32.hpp"
 
 #define NO_BALL_IN_VIEW             -180
 #define ANGULAR_VELOCITY_FACTOR     -0.01
 #define MAX_SPEED                   0.91
-#define FIELD_SIZE                  22.86
-#define WHEEL_SEPARATION            0.287
-#define WHEEL_RADIUS                0.033
-
-std::map<char, double> euler_from_quaternion(geometry_msgs::msg::Quaternion orientation)
-{
-    auto rpy = std::map<char, double>();
-
-    // roll (x-axis rotation)
-    double sinr_cosp = 2 * (orientation.w * orientation.x + orientation.y * orientation.z);
-    double cosr_cosp = 1 - 2 * (orientation.x * orientation.x + orientation.y * orientation.y);
-    rpy['x'] = std::atan2(sinr_cosp, cosr_cosp);
-
-    // pitch (y-axis rotation)
-    double sinp = 2 * (orientation.w * orientation.y - orientation.z * orientation.x);
-    if (std::abs(sinp) >= 1)
-        rpy['y'] = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
-    else
-        rpy['y'] = std::asin(sinp);
-
-    // yaw (z-axis rotation)
-    double siny_cosp = 2 * (orientation.w * orientation.z + orientation.x * orientation.y);
-    double cosy_cosp = 1 - 2 * (orientation.y * orientation.y + orientation.z * orientation.z);
-    rpy['z'] = std::atan2(siny_cosp, cosy_cosp);
-
-    return rpy;
-}
-
-geometry_msgs::msg::Quaternion quaternion_from_euler(double roll, double pitch, double yaw)
-{
-    double cy = cos(yaw * 0.5);
-    double sy = sin(yaw * 0.5);
-    double cp = cos(pitch * 0.5);
-    double sp = sin(pitch * 0.5);
-    double cr = cos(roll * 0.5);
-    double sr = sin(roll * 0.5);
-
-    auto q = geometry_msgs::msg::Quaternion();
-    q.x = cy * cp * sr - sy * sp * cr;
-    q.y = sy * cp * sr + cy * sp * cr;
-    q.z = sy * cp * cr - cy * sp * sr;
-    q.w = cy * cp * cr + sy * sp * sr;
-
-    return q;
-}
 
 class Navigation : public rclcpp::Node
 {
     private:
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
         rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
-        rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr stop_subscriber;
-        rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr manual_control_subscriber;
+        rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
+        rclcpp::Subscription<custom_interfaces::msg::ManualControl>::SharedPtr manual_control_subscriber;
         // Determines if manual control is enabled / if we need to stop.
         bool manual_control, stop;
+        rclcpp::Time time_since_last_seen;
 
 
         enum TurnDirection {
@@ -77,6 +31,7 @@ class Navigation : public rclcpp::Node
         {
             manual_control = false;
             stop = false;
+            time_since_last_seen = rclcpp::Time(1000000);
 
             velocity_publisher = create_publisher<geometry_msgs::msg::Twist>(
                 "cmd_vel",
@@ -88,15 +43,10 @@ class Navigation : public rclcpp::Node
                 5,
                 std::bind(&Navigation::control_loop, this, std::placeholders::_1)
             );
-            manual_control_subscriber = create_subscription<geometry_msgs::msg::Twist>(
-                "joy_control",
+            manual_control_subscriber = create_subscription<custom_interfaces::msg::ManualControl>(
+                "navigation_control",
                 10,
                 std::bind(&Navigation::joy_control_handler, this, std::placeholders::_1)
-            );
-            stop_subscriber = create_subscription<std_msgs::msg::Bool>(
-                "stop",
-                1,
-                std::bind(&Navigation::stop_handler, this, std::placeholders::_1)
             );
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
@@ -105,20 +55,31 @@ class Navigation : public rclcpp::Node
     private:
         void control_loop(const std_msgs::msg::Int32::SharedPtr ball_location)
         {
-            if (manual_control)
-                return;
-            
             if (stop)
             {
                 publish_velocity();
             }
+            else if (manual_control)
+            {
+                return;
+            }
             else if (ball_location->data == NO_BALL_IN_VIEW)
             {
-                TurnDirection angular = STRAIGHT; // determine_direction();
-                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+
+                double seconds = now().seconds() - time_since_last_seen.seconds();
+                if (seconds > 2.5 && seconds < 10.0)
+                {
+                    publish_velocity(0, 1);
+                }
+                else
+                {
+                    TurnDirection angular = STRAIGHT;
+                    publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+                }
             }
             else
             {
+                time_since_last_seen = now();
                 publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
             }
         }
@@ -176,21 +137,31 @@ class Navigation : public rclcpp::Node
             velocity_publisher->publish(message);
         }
 
-        void joy_control_handler(const geometry_msgs::msg::Twist::SharedPtr message)
+        void joy_control_handler(const custom_interfaces::msg::ManualControl::SharedPtr message)
         {
-            if (message->linear.x == 0 && message->angular.z == 0)
+            if (message->stop)
             {
+                stop = true;
                 manual_control = false;
-                return;
+            }
+            else
+            {
+                float linear_percentage = message->linear_percentage;
+                float angular_percentage = message->angular_percentage;
+
+                if (abs(linear_percentage) < 1.0e-6 && abs(angular_percentage) < 1.0e-6)
+                {
+                    stop = false;
+                    manual_control = false;
+                }
+                else
+                {
+                    stop = false;
+                    manual_control = true;
+                    publish_velocity(MAX_SPEED * linear_percentage, angular_percentage);
+                }
             }
 
-            manual_control = true;
-            publish_velocity(MAX_SPEED * message->linear.x / 2, message->angular.z);
-        }
-
-        void stop_handler(const std_msgs::msg::Bool::SharedPtr message)
-        {
-            stop = message->data;
         }
 };
 
