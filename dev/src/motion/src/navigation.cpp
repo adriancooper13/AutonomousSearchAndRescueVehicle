@@ -62,6 +62,7 @@ class Navigation : public rclcpp::Node
         geometry_msgs::msg::Pose pose;
         // Determines if manual control is enabled / if we need to stop.
         bool manual_control, stop;
+        rclcpp::Time time_since_last_seen;
 
 
         enum TurnDirection {
@@ -75,6 +76,7 @@ class Navigation : public rclcpp::Node
         {
             manual_control = false;
             stop = false;
+            time_since_last_seen = rclcpp::Time(1000000);
 
             velocity_publisher = create_publisher<geometry_msgs::msg::Twist>(
                 "cmd_vel",
@@ -113,11 +115,20 @@ class Navigation : public rclcpp::Node
             }
             else if (ball_location->data == NO_BALL_IN_VIEW)
             {
-                TurnDirection angular = determine_direction();
-                publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+                double seconds = now().seconds() - time_since_last_seen.seconds();
+                if (seconds > 2.5 && seconds < 10.0)
+                {
+                    publish_velocity(0, 1);
+                }
+                else
+                {
+                    TurnDirection angular = determine_direction();
+                    publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+                }
             }
             else
             {
+                time_since_last_seen = now();
                 publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
             }
         }
