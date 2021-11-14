@@ -27,10 +27,7 @@ class ArduinoController(Node):
         self.get_logger().info(f'{self.get_name()} node has started')
 
     def send_velocity(self, msg: Twist):
-        linear = msg.linear.x
-        angular = msg.angular.z
-        
-        left, right = self.math(msg.linear.x, msg.angular.z)
+        left, right = self.pwm(msg.linear.x, msg.angular.z)
 
         string = f'{left} {right}' + '\n'
         sent = self.ser.write(string.encode('utf-8'))
@@ -38,8 +35,8 @@ class ArduinoController(Node):
         line = self.ser.readline().decode('utf-8').rstrip('\n')
         self.get_logger().info(f'{line}')
         
-    def math(self, linear, angular):
-        total_pwm = int(linear * MAX_PWM / MAX_MSEC)
+    def pwm(self, linear, angular):
+        total_pwm = int(linear * MAX_PWM / MAX_MSEC) if linear != 0 else 1
         x = int(angular * total_pwm / PI)
         
         left_pwm = total_pwm - x
