@@ -12,6 +12,7 @@ class CameraDriver : public rclcpp::Node
         cv::VideoCapture capture;
         rclcpp::TimerBase::SharedPtr timer;
         rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_publisher;
+        bool video0;
 
     public:
         CameraDriver() : Node("camera_driver")
@@ -22,7 +23,8 @@ class CameraDriver : public rclcpp::Node
             );
 
             using namespace std::chrono_literals;
-            capture = cv::VideoCapture(0, cv::CAP_V4L);
+            capture = cv::VideoCapture("/dev/video0", cv::CAP_V4L);
+            video0 = true;
 
             timer = create_wall_timer(
                 0.01s,
@@ -38,6 +40,22 @@ class CameraDriver : public rclcpp::Node
         }
 
     private:
+        void try_toggle_input()
+        {
+            if (video0)
+            {
+                capture = cv::VideoCapture("/dev/video1", cv::CAP_V4L);
+                RCLCPP_INFO(get_logger(), "Connected to /dev/video1");
+                video0 = false;
+            }
+            else
+            {
+                capture = cv::VideoCapture("/dev/video0", cv::CAP_V4L);
+                RCLCPP_INFO(get_logger(), "Connected to /dev/video0");
+                video0 = true;
+            }
+        }
+        
         void read_image()
         {
             cv_bridge::CvImage image;
@@ -51,7 +69,8 @@ class CameraDriver : public rclcpp::Node
                     get_logger(),
                     "Could not read image"
                 );
-		return;
+		        try_toggle_input();
+		        return;
             }
 
             auto message = image.toImageMsg();
