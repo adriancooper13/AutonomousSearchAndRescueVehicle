@@ -1,0 +1,2 @@
+int32 ball_position
+int32 corner_position

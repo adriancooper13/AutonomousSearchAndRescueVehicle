@@ -16,6 +16,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(
   ${PROJECT_NAME}
+  "msg/ImageData.msg"
   "msg/ManualControl.msg"
   "msg/ThresholdAdjustment.msg"
   "srv/TransferGolfballLocations.srv"
