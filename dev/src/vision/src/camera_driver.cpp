@@ -4,15 +4,12 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/header.hpp"
 
-#define DEBUG false
-
 class CameraDriver : public rclcpp::Node
 {
     private:
         cv::VideoCapture capture;
         rclcpp::TimerBase::SharedPtr timer;
         rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr image_publisher;
-        bool video0;
 
     public:
         CameraDriver() : Node("camera_driver")
@@ -23,8 +20,7 @@ class CameraDriver : public rclcpp::Node
             );
 
             using namespace std::chrono_literals;
-            capture = cv::VideoCapture("/dev/video0", cv::CAP_V4L);
-            video0 = true;
+            capture = cv::VideoCapture(0, cv::CAP_V4L);
 
             timer = create_wall_timer(
                 0.01s,
@@ -39,23 +35,7 @@ class CameraDriver : public rclcpp::Node
             capture.release();
         }
 
-    private:
-        void try_toggle_input()
-        {
-            if (video0)
-            {
-                capture = cv::VideoCapture("/dev/video1", cv::CAP_V4L);
-                RCLCPP_INFO(get_logger(), "Connected to /dev/video1");
-                video0 = false;
-            }
-            else
-            {
-                capture = cv::VideoCapture("/dev/video0", cv::CAP_V4L);
-                RCLCPP_INFO(get_logger(), "Connected to /dev/video0");
-                video0 = true;
-            }
-        }
-        
+    private:        
         void read_image()
         {
             cv_bridge::CvImage image;
@@ -69,23 +49,11 @@ class CameraDriver : public rclcpp::Node
                     get_logger(),
                     "Could not read image"
                 );
-		        try_toggle_input();
 		        return;
             }
 
             auto message = image.toImageMsg();
             image_publisher->publish(*message);
-
-            if (DEBUG)
-            {
-                show_image(image.image);
-            }
-        }
-
-        void show_image(cv::Mat image)
-        {
-            cv::imshow("image", image);
-            cv::waitKey(1);
         }
 };  
 
