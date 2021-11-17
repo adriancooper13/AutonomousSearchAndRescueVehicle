@@ -19,7 +19,7 @@ class ImageProcessing : public rclcpp::Node
     private:
         int middle_pos, lower_threshold, upper_threshold, result;
         std::vector<int> histogram_lane;
-        cv::Mat frame, frame_perspective, frame_final, frame_red, mask, mask3, frame_red_post_conversion;
+        cv::Mat frame, frame_perspective, frame_final, frame_red;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::Subscription<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr threshold_subscription;
@@ -56,6 +56,7 @@ class ImageProcessing : public rclcpp::Node
         void process_image(const sensor_msgs::msg::Image::SharedPtr message)
         {
             frame = cv_bridge::toCvCopy(message, message->encoding)->image;
+	        cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
 
             perspective();
             threshold();
@@ -87,10 +88,10 @@ class ImageProcessing : public rclcpp::Node
             // this is to join the 4 points via openCV
             int line_width = 2;
             
-            // line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
-            // line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
-            // line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
-            // line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
+            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
+            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
+            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
+            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
             
             auto matrix = getPerspectiveTransform(source, destination);
             warpPerspective(frame, frame_perspective, matrix, cv::Size(WIDTH, HEIGHT));
@@ -98,18 +99,19 @@ class ImageProcessing : public rclcpp::Node
 
         void check_corners()
         {
-            int box_width = 20;
+            int box_width = 40;
             int pixels_from_top = 160, pixel_from_bottom = 0, divisions = 255;
-            cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
-            int res = histogram(mask, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
+            cv::Mat red_frame_copy;
+            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+            int res = histogram(red_frame_copy, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
             if (res != -1)
             {
                 RCLCPP_INFO(get_logger(), "Should turn right");
                 middle_pos = WIDTH - res;
                 return;
             }
-            cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
-            res = histogram(mask, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
+            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+            res = histogram(red_frame_copy, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
             if (res != -1)
             {
                 RCLCPP_INFO(get_logger(), "Should turn left");
@@ -131,9 +133,6 @@ class ImageProcessing : public rclcpp::Node
             add(frame_thresh, frame_edge, frame_final);
             cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
 
-            // red
-	        cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
-
             cv::Mat mask1, mask2;
             // first digit in Scalar is it's Hue... (red goes from 175 to 5 (it wraps around 180 and back to 0))
             // Second digit is for Saturation... The higher the saturation value, the deeper the red... a low saturation is a lighter red
@@ -142,10 +141,6 @@ class ImageProcessing : public rclcpp::Node
             inRange(frame_red, cv::Scalar(175, 120, 50), cv::Scalar(180, 255, 255), mask2);
 
             add(mask1, mask2, frame_red);
-
-            // cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
-            // cv::cvtColor(frame_red, frame_red, cv::COLOR_HSV2RGB);
-            cv::cvtColor(frame_red, frame_red_post_conversion, cv::COLOR_GRAY2BGR);
         }
 
         void histogram()
@@ -282,7 +277,7 @@ class ImageProcessing : public rclcpp::Node
 
             if (!frame_red.empty())
             {
-                cv::imshow("frame_red", frame_red_post_conversion);
+                cv::imshow("frame_red", frame_red);
                 cv::waitKey(1);
             }
         }
