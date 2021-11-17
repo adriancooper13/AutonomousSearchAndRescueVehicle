@@ -17,9 +17,9 @@ const auto BLUE = cv::Scalar(255, 0, 0);
 class ImageProcessing : public rclcpp::Node
 {
     private:
-        int middle_pos, lower_threshold, upper_threshold;
+        int middle_pos, lower_threshold, upper_threshold, result;
         std::vector<int> histogram_lane;
-        cv::Mat frame, frame_perspective, frame_final;
+        cv::Mat frame, frame_perspective, frame_final, frame_red, mask, mask3, frame_red_post_conversion;
         rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::Subscription<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr threshold_subscription;
@@ -61,6 +61,10 @@ class ImageProcessing : public rclcpp::Node
             threshold();
             histogram();
             find_largest_ball();
+
+            if (middle_pos == 0)
+                check_corners();
+
             lane_center();
         }
 
@@ -83,13 +87,34 @@ class ImageProcessing : public rclcpp::Node
             // this is to join the 4 points via openCV
             int line_width = 2;
             
-            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
-            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
-            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
-            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
+            // line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
+            // line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
+            // line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
+            // line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
             
             auto matrix = getPerspectiveTransform(source, destination);
             warpPerspective(frame, frame_perspective, matrix, cv::Size(WIDTH, HEIGHT));
+        }
+
+        void check_corners()
+        {
+            int box_width = 20;
+            int pixels_from_top = 160, pixel_from_bottom = 0, divisions = 255;
+            cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
+            int res = histogram(mask, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
+            if (res != -1)
+            {
+                RCLCPP_INFO(get_logger(), "Should turn right");
+                middle_pos = WIDTH - res;
+                return;
+            }
+            cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
+            res = histogram(mask, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
+            if (res != -1)
+            {
+                RCLCPP_INFO(get_logger(), "Should turn left");
+                middle_pos = WIDTH - res;
+            }
         }
 
         void threshold()
@@ -105,6 +130,22 @@ class ImageProcessing : public rclcpp::Node
             // merge our images together into final frame
             add(frame_thresh, frame_edge, frame_final);
             cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
+
+            // red
+	        cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
+
+            cv::Mat mask1, mask2;
+            // first digit in Scalar is it's Hue... (red goes from 175 to 5 (it wraps around 180 and back to 0))
+            // Second digit is for Saturation... The higher the saturation value, the deeper the red... a low saturation is a lighter red
+            // the third value represents value... a value of 0 is black. Darker read means a lower value 
+            inRange(frame_red, cv::Scalar(0, 120, 50), cv::Scalar(5, 255, 255), mask1);
+            inRange(frame_red, cv::Scalar(175, 120, 50), cv::Scalar(180, 255, 255), mask2);
+
+            add(mask1, mask2, frame_red);
+
+            // cv::cvtColor(frame_red, mask, cv::COLOR_GRAY2BGR);
+            // cv::cvtColor(frame_red, frame_red, cv::COLOR_HSV2RGB);
+            cv::cvtColor(frame_red, frame_red_post_conversion, cv::COLOR_GRAY2BGR);
         }
 
         void histogram()
@@ -113,16 +154,39 @@ class ImageProcessing : public rclcpp::Node
             histogram_lane.resize(frame.size().width);
             histogram_lane.clear();
             
-            int top = 20;
+            int pixels_from_top = 20;
             cv::Mat roi_lane, frame_final_bgr;
             cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
-                roi_lane = frame_final_bgr(cv::Rect(i, top, 1, HEIGHT - top));
+                roi_lane = frame_final_bgr(cv::Rect(i, pixels_from_top, 1, HEIGHT - pixels_from_top));
                 divide(255, roi_lane, roi_lane);
                 histogram_lane.push_back((int)(sum(roi_lane)[0]));
             }
+        }
+
+        // Assumes frame is in RGB format
+        int histogram(
+            cv::Mat localframe,
+            int start,
+            int end,
+            int pixels_from_top,
+            int pixels_from_bottom = 0,
+            int divisions = 255)
+        {
+            cv::Mat roi_lane, frame_final_bgr;
+            // cvtColor(localframe, frame_final_bgr, cv::COLOR_GRAY2BGR);
+            for (int i = start; i < end; i++)
+            {
+                // reason of interest strip
+                roi_lane = localframe(cv::Rect(i, pixels_from_top, 1, HEIGHT - pixels_from_top - pixels_from_bottom));
+                divide(divisions, roi_lane, roi_lane);
+                if ((int)(sum(roi_lane)[0]) > 5)
+                    return i;
+            }
+
+            return -1;
         }
 
         void lane_center()
@@ -213,6 +277,12 @@ class ImageProcessing : public rclcpp::Node
             if (!frame_final.empty())
             {
                 cv::imshow("final_image", frame_final);
+                cv::waitKey(1);
+            }
+
+            if (!frame_red.empty())
+            {
+                cv::imshow("frame_red", frame_red_post_conversion);
                 cv::waitKey(1);
             }
         }

@@ -122,7 +122,7 @@ class Navigation : public rclcpp::Node
                 }
                 else
                 {
-                    TurnDirection angular = determine_direction();
+                    TurnDirection angular = STRAIGHT; // determine_direction();
                     publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
                 }
             }
