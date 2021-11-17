@@ -1,65 +1,22 @@
+#include <climits>
+
+#include "custom_interfaces/msg/image_data.hpp"
 #include "custom_interfaces/msg/manual_control.hpp"
-#include "geometry_msgs/msg/pose.hpp"
-#include "nav_msgs/msg/odometry.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
+
 
 #define NO_BALL_IN_VIEW             -180
+#define NO_EDGE                     INT_MAX
 #define ANGULAR_VELOCITY_FACTOR     -0.01
 #define MAX_SPEED                   0.91
-#define FIELD_SIZE                  22.86
-
-std::map<char, double> euler_from_quaternion(geometry_msgs::msg::Quaternion orientation)
-{
-    auto rpy = std::map<char, double>();
-
-    // roll (x-axis rotation)
-    double sinr_cosp = 2 * (orientation.w * orientation.x + orientation.y * orientation.z);
-    double cosr_cosp = 1 - 2 * (orientation.x * orientation.x + orientation.y * orientation.y);
-    rpy['x'] = std::atan2(sinr_cosp, cosr_cosp);
-
-    // pitch (y-axis rotation)
-    double sinp = 2 * (orientation.w * orientation.y - orientation.z * orientation.x);
-    if (std::abs(sinp) >= 1)
-        rpy['y'] = std::copysign(M_PI / 2, sinp); // use 90 degrees if out of range
-    else
-        rpy['y'] = std::asin(sinp);
-
-    // yaw (z-axis rotation)
-    double siny_cosp = 2 * (orientation.w * orientation.z + orientation.x * orientation.y);
-    double cosy_cosp = 1 - 2 * (orientation.y * orientation.y + orientation.z * orientation.z);
-    rpy['z'] = std::atan2(siny_cosp, cosy_cosp);
-
-    return rpy;
-}
-
-geometry_msgs::msg::Quaternion quaternion_from_euler(double roll, double pitch, double yaw)
-{
-    double cy = cos(yaw * 0.5);
-    double sy = sin(yaw * 0.5);
-    double cp = cos(pitch * 0.5);
-    double sp = sin(pitch * 0.5);
-    double cr = cos(roll * 0.5);
-    double sr = sin(roll * 0.5);
-
-    auto q = geometry_msgs::msg::Quaternion();
-    q.x = cy * cp * sr - sy * sp * cr;
-    q.y = sy * cp * sr + cy * sp * cr;
-    q.z = sy * cp * cr - cy * sp * sr;
-    q.w = cy * cp * cr + sy * sp * sr;
-
-    return q;
-}
 
 class Navigation : public rclcpp::Node
 {
     private:
         rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
-        rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
-        rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
+        rclcpp::Subscription<custom_interfaces::msg::ImageData>::SharedPtr image_data_subscriber;
         rclcpp::Subscription<custom_interfaces::msg::ManualControl>::SharedPtr manual_control_subscriber;
-        // Current pose for detecting edges.
-        geometry_msgs::msg::Pose pose;
         // Determines if manual control is enabled / if we need to stop.
         bool manual_control, stop;
         rclcpp::Time time_since_last_seen;
@@ -83,15 +40,10 @@ class Navigation : public rclcpp::Node
                 10
             );
             
-            ball_direction_subscriber = create_subscription<std_msgs::msg::Int32>(
-                "direction",
+            image_data_subscriber = create_subscription<custom_interfaces::msg::ImageData>(
+                "image_data",
                 5,
                 std::bind(&Navigation::control_loop, this, std::placeholders::_1)
-            );
-            odom_subscriber = create_subscription<nav_msgs::msg::Odometry>(
-                "odom", 
-                10,
-                std::bind(&Navigation::get_current_position, this, std::placeholders::_1)
             );
             manual_control_subscriber = create_subscription<custom_interfaces::msg::ManualControl>(
                 "navigation_control",
@@ -103,7 +55,7 @@ class Navigation : public rclcpp::Node
         }
 
     private:
-        void control_loop(const std_msgs::msg::Int32::SharedPtr ball_location)
+        void control_loop(const custom_interfaces::msg::ImageData::SharedPtr image_data)
         {
             if (stop)
             {
@@ -113,69 +65,32 @@ class Navigation : public rclcpp::Node
             {
                 return;
             }
-            else if (ball_location->data == NO_BALL_IN_VIEW)
+            else if (image_data->ball_position == NO_BALL_IN_VIEW)
             {
                 double seconds = now().seconds() - time_since_last_seen.seconds();
-                if (seconds > 2.5 && seconds < 10.0)
+                if (seconds > 1.5 && seconds < 9.0)
                 {
                     publish_velocity(0, 1);
                 }
                 else
                 {
-                    TurnDirection angular = determine_direction();
-                    publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+                    auto direction = determine_direction(image_data->corner_position);
+                    publish_velocity(direction == STRAIGHT ? MAX_SPEED : 0, direction);
                 }
             }
             else
             {
                 time_since_last_seen = now();
-                publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
+                publish_velocity(0.8 * MAX_SPEED, image_data->ball_position * ANGULAR_VELOCITY_FACTOR);
             }
         }
 
-        TurnDirection determine_direction()
+        TurnDirection determine_direction(int corner_position)
         {
-            const double THRESHOLD = (FIELD_SIZE / 2) - 0.75;
-            
-            double theta = euler_from_quaternion(pose.orientation)['z'];
-            if (pose.position.x > THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near x = %lf", THRESHOLD);
-                // Facing 0
-                if (theta >= 0 && theta < M_PI_2)
-                    return LEFT;
-                if (theta <= 0 && theta > -M_PI_2)
-                    return RIGHT;
-            }
-            else if (pose.position.x < -THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near x = %lf", -THRESHOLD);
-                // Facing PI
-                if (theta <= M_PI && theta > M_PI_2)
-                    return RIGHT;
-                if (theta >= -M_PI && theta < -M_PI_2)
-                    return LEFT;
-            }
-            else if (pose.position.y > THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near y = %lf", THRESHOLD);
-                // Facing pi/2
-                if (theta <= M_PI_2 && theta > 0)
-                    return RIGHT;
-                if (theta >= M_PI_2 && theta < M_PI)
-                    return LEFT;
-            }
-            else if (pose.position.y < -THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near y = %lf", -THRESHOLD);
-                // Facing -pi/2
-                if (theta >= -M_PI_2 && theta < 0)
-                    return LEFT;
-                if (theta <= -M_PI_2 && theta >= -M_PI)
-                    return RIGHT;
-            }
+            if (corner_position == NO_EDGE)
+                return STRAIGHT;
 
-            return STRAIGHT;
+            return (corner_position < 0) ? LEFT : RIGHT;
         }
 
         void publish_velocity(double linear = 0, double angular = 0)
@@ -210,13 +125,6 @@ class Navigation : public rclcpp::Node
                     publish_velocity(MAX_SPEED * linear_percentage, angular_percentage);
                 }
             }
-
-        }
-
-        void get_current_position(const nav_msgs::msg::Odometry::SharedPtr message)
-        {
-            // message->pose has type PoseWithCovariance. Tack on .pose to extract just pose
-            pose = message->pose.pose;
         }
 };
 

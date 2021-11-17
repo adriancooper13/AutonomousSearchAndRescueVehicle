@@ -1,6 +1,7 @@
 #include <cv_bridge/cv_bridge.h>
 #include <opencv2/opencv.hpp>
 
+#include "custom_interfaces/msg/image_data.hpp"
 #include "custom_interfaces/msg/threshold_adjustment.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
@@ -8,6 +9,8 @@
 
 #define WIDTH 360
 #define HEIGHT 240
+#define NO_EDGE_FOUND INT_MAX
+#define NO_BALL_FOUND -180
 #define DEBUG true
 
 const auto RED = cv::Scalar(0, 0, 255);
@@ -17,10 +20,10 @@ const auto BLUE = cv::Scalar(255, 0, 0);
 class ImageProcessing : public rclcpp::Node
 {
     private:
-        int middle_pos, lower_threshold, upper_threshold;
+        int middle_pos, lower_threshold, upper_threshold, result;
         std::vector<int> histogram_lane;
-        cv::Mat frame, frame_perspective, frame_final;
-        rclcpp::Publisher<std_msgs::msg::Int32>::SharedPtr direction_publisher;
+        cv::Mat frame, frame_perspective, frame_final, frame_red;
+        rclcpp::Publisher<custom_interfaces::msg::ImageData>::SharedPtr image_data_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::Subscription<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr threshold_subscription;
         rclcpp::TimerBase::SharedPtr timer;
@@ -28,10 +31,10 @@ class ImageProcessing : public rclcpp::Node
     public:
         ImageProcessing() : Node("image_processing")
         {
-            lower_threshold = 100;
+            lower_threshold = 175;
             upper_threshold = 255;
 
-            direction_publisher = create_publisher<std_msgs::msg::Int32>("direction", 10);
+            image_data_publisher = create_publisher<custom_interfaces::msg::ImageData>("image_data", 10);
             image_subscription = create_subscription<sensor_msgs::msg::Image>(
                 "camera/image_raw",
                 10,
@@ -56,12 +59,27 @@ class ImageProcessing : public rclcpp::Node
         void process_image(const sensor_msgs::msg::Image::SharedPtr message)
         {
             frame = cv_bridge::toCvCopy(message, message->encoding)->image;
+	        cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
+
+            int edge_result = NO_EDGE_FOUND;
+            auto edge_thread = std::thread(&ImageProcessing::check_corners, this, std::ref(edge_result));
 
             perspective();
             threshold();
             histogram();
             find_largest_ball();
-            lane_center();
+            int ball_result = lane_center();
+
+            // We do not see a golf ball. We need the corner information. Wait for it.
+            if (ball_result == NO_BALL_FOUND)
+                edge_thread.join();
+            // We see a golf ball. We do not need the corner information. Leave it.
+            // Note: By detaching rather than terminating, we can still get edge information before we
+            // send the message off to the navigation node.
+            else
+                edge_thread.detach();
+
+            publish_image_data(ball_result, edge_result);
         }
 
         void perspective()
@@ -92,6 +110,37 @@ class ImageProcessing : public rclcpp::Node
             warpPerspective(frame, frame_perspective, matrix, cv::Size(WIDTH, HEIGHT));
         }
 
+        void check_corners(int &edge_result)
+        {
+            int box_width = 40, divisions = 255;
+            int pixels_from_top = 160, pixel_from_bottom = 0;
+
+            cv::Mat mask1, mask2, red_frame_copy;
+            // first digit in Scalar is it's Hue... (red goes from 175 to 5 (it wraps around 180 and back to 0))
+            // Second digit is for Saturation... The higher the saturation value, the deeper the red... a low saturation is a lighter red
+            // the third value represents value... a value of 0 is black. Darker read means a lower value 
+            inRange(frame_red, cv::Scalar(0, 120, 50), cv::Scalar(5, 255, 255), mask1);
+            inRange(frame_red, cv::Scalar(175, 120, 50), cv::Scalar(180, 255, 255), mask2);
+            add(mask1, mask2, frame_red);
+
+            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+            int res = histogram(red_frame_copy, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
+            if (res != -1)
+            {
+                RCLCPP_INFO(get_logger(), "Should turn right");
+                edge_result = WIDTH - res - (WIDTH / 2);
+                return;
+            }
+
+            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+            res = histogram(red_frame_copy, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
+            if (res != -1)
+            {
+                RCLCPP_INFO(get_logger(), "Should turn left");
+                edge_result = WIDTH - res - (WIDTH / 2);
+            }
+        }
+
         void threshold()
         {
             cv::Mat frame_thresh, frame_edge, frame_gray;
@@ -113,31 +162,49 @@ class ImageProcessing : public rclcpp::Node
             histogram_lane.resize(frame.size().width);
             histogram_lane.clear();
             
-            int top = 20;
+            int pixels_from_top = 20;
             cv::Mat roi_lane, frame_final_bgr;
             cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
-                roi_lane = frame_final_bgr(cv::Rect(i, top, 1, HEIGHT - top));
+                roi_lane = frame_final_bgr(cv::Rect(i, pixels_from_top, 1, HEIGHT - pixels_from_top));
                 divide(255, roi_lane, roi_lane);
                 histogram_lane.push_back((int)(sum(roi_lane)[0]));
             }
         }
 
-        void lane_center()
+        // Assumes frame is in RGB format
+        int histogram(
+            cv::Mat &localframe,
+            int start,
+            int end,
+            int pixels_from_top,
+            int pixels_from_bottom = 0,
+            int divisions = 255)
+        {
+            cv::Mat roi_lane, frame_final_bgr;
+            // cvtColor(localframe, frame_final_bgr, cv::COLOR_GRAY2BGR);
+            for (int i = start; i < end; i++)
+            {
+                // reason of interest strip
+                roi_lane = localframe(cv::Rect(i, pixels_from_top, 1, HEIGHT - pixels_from_top - pixels_from_bottom));
+                divide(divisions, roi_lane, roi_lane);
+                if ((int)(sum(roi_lane)[0]) > 5)
+                    return i;
+            }
+
+            return -1;
+        }
+
+        int lane_center()
         {
             int frame_center = WIDTH / 2;
             
             line(frame_final, cv::Point2f(frame_center, 0), cv::Point2f(frame_center, HEIGHT), BLUE, 3);
             
             // difference between true center and center ball...
-            int result = middle_pos - frame_center;
-
-            // Publish result
-            auto message = std_msgs::msg::Int32();
-            message.data = result;
-            direction_publisher->publish(message);
+            return middle_pos - frame_center;
         }
 
         void find_middle_ball()
@@ -186,6 +253,15 @@ class ImageProcessing : public rclcpp::Node
             line(frame_final, cv::Point2f(middle_pos, 0), cv::Point2f(middle_pos, 240), GREEN, 2);
         }
 
+        void publish_image_data(int ball_result, int &corner_result)
+        {
+            // Publish result
+            auto message = custom_interfaces::msg::ImageData();
+            message.ball_position = ball_result;
+            message.corner_position = corner_result;
+            image_data_publisher->publish(message);
+        }
+
         void adjust_thresholds(const custom_interfaces::msg::ThresholdAdjustment::SharedPtr threshold_adjustment)
         {
             int lower_adj = threshold_adjustment->lower_adjustment;
@@ -213,6 +289,12 @@ class ImageProcessing : public rclcpp::Node
             if (!frame_final.empty())
             {
                 cv::imshow("final_image", frame_final);
+                cv::waitKey(1);
+            }
+
+            if (!frame_red.empty())
+            {
+                cv::imshow("frame_red", frame_red);
                 cv::waitKey(1);
             }
         }
