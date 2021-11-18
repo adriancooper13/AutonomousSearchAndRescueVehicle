@@ -1,25 +1,25 @@
+#include <climits>
+
+#include "custom_interfaces/msg/image_data.hpp"
 #include "custom_interfaces/msg/manual_control.hpp"
-#include "geometry_msgs/msg/pose.hpp"
-#include "nav_msgs/msg/odometry.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/int32.hpp"
 
 #define NO_BALL_IN_VIEW             -320
+#define NO_EDGE                     INT_MAX
 #define ANGULAR_VELOCITY_FACTOR     -0.01
 #define MAX_SPEED                   0.91
+
 
 class Navigation : public rclcpp::Node
 {
     private:
-        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
-        rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr ball_direction_subscriber;
-        rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_subscriber;
-        rclcpp::Subscription<custom_interfaces::msg::ManualControl>::SharedPtr manual_control_subscriber;
         // Determines if manual control is enabled / if we need to stop.
         bool manual_control, stop;
+        rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr velocity_publisher;
+        rclcpp::Subscription<custom_interfaces::msg::ImageData>::SharedPtr image_data_subscriber;
+        rclcpp::Subscription<custom_interfaces::msg::ManualControl>::SharedPtr manual_control_subscriber;
         rclcpp::Time time_since_last_seen;
-
-
         enum TurnDirection {
             LEFT = 1,
             STRAIGHT = 0,
@@ -38,8 +38,8 @@ class Navigation : public rclcpp::Node
                 10
             );
             
-            ball_direction_subscriber = create_subscription<std_msgs::msg::Int32>(
-                "direction",
+            image_data_subscriber = create_subscription<custom_interfaces::msg::ImageData>(
+                "image_data",
                 5,
                 std::bind(&Navigation::control_loop, this, std::placeholders::_1)
             );
@@ -53,7 +53,7 @@ class Navigation : public rclcpp::Node
         }
 
     private:
-        void control_loop(const std_msgs::msg::Int32::SharedPtr ball_location)
+        void control_loop(const custom_interfaces::msg::ImageData::SharedPtr image_data)
         {
             if (stop)
             {
@@ -61,74 +61,37 @@ class Navigation : public rclcpp::Node
             }
             else if (manual_control)
             {
+                // method that receives manual control calls publish_velocity()
                 return;
             }
-            else if (ball_location->data == NO_BALL_IN_VIEW)
+            else if (image_data->ball_position == NO_BALL_IN_VIEW)
             {
-
                 double seconds = now().seconds() - time_since_last_seen.seconds();
-                if (seconds > 2.5 && seconds < 10.0)
+                if (seconds > 1.5 && seconds < 9.0)
                 {
                     publish_velocity(0, 1);
                 }
                 else
                 {
-                    TurnDirection angular = STRAIGHT;
-                    publish_velocity(angular == STRAIGHT ? MAX_SPEED : 0, 1.15 * angular);
+                    TurnDirection direction = determine_direction(image_data->corner_position);
+                    publish_velocity(direction == STRAIGHT ? MAX_SPEED : 0, direction);
                 }
             }
             else
             {
                 time_since_last_seen = now();
-                publish_velocity(0.8 * MAX_SPEED, ball_location->data * ANGULAR_VELOCITY_FACTOR);
+                publish_velocity(0.8 * MAX_SPEED, image_data->ball_position * ANGULAR_VELOCITY_FACTOR);
             }
         }
-/*
-        TurnDirection determine_direction()
-        {
-            const double THRESHOLD = (FIELD_SIZE / 2) - 0.75;
-            
-            double theta = 0 // euler_from_quaternion(pose.orientation)['z'];
-            if (pose.position.x > THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near x = %lf", THRESHOLD);
-                // Facing 0
-                if (theta >= 0 && theta < M_PI_2)
-                    return LEFT;
-                if (theta <= 0 && theta > -M_PI_2)
-                    return RIGHT;
-            }
-            else if (pose.position.x < -THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near x = %lf", -THRESHOLD);
-                // Facing PI
-                if (theta <= M_PI && theta > M_PI_2)
-                    return RIGHT;
-                if (theta >= -M_PI && theta < -M_PI_2)
-                    return LEFT;
-            }
-            else if (pose.position.y > THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near y = %lf", THRESHOLD);
-                // Facing pi/2
-                if (theta <= M_PI_2 && theta > 0)
-                    return RIGHT;
-                if (theta >= M_PI_2 && theta < M_PI)
-                    return LEFT;
-            }
-            else if (pose.position.y < -THRESHOLD)
-            {
-                RCLCPP_DEBUG(get_logger(), "Near y = %lf", -THRESHOLD);
-                // Facing -pi/2
-                if (theta >= -M_PI_2 && theta < 0)
-                    return LEFT;
-                if (theta <= -M_PI_2 && theta >= -M_PI)
-                    return RIGHT;
-            }
 
-            return STRAIGHT;
+        TurnDirection determine_direction(int corner_position)
+        {
+            if (corner_position == NO_EDGE)
+                return STRAIGHT;
+
+            return (corner_position < 0) ? LEFT : RIGHT;
         }
-*/
+
         void publish_velocity(double linear = 0, double angular = 0)
         {
             auto message = geometry_msgs::msg::Twist();
@@ -161,7 +124,6 @@ class Navigation : public rclcpp::Node
                     publish_velocity(MAX_SPEED * linear_percentage, angular_percentage);
                 }
             }
-
         }
 };
 
