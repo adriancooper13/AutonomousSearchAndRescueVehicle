@@ -5,6 +5,7 @@ import serial
 from geometry_msgs.msg import Twist
 from math import pi as PI
 from rclpy.node import Node
+from std_msgs.msg import Float32
 from time import sleep
 
 ABS_MAX_PWM = 255
@@ -15,6 +16,7 @@ class ArduinoController(Node):
     
     def __init__(self):
         super().__init__('arduino_controller')
+        self.draw_bridge_motor = 0
         self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
         sleep(5)
         self.ser.flush()
@@ -25,13 +27,19 @@ class ArduinoController(Node):
             self.send_velocity,
             10
         )
+        self.draw_bridge_subscriber = self.create_subscription(
+            Float32,
+            'ball_release',
+            self.ball_release,
+            10
+        )
         
         self.get_logger().info(f'{self.get_name()} node has started')
 
     def send_velocity(self, msg: Twist):        
         left, right = self.pwm(msg.linear.x, msg.angular.z)
 
-        string = f'{left} {right}' + '\n'
+        string = f'{left} {right} {self.draw_bridge_motor}' + '\n'
         sent = self.ser.write(string.encode('utf-8'))
         
         line = self.ser.readline().decode('utf-8').rstrip()
@@ -60,6 +68,9 @@ class ArduinoController(Node):
             left_pwm = ABS_MAX_PWM
             
         return int(left_pwm), int(right_pwm)
+        
+    def ball_release(self, msg: Float32):
+        self.draw_bridge_motor = int(ABS_MAX_PWM * msg.data / 2)
 
 
 def main(args=None):

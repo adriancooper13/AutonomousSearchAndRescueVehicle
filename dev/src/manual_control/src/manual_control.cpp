@@ -3,6 +3,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/joy.hpp"
 #include "std_msgs/msg/int8.hpp"
+#include "std_msgs/msg/float32.hpp"
 
 #define OFF false
 #define ON  true
@@ -43,6 +44,7 @@ class ManualControl : public rclcpp::Node
     private:
         rclcpp::Publisher<custom_interfaces::msg::ManualControl>::SharedPtr control_publisher;
         rclcpp::Publisher<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr vision_adjustment_publisher;
+        rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr ball_release_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr joy_subscriber;
 
     public:
@@ -61,6 +63,7 @@ class ManualControl : public rclcpp::Node
                 "vision_threshold_adjustment",
                 10
             );
+            ball_release_publisher = create_publisher<std_msgs::msg::Float32>("ball_release", 10);
 
             RCLCPP_INFO(get_logger(), "%s node has started", get_name());
         }
@@ -69,7 +72,15 @@ class ManualControl : public rclcpp::Node
         void joy_publisher(const sensor_msgs::msg::Joy::SharedPtr input)
         {   
             publish_control(input);
+            publish_ball_release(input->axes);
             publish_vision_adjust(input);
+        }
+        
+        void publish_ball_release(const std::vector<float> &axes)
+        {
+            auto message = std_msgs::msg::Float32();
+            message.data = axes.at(AXES_MAPPINGS.at("R3-U/D"));
+            ball_release_publisher->publish(message);
         }
 
         void publish_control(const sensor_msgs::msg::Joy::SharedPtr input)
