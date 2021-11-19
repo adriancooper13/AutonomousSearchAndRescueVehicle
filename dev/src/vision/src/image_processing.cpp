@@ -22,7 +22,7 @@ class ImageProcessing : public rclcpp::Node
     private:
         int middle_pos, lower_threshold, upper_threshold, result;
         std::vector<int> histogram_lane;
-        cv::Mat frame, frame_perspective, frame_final, frame_red;
+        cv::Mat frame, frame_copy, frame_final, frame_red;
         rclcpp::Publisher<custom_interfaces::msg::ImageData>::SharedPtr image_data_publisher;
         rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr image_subscription;
         rclcpp::Subscription<custom_interfaces::msg::ThresholdAdjustment>::SharedPtr threshold_subscription;
@@ -59,19 +59,13 @@ class ImageProcessing : public rclcpp::Node
         void process_image(const sensor_msgs::msg::Image::SharedPtr message)
         {
             frame = cv_bridge::toCvCopy(message, message->encoding)->image;
-            int edge_result = NO_EDGE_FOUND;   
-            std::thread edge_thread;         
-            try
-            {
-                frame_perspective = frame.clone();
-	            cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
-                edge_thread = std::thread(&ImageProcessing::check_corners, this, std::ref(edge_result));
-	        }
-	        catch (const cv::Exception &e)
-	        {
-	            RCLCPP_WARN(get_logger(), "Could not convert image to HSV format in process_image(). Exception: %s", e.what());
-	        }
+            frame_copy = frame.clone();
+            cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
+            
+            int edge_result = NO_EDGE_FOUND;            
+            auto edge_thread = std::thread(&ImageProcessing::check_corners, this, std::ref(edge_result));
 	        
+            int line_width = 2;
 	        // create a frame of reference... adjust these as needed. They represent the 4 corners of the box.
             cv::Point2f source[] = {
                 cv::Point2f(30, HEIGHT / 2),
@@ -79,54 +73,28 @@ class ImageProcessing : public rclcpp::Node
                 cv::Point2f(0, HEIGHT),
                 cv::Point2f(WIDTH, HEIGHT)
             };
-            int line_width = 2;
             
-            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
-            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
-            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
-            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
+            // goes from top left to top right
+            line(frame, source[0], source[1], RED, line_width);
+            // goes from top right to bottom right
+            line(frame, source[1], source[3], RED, line_width);
+            // goes from bottom right to bottom left
+            line(frame, source[3], source[2], RED, line_width);
+            // goes from bottom left to top left
+            line(frame, source[2], source[0], RED, line_width);
             
-            // perspective();
             threshold();
             histogram();
             find_largest_ball();
             int ball_result = lane_center();
 
             // We do not see a golf ball. We need the corner information. Wait for it.
-            if (ball_result == NO_BALL_FOUND && edge_thread.joinable())
+            if (ball_result == NO_BALL_FOUND)
                 edge_thread.join();
 
             publish_image_data(ball_result, edge_result);
             if (edge_thread.joinable())
                 edge_thread.join();
-        }
-
-        void perspective()
-        {
-            // create a frame of reference... adjust these as needed. They represent the 4 corners of the box.
-            cv::Point2f source[] = {
-                cv::Point2f(30, HEIGHT / 2),
-                cv::Point2f(WIDTH - 30, HEIGHT / 2),
-                cv::Point2f(0, HEIGHT),
-                cv::Point2f(WIDTH, HEIGHT)
-            };
-            // Point2f Destination[] = {Point2f(25, 150), Point2f(330, 150), Point2f(0, 210), Point2f(360, 210)};
-            cv::Point2f destination[] = {
-                cv::Point2f(80, 0),
-                cv::Point2f(WIDTH - 80, 0),
-                cv::Point2f(80, HEIGHT),
-                cv::Point2f(WIDTH - 80, HEIGHT)
-            };
-            // this is to join the 4 points via openCV
-            int line_width = 2;
-            
-            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
-            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
-            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
-            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
-            
-            auto matrix = getPerspectiveTransform(source, destination);
-            warpPerspective(frame, frame_perspective, matrix, cv::Size(WIDTH, HEIGHT));
         }
 
         void check_corners(int &edge_result)
@@ -170,7 +138,7 @@ class ImageProcessing : public rclcpp::Node
         void threshold()
         {
             cv::Mat frame_thresh, frame_edge, frame_gray;
-            cvtColor(frame_perspective, frame_gray, cv::COLOR_BGR2GRAY);
+            cvtColor(frame_copy, frame_gray, cv::COLOR_BGR2GRAY);
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
             inRange(frame_gray, lower_threshold, upper_threshold, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
@@ -302,12 +270,6 @@ class ImageProcessing : public rclcpp::Node
             if (!frame.empty())
             {
                 cv::imshow("raw_image", frame);
-                cv::waitKey(1);
-            }
-     
-            if (!frame_perspective.empty())
-            {
-                cv::imshow("perspective_image", frame_perspective);
                 cv::waitKey(1);
             }
 
