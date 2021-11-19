@@ -4,9 +4,6 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/header.hpp"
 
-#define HEIGHT  480
-#define WIDTH   640
-
 class CameraDriver : public rclcpp::Node
 {
     private:
@@ -23,7 +20,7 @@ class CameraDriver : public rclcpp::Node
             );
 
             using namespace std::chrono_literals;
-            capture = cv::VideoCapture(1, cv::CAP_V4L);
+            capture = cv::VideoCapture(0, cv::CAP_V4L);
 
             timer = create_wall_timer(
                 0.1ms,
@@ -52,7 +49,7 @@ class CameraDriver : public rclcpp::Node
                     get_logger(),
                     "Could not read image"
                 );
-		        return;
+                return;
             }
 
             auto message = image.toImageMsg();
