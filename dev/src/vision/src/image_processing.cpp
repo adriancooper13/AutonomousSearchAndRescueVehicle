@@ -11,7 +11,7 @@
 #define HEIGHT 480
 #define NO_EDGE_FOUND INT_MAX
 #define NO_BALL_FOUND -180
-#define DEBUG true
+#define DEBUG false
 
 const auto RED = cv::Scalar(0, 0, 255);
 const auto GREEN = cv::Scalar(0, 255, 0);
@@ -59,32 +59,46 @@ class ImageProcessing : public rclcpp::Node
         void process_image(const sensor_msgs::msg::Image::SharedPtr message)
         {
             frame = cv_bridge::toCvCopy(message, message->encoding)->image;
-            try {
-	        cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
+            int edge_result = NO_EDGE_FOUND;   
+            std::thread edge_thread;         
+            try
+            {
+                frame_perspective = frame.clone();
+	            cv::cvtColor(frame, frame_red, cv::COLOR_BGR2HSV);
+                edge_thread = std::thread(&ImageProcessing::check_corners, this, std::ref(edge_result));
 	        }
 	        catch (const cv::Exception &e)
 	        {
-	            RCLCPP_FATAL(get_logger(), "WE ARE IN process_image()");
+	            RCLCPP_WARN(get_logger(), "Could not convert image to HSV format in process_image(). Exception: %s", e.what());
 	        }
-            int edge_result = NO_EDGE_FOUND;
-            auto edge_thread = std::thread(&ImageProcessing::check_corners, this, std::ref(edge_result));
-
-            perspective();
+	        
+	        // create a frame of reference... adjust these as needed. They represent the 4 corners of the box.
+            cv::Point2f source[] = {
+                cv::Point2f(30, HEIGHT / 2),
+                cv::Point2f(WIDTH - 30, HEIGHT / 2),
+                cv::Point2f(0, HEIGHT),
+                cv::Point2f(WIDTH, HEIGHT)
+            };
+            int line_width = 2;
+            
+            line(frame, source[0], source[1], RED, line_width); // goes from top left to top right
+            line(frame, source[1], source[3], RED, line_width); // goes from top right to bottom right
+            line(frame, source[3], source[2], RED, line_width); // goes from bottom right to bottom left
+            line(frame, source[2], source[0], RED, line_width); // goes from bottom left to top left
+            
+            // perspective();
             threshold();
             histogram();
             find_largest_ball();
             int ball_result = lane_center();
 
             // We do not see a golf ball. We need the corner information. Wait for it.
-            if (ball_result == NO_BALL_FOUND)
+            if (ball_result == NO_BALL_FOUND && edge_thread.joinable())
                 edge_thread.join();
-            // We see a golf ball. We do not need the corner information. Leave it.
-            // Note: By detaching rather than terminating, we can still get edge information before we
-            // send the message off to the navigation node.
-            else
-                edge_thread.detach();
 
             publish_image_data(ball_result, edge_result);
+            if (edge_thread.joinable())
+                edge_thread.join();
         }
 
         void perspective()
@@ -128,48 +142,35 @@ class ImageProcessing : public rclcpp::Node
             inRange(frame_red, cv::Scalar(175, 120, 50), cv::Scalar(180, 255, 255), mask2);
             add(mask1, mask2, frame_red);
             
-            try {
-            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+            try
+            {
+                cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+                int res = histogram(red_frame_copy, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
+                if (res != -1)
+                {
+                    RCLCPP_DEBUG(get_logger(), "Should turn right");
+                    edge_result = WIDTH - res - (WIDTH / 2);
+                    return;
+                }
+
+                cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
+                res = histogram(red_frame_copy, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
+                if (res != -1)
+                {
+                    RCLCPP_DEBUG(get_logger(), "Should turn left");
+                    edge_result = WIDTH - res - (WIDTH / 2);
+                }
             }
             catch (const cv::Exception &e)
             {
-                RCLCPP_FATAL(get_logger(), "WE ARE IN check_corners() FIRST CONVERSION");
-            }
-            int res = histogram(red_frame_copy, 0, box_width, pixels_from_top, pixel_from_bottom, divisions);
-            if (res != -1)
-            {
-                RCLCPP_INFO(get_logger(), "Should turn right");
-                edge_result = WIDTH - res - (WIDTH / 2);
-                return;
-            }
-            
-            try {
-            cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
-            }
-            catch (const cv::Exception &e)
-            {
-                RCLCPP_FATAL(get_logger(), "WE ARE IN check_corners() SECOND CONVERSION");
-            }
-            // cv::cvtColor(frame_red, red_frame_copy, cv::COLOR_GRAY2BGR);
-            res = histogram(red_frame_copy, WIDTH - box_width, WIDTH, pixels_from_top, pixel_from_bottom, divisions);
-            if (res != -1)
-            {
-                RCLCPP_INFO(get_logger(), "Should turn left");
-                edge_result = WIDTH - res - (WIDTH / 2);
+                RCLCPP_WARN(get_logger(), "Could not convert image from gray to BGR format. Exception: %s", e.what());
             }
         }
 
         void threshold()
         {
             cv::Mat frame_thresh, frame_edge, frame_gray;
-            try
-            {
             cvtColor(frame_perspective, frame_gray, cv::COLOR_BGR2GRAY);
-            }
-            catch (const cv::Exception &e)
-            {
-                RCLCPP_FATAL(get_logger(), "WE ARE IN threshold() first");
-            }
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
             inRange(frame_gray, lower_threshold, upper_threshold, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
@@ -178,14 +179,7 @@ class ImageProcessing : public rclcpp::Node
             Canny(frame_gray, frame_edge, 250, 600, 3, false); // was 250, 600
             // merge our images together into final frame
             add(frame_thresh, frame_edge, frame_final);
-            try
-            {
             cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
-            }
-            catch (const cv::Exception &e)
-            {
-                RCLCPP_FATAL(get_logger(), "WE ARE IN threshold() second");
-            }
         }
 
         void histogram()
@@ -194,16 +188,9 @@ class ImageProcessing : public rclcpp::Node
             histogram_lane.resize(frame.size().width);
             histogram_lane.clear();
             
-            int pixels_from_top = 20;
+            int pixels_from_top = (HEIGHT / 2) + 20;
             cv::Mat roi_lane, frame_final_bgr;
-            try
-            {
             cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);
-            }
-            catch (const cv::Exception &e)
-            {
-                RCLCPP_FATAL(get_logger(), "WE ARE IN histogram(void)");
-            }
             for (int i = 0; i < frame.size().width; i++)
             {
                 // reason of interest strip
@@ -317,7 +304,7 @@ class ImageProcessing : public rclcpp::Node
                 cv::imshow("raw_image", frame);
                 cv::waitKey(1);
             }
-            
+     
             if (!frame_perspective.empty())
             {
                 cv::imshow("perspective_image", frame_perspective);
@@ -335,6 +322,7 @@ class ImageProcessing : public rclcpp::Node
                 cv::imshow("frame_red", frame_red);
                 cv::waitKey(1);
             }
+            
         }
 };
 
