@@ -5,7 +5,7 @@
 #include "geometry_msgs/msg/twist.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-#define NO_BALL_IN_VIEW             -320
+#define NO_BALL_IN_VIEW             -180
 #define NO_EDGE                     INT_MAX
 #define ANGULAR_VELOCITY_FACTOR     -0.01
 #define MAX_SPEED                   0.91
