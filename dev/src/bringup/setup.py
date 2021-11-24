@@ -18,7 +18,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # Path to launch file
-        (join('share', package_name, 'launch'), glob('launch/*.launch.py'))
+        (join('share', package_name, package_name), glob(f'{package_name}/*.launch.py'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +29,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'spawn_demo = bringup.spawn_demo:main'
+            
         ],
     },
 )

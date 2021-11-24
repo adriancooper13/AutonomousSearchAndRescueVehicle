@@ -1,4 +1,4 @@
-from bringup.filepaths import directories
+from simulation.filepaths import directories
 import os
 from launch import LaunchDescription
 from launch.substitutions import LaunchConfiguration
@@ -28,7 +28,7 @@ def generate_launch_description():
     )
 
     spawn_entity = Node(
-        package='bringup',
+        package='simulation',
         executable='spawn_demo',
         output='screen'
     )

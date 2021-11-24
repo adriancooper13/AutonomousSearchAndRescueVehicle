@@ -5,26 +5,18 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='vision',
-            executable='camera_driver'
-        ),
-        Node(
-            package='vision',
             executable='image_processing'
-        ),
-        Node(
-            package='manual_control',
-            executable='manual_control'
         ),
         Node(
             package='manual_control',
             executable='joy_linux_node'
         ),
         Node(
-            package='motion',
-            executable='navigation'
+            package='manual_control',
+            executable='manual_control'
         ),
         Node(
             package='motion',
-            executable='arduino_controller.py'
+            executable='navigation'
         )
     ])
