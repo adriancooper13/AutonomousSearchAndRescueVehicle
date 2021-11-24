@@ -102,7 +102,7 @@ class ManualControl : public rclcpp::Node
             if (input->buttons.at(BUTTON_MAPPINGS.at("L1")) == ON)
                 message.lower_adjustment = adjustment;
             if (input->buttons.at(BUTTON_MAPPINGS.at("R1")) == ON)
-                message.upper_adjustment = adjustment;
+                message.red_adjustment = adjustment;
             
             vision_adjustment_publisher->publish(message);
         }

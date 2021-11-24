@@ -1,2 +1,2 @@
 int32 lower_adjustment
-int32 upper_adjustment
+int32 red_adjustment
