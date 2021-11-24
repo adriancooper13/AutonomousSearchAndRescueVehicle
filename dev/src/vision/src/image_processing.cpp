@@ -7,11 +7,12 @@
 #include "sensor_msgs/msg/image.hpp"
 #include "std_msgs/msg/int32.hpp"
 
-#define WIDTH 640
-#define HEIGHT 480
+#define WHITE 255
+#define WIDTH 360
+#define HEIGHT 240
 #define NO_EDGE_FOUND INT_MAX
 #define NO_BALL_FOUND -180
-#define DEBUG false
+#define DEBUG true
 
 const auto RED = cv::Scalar(0, 0, 255);
 const auto GREEN = cv::Scalar(0, 255, 0);
@@ -20,7 +21,7 @@ const auto BLUE = cv::Scalar(255, 0, 0);
 class ImageProcessing : public rclcpp::Node
 {
     private:
-        int middle_pos, lower_threshold, upper_threshold, result;
+        int middle_pos, lower_threshold, lower_red_value;
         std::vector<int> histogram_lane;
         cv::Mat frame, frame_copy, frame_final, frame_red;
         rclcpp::Publisher<custom_interfaces::msg::ImageData>::SharedPtr image_data_publisher;
@@ -31,12 +32,12 @@ class ImageProcessing : public rclcpp::Node
     public:
         ImageProcessing() : Node("image_processing")
         {
-            lower_threshold = 175;
-            upper_threshold = 255;
+            lower_threshold = 180;
+            lower_red_value = 195;
 
             image_data_publisher = create_publisher<custom_interfaces::msg::ImageData>("image_data", 10);
             image_subscription = create_subscription<sensor_msgs::msg::Image>(
-                "image_raw",
+                "camera/image_raw",
                 10,
                 std::bind(&ImageProcessing::process_image, this, std::placeholders::_1)
             );
@@ -106,8 +107,8 @@ class ImageProcessing : public rclcpp::Node
             // first digit in Scalar is it's Hue... (red goes from 175 to 5 (it wraps around 180 and back to 0))
             // Second digit is for Saturation... The higher the saturation value, the deeper the red... a low saturation is a lighter red
             // the third value represents value... a value of 0 is black. Darker read means a lower value 
-            inRange(frame_red, cv::Scalar(0, 120, 50), cv::Scalar(5, 255, 255), mask1);
-            inRange(frame_red, cv::Scalar(175, 120, 50), cv::Scalar(180, 255, 255), mask2);
+            inRange(frame_red, cv::Scalar(0, 120, lower_red_value), cv::Scalar(10, 255, 255), mask1);
+            inRange(frame_red, cv::Scalar(170, 120, lower_red_value), cv::Scalar(180, 255, 255), mask2);
             add(mask1, mask2, frame_red);
             
             try
@@ -137,16 +138,13 @@ class ImageProcessing : public rclcpp::Node
 
         void threshold()
         {
-            cv::Mat frame_thresh, frame_edge, frame_gray;
+            cv::Mat frame_thresh, frame_gray;
             cvtColor(frame_copy, frame_gray, cv::COLOR_BGR2GRAY);
             // frame input name, min threshold for white, max threshold for white, frame output name. Tweak these as necessary, but min threshold may want to go down if indoors.
             // find the white in the image.
-            inRange(frame_gray, lower_threshold, upper_threshold, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
-            // input, output, minimum threshold for histerisis process. always goes 100 for minimum. 2nd threshhold, usually go 500, axa matrix, advanced gradient?
-            // edge detection         
-            Canny(frame_gray, frame_edge, 250, 600, 3, false); // was 250, 600
-            // merge our images together into final frame
-            add(frame_thresh, frame_edge, frame_final);
+            inRange(frame_gray, lower_threshold, WHITE, frame_thresh); // 137 looked good indoors at night, 165 looked good indoors during the day
+            
+            frame_final = frame_thresh.clone();
             cvtColor(frame_final, frame_final, cv::COLOR_GRAY2RGB);
         }
 
@@ -156,7 +154,8 @@ class ImageProcessing : public rclcpp::Node
             histogram_lane.resize(frame.size().width);
             histogram_lane.clear();
             
-            int pixels_from_top = (HEIGHT / 2) + 20;
+            // How far down from the top red line are we looking.
+            int pixels_from_top = (HEIGHT / 2) + 10;
             cv::Mat roi_lane, frame_final_bgr;
             cvtColor(frame_final, frame_final_bgr, cv::COLOR_RGB2BGR);
             for (int i = 0; i < frame.size().width; i++)
@@ -258,11 +257,18 @@ class ImageProcessing : public rclcpp::Node
         void adjust_thresholds(const custom_interfaces::msg::ThresholdAdjustment::SharedPtr threshold_adjustment)
         {
             int lower_adj = threshold_adjustment->lower_adjustment;
-            int upper_adj = threshold_adjustment->upper_adjustment;
-            if (lower_threshold + lower_adj >= 0 && lower_threshold + lower_adj <= 255)
+            int red_adj = threshold_adjustment->red_adjustment;
+
+            if (lower_adj != 0 && lower_threshold + lower_adj >= 0 && lower_threshold + lower_adj <= 255)
+            {
                 lower_threshold += lower_adj;
-            if (upper_threshold + upper_adj >= 0 && upper_threshold + upper_adj <= 255)
-                upper_threshold += upper_adj;
+                RCLCPP_INFO(get_logger(), "Lower Threshold: %d", lower_threshold);
+            }
+            if (red_adj != 0 && lower_red_value + red_adj >= 0 && lower_red_value + red_adj <= 255)
+            {
+                lower_red_value += red_adj;
+                RCLCPP_INFO(get_logger(), "Red Value: %d", lower_red_value);
+            }
         }
 
         void image_show()
